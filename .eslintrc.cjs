@@ -13,6 +13,7 @@ module.exports = {
         "plugin:react/jsx-runtime",
         "prettier",
         "plugin:@typescript-eslint/recommended",
+		"plugin:@react-three/recommended",
     ],
     ignorePatterns: ["dist", ".eslintrc.cjs"],
     parser: "@typescript-eslint/parser",
@@ -39,6 +40,7 @@ module.exports = {
         "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
 		"@typescript-eslint/no-unused-vars": "off",
 		"react/jsx-key": "off",
+		"react/no-unknown-property": "off",
 		"@typescript-eslint/consistent-type-definitions": "error",
 		"@typescript-eslint/ban-types": [
             "error",
