@@ -6,41 +6,91 @@ Source: https://sketchfab.com/3d-models/simple-elevator-with-animation-770488a2f
 Title: Simple Elevator with Animation
 */
 
-import { useGLTF } from "@react-three/drei";
-import { RigidBody } from "@react-three/rapier";
+import { Reflector, useGLTF } from "@react-three/drei";
+import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Group, Mesh, MeshPhysicalMaterial, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
+
+interface IDoorAnimationParams {
+    rigidBodyRef: React.RefObject<RapierRigidBody>;
+    direction: number;
+    distance: number;
+    duration: number;
+}
 
 export const Elevator = (props: React.JSX.IntrinsicElements["group"]) => {
     const group = useRef<Group>(null);
 
     const [ doorsOpened, setDoorsOpened ] = useState(false);
-    const leftDoorOutRef = useRef<Group>(null);
-    const rightDoorOutRef = useRef<Group>(null);
-    const leftDoorInRef = useRef<Group>(null);
-    const rightDoorInRef = useRef<Group>(null);
+
+    const rigidBodyLeftDoorOutRef = useRef<RapierRigidBody>(null);
+    const rigidBodyRightDoorOutRef = useRef<RapierRigidBody>(null);
+    const rigidBodyLeftDoorInRef = useRef<RapierRigidBody>(null);
+    const rigidBodyRightDoorInRef = useRef<RapierRigidBody>(null);
 
     const { nodes, materials } = useGLTF("/models/props/elevator.glb") as GLTFResult;
 
-    const handleClick = () => {
-        if (doorsOpened) return;
-        if (!leftDoorOutRef.current || !rightDoorOutRef.current || !leftDoorInRef.current || !rightDoorInRef.current) return;
-        gsap.to(leftDoorOutRef.current.position, { z: leftDoorOutRef.current.position.z + 1, duration: 2 });
-        gsap.to(rightDoorOutRef.current.position, { z: rightDoorOutRef.current.position.z - 1, duration: 2 });
-        gsap.to(leftDoorInRef.current.position, { z: leftDoorInRef.current.position.z - 2, duration: 2 });
-        gsap.to(rightDoorInRef.current.position, { z: rightDoorInRef.current.position.z + 2, duration: 2 });
-        setDoorsOpened(true);
+    const animateDoor = ({ rigidBodyRef, direction, distance, duration }: IDoorAnimationParams) => {
+        if (!rigidBodyRef.current) return;
+
+        const position = rigidBodyRef.current.translation();
+
+        gsap.to(position, {
+            x: position.x + distance * direction,
+            duration,
+            onUpdate: () => {
+                rigidBodyRef.current?.setNextKinematicTranslation({
+                    x: position.x,
+                    y: position.y,
+                    z: position.z,
+                });
+            },
+        });
     };
 
-    useEffect(() => {
-        gsap.to(leftDoorOutRef.current.position, { z: leftDoorOutRef.current.position.z + 1, duration: 2 });
-        gsap.to(rightDoorOutRef.current.position, { z: rightDoorOutRef.current.position.z - 1, duration: 2 });
-        gsap.to(leftDoorInRef.current.position, { z: leftDoorInRef.current.position.z - 2, duration: 2 });
-        gsap.to(rightDoorInRef.current.position, { z: rightDoorInRef.current.position.z + 2, duration: 2 });
+    const handleClick = () => {
+        if (doorsOpened) return;
 
-    }, [ ]);
+        if (
+            !rigidBodyLeftDoorOutRef.current ||
+            !rigidBodyRightDoorOutRef.current ||
+            !rigidBodyLeftDoorInRef.current ||
+            !rigidBodyRightDoorInRef.current
+        )
+        {return;}
+
+        animateDoor({
+            rigidBodyRef: rigidBodyLeftDoorOutRef,
+            direction: -1,
+            distance: 1,
+            duration: 2,
+        });
+
+        animateDoor({
+            rigidBodyRef: rigidBodyRightDoorOutRef,
+            direction: 1,
+            distance: 1,
+            duration: 2,
+        });
+
+        animateDoor({
+            rigidBodyRef: rigidBodyLeftDoorInRef,
+            direction: -2,
+            distance: 2,
+            duration: 2,
+        });
+
+        animateDoor({
+            rigidBodyRef: rigidBodyRightDoorInRef,
+            direction: 2,
+            distance: 2,
+            duration: 2,
+        });
+
+        setDoorsOpened(true);
+    };
 
     return (
         <group
@@ -57,12 +107,26 @@ export const Elevator = (props: React.JSX.IntrinsicElements["group"]) => {
                     <group name="root">
                         <group name="GLTF_SceneRootNode" rotation={[ Math.PI / 2, 0, 0 ]}>
                             {/* Doors */}
-                            <group ref={leftDoorOutRef} name="LeftOutsideDoor_0" position={[ 0.026, 1, 0 ]} rotation={[ 0, 0, -Math.PI / 2 ]} scale={[ 1, 0.438, 1 ]}>
-                                <mesh name="Object_4" castShadow receiveShadow geometry={nodes.Object_4.geometry} material={materials.Metal} />
-                            </group>
-                            <group ref={rightDoorOutRef} name="RightOutsideDoor_1" position={[ 0.026, 1, 0 ]} rotation={[ 0, 0, -Math.PI / 2 ]} scale={[ 1, 0.438, 1 ]}>
-                                <mesh name="Object_6" castShadow receiveShadow geometry={nodes.Object_6.geometry} material={materials.Metal} />
-                            </group>
+                            <RigidBody
+                                type="kinematicPosition"
+                                ref={rigidBodyLeftDoorOutRef}
+                                position={[ 0.026, 1, 0 ]}
+                                rotation={[ 0, 0, -Math.PI / 2 ]}
+                            >
+                                <group name="LeftOutsideDoor_0">
+                                    <mesh name="Object_4" castShadow receiveShadow geometry={nodes.Object_4.geometry} material={materials.Metal} />
+                                </group>
+                            </RigidBody>
+                            <RigidBody
+                                type="kinematicPosition"
+                                ref={rigidBodyRightDoorOutRef}
+                                position={[ 0.026, 1, 0 ]}
+                                rotation={[ 0, 0, -Math.PI / 2 ]}
+                            >
+                                <group name="RightOutsideDoor_1">
+                                    <mesh name="Object_6" castShadow receiveShadow geometry={nodes.Object_6.geometry} material={materials.Metal} />
+                                </group>
+                            </RigidBody>
                             <RigidBody type="fixed" position={[ 0.225, 1, 0 ]} rotation={[ 0, 0, -Math.PI / 2 ]} colliders="trimesh">
                                 <group name="Wall_2">
                                     <mesh name="Object_8" castShadow receiveShadow geometry={nodes.Object_8.geometry} material={materials.Wall} />
@@ -116,28 +180,60 @@ export const Elevator = (props: React.JSX.IntrinsicElements["group"]) => {
                                         material={materials.DarkerMetal}
                                     />
                                 </group>
-                                <group ref={leftDoorInRef} name="LeftInteriorDoor_8" position={[ -0.008, 0, 0 ]} rotation={[ 0, 0, -Math.PI / 2 ]} scale={[ 1, 0.572, 1 ]}>
-                                    <mesh name="Object_27" castShadow receiveShadow geometry={nodes.Object_27.geometry} material={materials.Metal} />
-                                </group>
+                                <RigidBody
+                                    type="kinematicPosition"
+                                    ref={rigidBodyLeftDoorInRef}
+                                    position={[ -0.008, 0, 0 ]}
+                                    rotation={[ 0, 0, -Math.PI / 2 ]}
+                                >
+                                    <group name="LeftInteriorDoor_8">
+                                        <mesh
+                                            name="Object_27"
+                                            castShadow
+                                            receiveShadow
+                                            geometry={nodes.Object_27.geometry}
+                                            material={materials.Metal}
+                                        />
+                                    </group>
+                                </RigidBody>
                                 <group name="Mirror_9" position={[ -2.643, 1.456, -0.026 ]} rotation={[ 0, 0, -Math.PI / 2 ]} scale={[ 1.083, 1, 1.092 ]}>
-                                    <mesh name="Object_29" castShadow receiveShadow geometry={nodes.Object_29.geometry} material={materials.Mirror} />
-                                    <mesh
-                                        name="Object_30"
-                                        castShadow
-                                        receiveShadow
-                                        geometry={nodes.Object_30.geometry}
-                                        material={materials.DarkerMetal}
-                                    />
+                                    <mesh name="Object_29" castShadow receiveShadow geometry={nodes.Object_29.geometry} />
+                                    <Reflector
+                                        blur={[ 512, 512 ]}
+                                        resolution={1024}
+                                        args={[ 1.9, 1.9 ]}
+                                        mirror={1}
+                                        mixBlur={0}
+                                        mixStrength={1.5}
+                                        rotation={[ -Math.PI / 2, 0, 0 ]}
+                                        position={[ 0, 0.03, 0 ]}
+                                    ></Reflector>
+                                    <RigidBody type="fixed">
+                                        <mesh
+                                            name="Object_30"
+                                            castShadow
+                                            receiveShadow
+                                            geometry={nodes.Object_30.geometry}
+                                            material={materials.DarkerMetal}
+                                        />
+                                    </RigidBody>
                                 </group>
-                                <group
-                                    ref={rightDoorInRef}
-                                    name="RightInteriorDoor_10"
+                                <RigidBody
+                                    type="kinematicPosition"
+                                    ref={rigidBodyRightDoorInRef}
                                     position={[ -0.01, 0.4, -0.003 ]}
                                     rotation={[ 0, 0, -Math.PI / 2 ]}
-                                    scale={[ 1, 0.572, 1 ]}
                                 >
-                                    <mesh name="Object_32" castShadow receiveShadow geometry={nodes.Object_32.geometry} material={materials.Metal} />
-                                </group>
+                                    <group name="RightInteriorDoor_10">
+                                        <mesh
+                                            name="Object_32"
+                                            castShadow
+                                            receiveShadow
+                                            geometry={nodes.Object_32.geometry}
+                                            material={materials.Metal}
+                                        />
+                                    </group>
+                                </RigidBody>
                             </group>
                             <group name="ElevatorCallingButtons_12" position={[ 0.173, 1.463, -1.335 ]} rotation={[ 0, 0, -Math.PI / 2 ]} scale={1.192}>
                                 <mesh name="Object_34" castShadow receiveShadow geometry={nodes.Object_34.geometry} material={materials.Metal} />

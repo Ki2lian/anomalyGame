@@ -15,7 +15,7 @@ import { TeacherDesk } from "@/models/props/TeacherDesk";
 
 const Level = () => {
     return <>
-        <Environment files={"/textures/autumn_field_4k.hdr"} background environmentIntensity={0.8} />
+        <Environment files={"/textures/autumn_field_4k.hdr"} background environmentIntensity={0.3} />
         <SchoolCorridor position={[ 0, 0, 0 ]} scale={0.5} visible={true} />
         <CellingLight />
         <TeacherDesk />
