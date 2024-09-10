@@ -48,12 +48,20 @@ export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
                     <mesh castShadow receiveShadow geometry={nodes.Object_33.geometry} material={materials["Material.003"]} />
                     <mesh castShadow receiveShadow geometry={nodes.Object_34.geometry} material={materials["Material.004"]} />
                 </group>
+                <group position={[ 12, -1.111, 2.96 ]} scale={[ 5.981, 0.034, 3 ]}>
+                    <mesh castShadow receiveShadow geometry={nodes.Object_33.geometry} material={materials["Material.003"]} />
+                    <mesh castShadow receiveShadow geometry={nodes.Object_34.geometry} material={materials["Material.004"]} />
+                </group>
                 <group position={[ 0, 3.053, 6.785 ]} scale={[ 1, 4.196, 1 ]}>
                     <mesh castShadow receiveShadow geometry={nodes.Object_36.geometry} material={materials.tuongxanh} />
                     <mesh castShadow receiveShadow geometry={nodes.Object_37.geometry} material={materials.Material} />
                     <mesh castShadow receiveShadow geometry={nodes.Object_38.geometry} material={materials["Material.003"]} />
                 </group>
                 <group position={[ 0, 6.89, 3.026 ]} scale={[ 1.662, 0.027, 0.108 ]}>
+                    <mesh castShadow receiveShadow geometry={nodes.Object_46.geometry} material={materials.material_8} />
+                    <mesh castShadow receiveShadow geometry={nodes.Object_47.geometry} material={materials.den1} />
+                </group>
+                <group position={[ 12, 6.89, 3.026 ]} scale={[ 1.662, 0.027, 0.108 ]}>
                     <mesh castShadow receiveShadow geometry={nodes.Object_46.geometry} material={materials.material_8} />
                     <mesh castShadow receiveShadow geometry={nodes.Object_47.geometry} material={materials.den1} />
                 </group>
@@ -161,9 +169,18 @@ export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
                     position={[ 0, 2.983, -0.269 ]}
                     scale={[ 5.981, 4.002, 0.261 ]}
                 />
+                <mesh castShadow receiveShadow material={materials.Material} rotation={[ 0, -Math.PI / 2, 0 ]} position={[ 12, 2.9, -0.26 ]}>
+                    <boxGeometry args={[ 0.5, 8, 12 ]} />
+                </mesh>
+            </RigidBody>
+            <RigidBody type="fixed">
+                <mesh castShadow receiveShadow material={materials.Material} rotation={[ -Math.PI / 2, 0, 0 ]} position={[ 18, 3, 3 ]}>
+                    <boxGeometry args={[ 0.5, 7, 8 ]} />
+                </mesh>
             </RigidBody>
             <RigidBody type="fixed" position={[ 0, 1.614, 6.024 ]} rotation={[ 0, 0, -Math.PI / 2 ]}>
                 <mesh castShadow receiveShadow geometry={nodes.Object_40.geometry} material={materials.material} scale={[ 0.08, 5.37, 0.08 ]} />
+                <mesh position={[ 0, 12, 0 ]} castShadow receiveShadow geometry={nodes.Object_40.geometry} material={materials.material} scale={[ 0.08, 5.37, 0.08 ]} />
             </RigidBody>
             <RigidBody type="fixed">
                 <mesh
@@ -214,6 +231,14 @@ export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
                     position={[ 0, 6.363, 0.386 ]}
                     scale={[ 5.981, 0.166, 0.283 ]}
                 />
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Object_57.geometry}
+                    material={materials["Material.002"]}
+                    position={[ 12, 6.363, 0.386 ]}
+                    scale={[ 5.981, 0.166, 0.283 ]}
+                />
             </RigidBody>
             {/* Custom */}
             <RigidBody type="fixed">
@@ -231,9 +256,6 @@ export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
                     <boxGeometry args={[ 0.215, 8, 5.4 ]} />
                 </mesh>
             </RigidBody>
-            {/* <mesh position={[ -45, 5, -15 ]} material={materials.Material}>
-                <boxGeometry args={[ 5, 5, 0.215 ]} />
-            </mesh> */}
             <mesh position={[ -45, 6.8, -6.7 ]} material={materials.Material}>
                 <boxGeometry args={[ 6.8, 0.33, 13.5 ]} />
             </mesh>
