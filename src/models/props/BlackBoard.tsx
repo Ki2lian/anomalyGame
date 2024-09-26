@@ -19,13 +19,13 @@ export const BlackBoard = ({ text }: IBlackBoardProps) => {
 
     return (
         <>
-            <primitive object={model.scene} scale={0.009} position={[ -20.735, 1, -2 ]} rotation={[ 0, Math.PI / 2, 0 ]} />
+            <primitive object={model.scene} scale={0.009} position={[ -20.734, 1, -2 ]} rotation={[ 0, Math.PI / 2, 0 ]} />
             <Text
                 font="/whatever-it-takes.ttf"
                 scale={ 0.5 }
                 maxWidth={ 0.25 }
                 lineHeight={ 0.75 }
-                position={[ -20.77, 1.5, -1.7 ]}
+                position={[ -20.769, 1.5, -1.7 ]}
                 rotation={ [ 0, Math.PI / 2, 0 ] }
             >
                 {text}

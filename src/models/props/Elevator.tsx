@@ -200,7 +200,7 @@ export const Elevator = (props: React.JSX.IntrinsicElements["group"]) => {
                                     <mesh name="Object_29" castShadow receiveShadow geometry={nodes.Object_29.geometry} />
                                     <Reflector
                                         blur={[ 512, 512 ]}
-                                        resolution={1024}
+                                        resolution={2048}
                                         args={[ 1.9, 1.9 ]}
                                         mirror={1}
                                         mixBlur={0}

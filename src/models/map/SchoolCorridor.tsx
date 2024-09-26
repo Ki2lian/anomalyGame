@@ -174,7 +174,7 @@ export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
                 </mesh>
             </RigidBody>
             <RigidBody type="fixed">
-                <mesh castShadow receiveShadow material={materials.Material} rotation={[ -Math.PI / 2, 0, 0 ]} position={[ 18, 3, 3 ]}>
+                <mesh castShadow receiveShadow material={materials.Material} rotation={[ -Math.PI / 2, 0, 0 ]} position={[ 18, 2.9, 3 ]}>
                     <boxGeometry args={[ 0.5, 7, 8 ]} />
                 </mesh>
             </RigidBody>

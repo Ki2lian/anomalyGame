@@ -11,8 +11,8 @@ import { useMemo, useRef } from "react";
 import { Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const PencilCaseFallravenKanken = () => {
-    const model = useGLTF("/models/props/pencil_cases/fallraven_kanken.glb") as GLTFResult;
+export const PencilCaseBlue = () => {
+    const model = useGLTF("/models/props/pencil_cases/blue.glb") as GLTFResult;
 
     const pencilCaseRef = useRef<Group>(null);
 
@@ -42,4 +42,4 @@ type GLTFResult = GLTF & {
     };
 };
 
-useGLTF.preload("/fallraven_kanken.glb");
+useGLTF.preload("/models/props/pencil_cases/blue.glb");
