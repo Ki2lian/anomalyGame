@@ -38,4 +38,4 @@ type GLTFResult = GLTF & {
     };
 };
 
-useGLTF.preload("//models/props/backpacks/yellow.glb");
+useGLTF.preload("/models/props/backpacks/yellow.glb");
