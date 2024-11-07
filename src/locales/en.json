@@ -1,0 +1,101 @@
+{
+    "mainMenu": {
+        "play": "Play",
+        "settings": "Settings",
+        "exit": "Exit"
+    },
+    "settingsMenu": {
+        "title": "Settings",
+        "importSettingsTitle": "Import Settings",
+        "importSettingsDescription": "Copy and paste your settings text here",
+        "importSuccessMessage": "Settings imported successfully",
+        "importErrorMessage": "Invalid JSON",
+        "undo": "Undo",
+        "undoSuccessMessage": "Reset undone",
+        "import": "Import",
+        "export": "Export",
+        "exportSuccessMessage": "Settings exported successfully",
+        "reset": "Reset",
+        "confirmResetDefaultSettings": "Do you really want to reset the default settings?",
+        "resetSettingsSuccessMessage": "Settings reset successfully",
+        "confirmResetDefaultKeybindings": "Do you really want to reset the keybindings to default?",
+        "resetKeybindingsSuccessMessage": "Keybindings reset successfully",
+        "confirmResetDefaultGeneral": "Do you really want to reset the general settings to default?",
+        "resetGeneralSuccessMessage": "General settings reset successfully",
+        "confirmResetDefaultControls": "Do you really want to reset the controls settings to default?",
+        "resetControlsSuccessMessage": "Controls settings reset successfully",
+        "confirmResetDefaultGraphics": "Do you really want to reset the graphics settings to default?",
+        "resetGraphicsSuccessMessage": "Graphics settings reset successfully",
+        "general": {
+            "title": "General",
+            "language": "Language",
+            "languageDescription": "Adjust localization",
+            "showHUD": "Show HUD",
+            "showHUDDescription": "Show or hide the in-game interface elements",
+            "appearance": "Appearance",
+            "appearanceDescription": "Adjust the theme of the interface",
+            "themeMode": {
+                "light": "Light",
+                "dark": "Dark",
+                "system": "System"
+            }
+        },
+        "graphics": {
+            "title": "Graphics",
+            "fov": "Field of View (FOV)",
+            "fovDescription": "Adjust the field of view (FOV) of the camera",
+            "renderDistance": "Render Distance",
+            "renderDistanceDescription": "Render everything within this distance",
+            "resolution": "Resolution",
+            "resolutionDescription": "Ratio of pixels displayed (lower to increase performance)",
+            "aspectRatio": "Aspect Ratio",
+            "aspectRatioDescription": "Force the page to fit monitor size",
+            "shadows": "Shadows",
+            "shadowsDescription": "Render shadows from player and objects",
+            "environmentTexture": "Resolution of the background",
+            "environmentTextureDescription": "Quality of the background environment"
+        },
+        "controls": {
+            "title": "Controls",
+            "camInvertX": "Reverse camera X-axis",
+            "camInvertXDescription": "Reverse the horizontal camera movement when looking left or right",
+            "camInvertY": "Reverse camera Y-axis",
+            "camInvertYDescription": "Reverse the vertical camera movement when looking up or down",
+            "leftJoystickDeadZone" : "Left joystick dead zone",
+            "leftJoystickDeadZoneDescription": "Prevent input until certain value is reached on the left joystick",
+            "rightJoystickDeadZone" : "Right joystick dead zone",
+            "rightJoystickDeadZoneDescription": "Prevent input until certain value is reached on the right joystick",
+            "rebindControls": "Rebind Controls",
+            "hideRebindControls": "Hide Rebind Controls",
+            "actions": "Actions",
+            "keyboard": "Keyboard",
+            "placeholderInputKeyboard": "Press a key",
+            "placeholderInputMouse": "Button on the mouse",
+            "confirmDeleteAssignation": "Are you sure you want to delete this assignation?",
+            "mouse": "Mouse",
+            "controller": "Controller",
+            "forward": "Move Forward",
+            "backward": "Move Backward",
+            "leftward": "Move Left",
+            "rightward": "Move Right",
+            "run": "Run",
+            "jump": "Jump",
+            "menu": "Menu",
+            "keyAlreadyAssigned": "The key {{key}} is already assigned to the action {{action}}. Do you want to reassign it?",
+            "interact": "Interact",
+            "buttonLeft": "Left Click",
+            "buttonMiddle": "Middle Click",
+            "buttonRight": "Right Click",
+            "buttonMouse4": "Mouse Button 4",
+            "buttonMouse5": "Mouse Button 5",
+            "rebindKeyboardSuccessMessage": "Key rebinded successfully",
+            "rebindMouseSuccessMessage": "Mouse button rebinded successfully"
+        }
+    },
+    "game" : {
+        "actions" : {
+            "jump" : "Jump",
+            "interact" : "Interact"
+        }
+    }
+}

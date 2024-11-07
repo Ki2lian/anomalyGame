@@ -8,7 +8,7 @@ const ElementsLoader = () => {
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-200">
             <div className="w-64">
-                <div className="h-4 bg-gray-300 rounded-full overflow-hidden">
+                <div className="h-4 overflow-hidden rounded-full bg-gray-300">
                     <div
                         className="h-full bg-blue-500"
                         style={{ width: `${ (progress) }%` }}

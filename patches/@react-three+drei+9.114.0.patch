@@ -1,0 +1,69 @@
+diff --git a/node_modules/@react-three/drei/web/KeyboardControls.js b/node_modules/@react-three/drei/web/KeyboardControls.js
+index c0b65cb..7b69751 100644
+--- a/node_modules/@react-three/drei/web/KeyboardControls.js
++++ b/node_modules/@react-three/drei/web/KeyboardControls.js
+@@ -79,6 +79,50 @@ function KeyboardControls({
+       obj.pressed = false;
+       if (up) fn(false);
+     };
++    const mouseDownHandler = (event) => {
++      let mouseButton;
++      switch (event.button) {
++        case 0:
++          mouseButton = "MouseLeft";
++          break;
++        case 1:
++          mouseButton = "MouseMiddle";
++          break;
++        case 2:
++          mouseButton = "MouseRight";
++          break;
++        default:
++          return; // Ignorer si ce n'est pas un bouton de souris connu
++      }
++
++      const obj = keyMap[mouseButton];
++      if (!obj) return;
++      const { fn, pressed, up } = obj;
++      obj.pressed = true;
++      if (up || !pressed) fn(true);
++    };
++    const mouseUpHandler = (event) => {
++      let mouseButton;
++      switch (event.button) {
++        case 0:
++          mouseButton = "MouseLeft";
++          break;
++        case 1:
++          mouseButton = "MouseMiddle";
++          break;
++        case 2:
++          mouseButton = "MouseRight";
++          break;
++        default:
++          return;
++      }
++
++      const obj = keyMap[mouseButton];
++      if (!obj) return;
++      const { fn, up } = obj;
++      obj.pressed = false;
++      if (up) fn(false);
++    };
+     const source = domElement || window;
+     source.addEventListener('keydown', downHandler, {
+       passive: true
+@@ -86,9 +130,13 @@ function KeyboardControls({
+     source.addEventListener('keyup', upHandler, {
+       passive: true
+     });
++    source.addEventListener('mousedown', mouseDownHandler, { passive: true });
++    source.addEventListener('mouseup', mouseUpHandler, { passive: true });
+     return () => {
+       source.removeEventListener('keydown', downHandler);
+       source.removeEventListener('keyup', upHandler);
++      source.removeEventListener('mousedown', mouseDownHandler);
++      source.removeEventListener('mouseup', mouseUpHandler);
+     };
+   }, [domElement, key]);
+   return /*#__PURE__*/React.createElement(context.Provider, {

@@ -1,44 +1,36 @@
-import { useProgress } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { Leva, useControls } from "leva";
-import { Suspense } from "react";
+import "@/i18n";
 
-import ElementsLoader from "@/components/ElementsLoader";
-import Experience from "@/components/Experience";
+import { useLocalStorage } from "@uidotdev/usehooks";
+import eruda from "eruda";
+import { useEffect } from "react";
 
+import MainMenu from "@/components/app/MainMenu";
+import { defaultSettings } from "@/components/app/settings/defaultsSettings";
+import Theme from "@/components/app/Theme";
+import Game from "@/components/game/Game";
+import { Toaster } from "@/components/ui/sonner";
+import { prepareSettings } from "@/lib/utils";
+import useGame from "@/store/useGame";
+
+if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+    eruda.init();
+}
 
 const App = () => {
-    const { progress } = useProgress();
+    const isPlaying = useGame((state) => state.isPlaying);
+    const [ settings, setSettings ] = useLocalStorage("settings", defaultSettings);
 
-    const { pointerLock } = useControls("Camera", {
-        pointerLock: { value: false },
-    });
+    useEffect(() => {
+        if (JSON.stringify(defaultSettings) !== JSON.stringify(settings)) {
+            const mergedSettings = prepareSettings(defaultSettings, settings);
+            setSettings(mergedSettings);
+        }
+    }, [ settings, setSettings ]);
 
     return <>
-        <div className="absolute z-50 top-2.5 right-2.5">
-            <Leva hideCopyButton fill />
-        </div>
-        <ElementsLoader />
-        <Canvas
-            shadows
-            camera={{
-                fov: 70,
-                near: 0.1,
-                far: 200,
-                aspect: window.innerWidth / window.innerHeight,
-            }}
-            dpr={[ 1, 2 ]}
-            onPointerDown={(e) => {
-                if (!pointerLock) return;
-                if (e.pointerType === "mouse" && progress === 100) {
-                    (e.target as HTMLCanvasElement).requestPointerLock();
-                }
-            }}
-        >
-            <Suspense fallback={null}>
-                <Experience />
-            </Suspense>
-        </Canvas>
+        <Toaster position="bottom-right" />
+        <Theme />
+        {isPlaying ? <Game /> : <MainMenu />}
     </>;
 };
 

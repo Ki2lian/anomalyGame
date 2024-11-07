@@ -1,0 +1,22 @@
+diff --git a/node_modules/@uidotdev/usehooks/index.js b/node_modules/@uidotdev/usehooks/index.js
+index f6e4fe2..b9cb2e5 100644
+--- a/node_modules/@uidotdev/usehooks/index.js
++++ b/node_modules/@uidotdev/usehooks/index.js
+@@ -648,7 +648,16 @@ export function useLocalStorage(key, initialValue) {
+     }
+   }, [key, initialValue]);
+ 
+-  return [store ? JSON.parse(store) : initialValue, setState];
++  if (store) {
++    try {
++      return [JSON.parse(store), setState];
++    } catch {
++      setLocalStorageItem(key, initialValue);
++      return [initialValue, setState];
++    }
++  }
++
++  return [initialValue, setState];
+ }
+ 
+ export function useLockBodyScroll() {

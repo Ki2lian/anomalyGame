@@ -14,14 +14,17 @@ module.exports = {
         "prettier",
         "plugin:@typescript-eslint/recommended",
 		"plugin:@react-three/recommended",
+		"plugin:tailwindcss/recommended"
     ],
     ignorePatterns: ["dist", ".eslintrc.cjs"],
     parser: "@typescript-eslint/parser",
-    plugins: ["react", "react-refresh", "html", "@typescript-eslint", "@stylistic/ts", "@stylistic/js", "unused-imports", "simple-import-sort"],
+    plugins: ["react", "react-refresh", "html", "@typescript-eslint", "@stylistic/ts", "@stylistic/js", "unused-imports", "simple-import-sort", "github"],
 	"overrides": [
         {
             "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
             "rules": {
+				"github/array-foreach": 2,
+				"github/no-implicit-buggy-globals": 2,
                 "no-unused-vars": "off",
                 "unused-imports/no-unused-imports": "error",
                 "unused-imports/no-unused-vars": [
@@ -37,6 +40,7 @@ module.exports = {
         }
     ],
     rules: {
+		"tailwindcss/no-custom-classname": "off",
         "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
 		"@typescript-eslint/no-unused-vars": "off",
 		"react/jsx-key": "off",
@@ -58,8 +62,8 @@ module.exports = {
                 "extendDefaults": true
             }
         ],
-		"@stylistic/ts/type-annotation-spacing": ["error", { "before": false, "after": true }],
-		"@stylistic/js/indent": ["error", 4],
+		"@stylistic/ts/type-annotation-spacing": ["error", { "before": false, "after": true, "overrides": { "arrow": { "before": true, "after": true } } }],
+		"@stylistic/js/indent": ["error", 4, { "SwitchCase": 1 }],
 		"@stylistic/js/object-curly-spacing": ["error", "always", { "arraysInObjects": true, "objectsInObjects": false }],
 		"@stylistic/js/key-spacing": ["error"],
 		"@stylistic/js/keyword-spacing": ["error", { "before": true, "after": true }],

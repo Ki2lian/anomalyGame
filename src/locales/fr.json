@@ -1,0 +1,101 @@
+{
+    "mainMenu": {
+        "play": "Jouer",
+        "settings": "Paramètres",
+        "exit": "Quitter"
+    },
+    "settingsMenu": {
+        "title": "Paramètres",
+        "importSettingsTitle": "Importer des paramètres",
+        "importSettingsDescription": "Copiez et coller vos paramètres ici",
+        "importSuccessMessage": "Paramètres importés avec succès",
+        "importErrorMessage": "JSON invalide",
+        "undo": "Annuler",
+        "undoSuccessMessage": "Réinitialisation annulée",
+        "import": "Importer",
+        "export": "Exporter",
+        "exportSuccessMessage": "Paramètres exportés avec succès",
+        "reset": "Réinitialiser",
+        "resetSettingsSuccessMessage": "Paramètres réinitialisés avec succès",
+        "confirmResetDefaultSettings": "Voulez-vous vraiment réinitialiser tous les paramètres par défaut ?",
+        "confirmResetDefaultKeybindings": "Voulez-vous vraiment réinitialiser les raccourcis clavier par défaut ?",
+        "resetKeybindingsSuccessMessage": "Les raccourcis clavier ont été réinitialisés avec succès",
+        "confirmResetDefaultGeneral": "Voulez-vous vraiment réinitialiser les paramètres généraux par défaut ?",
+        "resetGeneralSuccessMessage": "Paramètres généraux réinitialisés avec succès",
+        "confirmResetDefaultControls": "Voulez-vous vraiment réinitialiser les paramètres de contrôle par défaut ?",
+        "resetControlsSuccessMessage": "Paramètres de contrôle réinitialisés avec succès",
+        "confirmResetDefaultGraphics": "Voulez-vous vraiment réinitialiser les paramètres des graphismes par défaut ?",
+        "resetGraphicsSuccessMessage": "Paramètres des graphismes réinitialisés avec succès",
+        "general": {
+            "title": "Général",
+            "language": "Langue",
+            "languageDescription": "Ajuster la localisation",
+            "showHUD": "Afficher l'ATH",
+            "showHUDDescription": "Affiche ou masque les éléments graphiques de l'ATH",
+            "appearance": "Apparence",
+            "appearanceDescription": "Modifier le thème des interfaces",
+            "themeMode": {
+                "light": "Clair",
+                "dark": "Sombre",
+                "system": "Système"
+            }
+        },
+        "graphics": {
+            "title": "Graphismes",
+            "fov": "Champ de vision",
+            "fovDescription": "Ajuster le champ de vision de la camera",
+            "renderDistance": "Distance de rendu",
+            "renderDistanceDescription": "Affiche seulement les objets dans cette distance",
+            "resolution": "Résolution",
+            "resolutionDescription": "Ratio de pixels affichés (diminuer pour améliorer les performances)",
+            "aspectRatio": "Ratio d'affichage",
+            "aspectRatioDescription": "Forcer la page à s'adapter à la taille de l'écran",
+            "shadows": "Ombres",
+            "shadowsDescription": "Affiche les ombres du joueur et des objets",
+            "environmentTexture": "Résolution de l'arrière plan",
+            "environmentTextureDescription": "Qualité de l'environnement"
+        },
+        "controls": {
+            "title": "Commandes",
+            "camInvertX": "Inverser l'axe X de la caméra",
+            "camInvertXDescription": "Inverse la déplacement horizontale de la caméra lorsque vous regardez à gauche ou à droite",
+            "camInvertY": "Inverser l'axe Y de la caméra",
+            "camInvertYDescription": "Inverse la déplacement verticale de la caméra lorsque vous regardez vers le haut ou vers le bas",
+            "leftJoystickDeadZone": "Zone morte du joystick gauche",
+            "leftJoystickDeadZoneDescription": "Empêcher la saisie jusqu'à ce qu'une certaine valeur soit atteinte sur le joystick gauche",
+            "rightJoystickDeadZone": "Zone morte du joystick droit",
+            "rightJoystickDeadZoneDescription": "Empêcher la saisie jusqu'à ce qu'une certaine valeur soit atteinte sur le joystick droit",
+            "rebindControls": "Reconfigurer les contrôles",
+            "hideRebindControls": "Masquer la reconfiguration des contrôles",
+            "actions": "Actions",
+            "keyboard": "Clavier",
+            "placeholderInputKeyboard": "Touche du clavier",
+            "placeholderInputMouse": "Bouton de la souris",
+            "confirmDeleteAssignation": "Êtes-vous sur de vouloir supprimer l'assignation ?",
+            "mouse": "Souris",
+            "controller": "Manette",
+            "forward": "Avancer",
+            "backward": "Reculer",
+            "leftward": "Aller à gauche",
+            "rightward": "Aller à droite",
+            "run": "Courir",
+            "jump": "Sauter",
+            "menu": "Menu",
+            "keyAlreadyAssigned": "La touche {{key}} est déjà assignée à l'action {{action}}. Voulez-vous la réassigner ?",
+            "interact": "Interagir",
+            "buttonLeft": "Clic gauche",
+            "buttonMiddle": "Clic molette",
+            "buttonRight": "Clic droit",
+            "buttonMouse4": "Bouton souris 4",
+            "buttonMouse5": "Bouton souris 5",
+            "rebindKeyboardSuccessMessage": "Touche reconfigurée avec succès",
+            "rebindMouseSuccessMessage": "Bouton souris reconfigurée avec succès"
+        }
+    },
+    "game" : {
+        "actions" : {
+            "jump" : "Sauter",
+            "interact" : "Interagir"
+        }
+    }
+}

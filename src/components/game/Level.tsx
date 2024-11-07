@@ -1,5 +1,7 @@
 import { Environment } from "@react-three/drei";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
+import { defaultSettings, ISettings } from "@/components/app/settings/defaultsSettings";
 import { Prof } from "@/models/entities/Prof";
 import { SchoolCorridor } from "@/models/map/SchoolCorridor";
 import { BackpackBrown } from "@/models/props/backpacks/Brown";
@@ -35,8 +37,10 @@ import { TeacherDesk } from "@/models/props/TeacherDesk";
 import { WoodenHookRack } from "@/models/props/WoodenHookRack";
 
 const Level = () => {
+    const [ settings ] = useLocalStorage<ISettings>("settings", defaultSettings);
+
     return <>
-        <Environment files={"/textures/autumn_field_4k.hdr"} background environmentIntensity={0.3} />
+        <Environment files={`/textures/autumn_field_${ settings.graphics.environmentTexture }.hdr`} background environmentIntensity={0.3} />
         <>
             <SchoolCorridor position={[ 0, 0, 0 ]} scale={0.5} visible={true} />
             <WoodenHookRack />
