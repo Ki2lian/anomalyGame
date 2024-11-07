@@ -6,7 +6,7 @@ Source: https://sketchfab.com/3d-models/simple-elevator-with-animation-770488a2f
 Title: Simple Elevator with Animation
 */
 
-import { Reflector, useGLTF } from "@react-three/drei";
+import { MeshReflectorMaterial, useGLTF } from "@react-three/drei";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import gsap from "gsap";
 import { useRef, useState } from "react";
@@ -198,16 +198,16 @@ export const Elevator = (props: React.JSX.IntrinsicElements["group"]) => {
                                 </RigidBody>
                                 <group name="Mirror_9" position={[ -2.643, 1.456, -0.026 ]} rotation={[ 0, 0, -Math.PI / 2 ]} scale={[ 1.083, 1, 1.092 ]}>
                                     <mesh name="Object_29" castShadow receiveShadow geometry={nodes.Object_29.geometry} />
-                                    <Reflector
-                                        blur={[ 512, 512 ]}
-                                        resolution={2048}
-                                        args={[ 1.9, 1.9 ]}
-                                        mirror={1}
-                                        mixBlur={0}
-                                        mixStrength={1.5}
-                                        rotation={[ -Math.PI / 2, 0, 0 ]}
-                                        position={[ 0, 0.03, 0 ]}
-                                    ></Reflector>
+                                    <mesh rotation={[ -Math.PI / 2, 0, 0 ]} position={[ 0, 0.03, 0 ]}>
+                                        <planeGeometry args={[ 1.9, 1.9, 1.9 ]} />
+                                        <MeshReflectorMaterial
+                                            blur={[ 512, 512 ]}
+                                            resolution={2048}
+                                            mirror={1}
+                                            mixBlur={0}
+                                            mixStrength={1.5}
+                                        />
+                                    </mesh>
                                     <RigidBody type="fixed">
                                         <mesh
                                             name="Object_30"
