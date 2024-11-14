@@ -10,12 +10,19 @@ import { useGLTF } from "@react-three/drei";
 import { Mesh, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
 
-export const ChessSet = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const ChessSet = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/chess_set.glb") as GLTFResult;
+
+    const isAnomalyMedium1 = isAnomaly && difficulty === "medium" && anomalyType === 1;
 
     return (
         <>
-            <primitive object={model.scene} position={[ -10.7, 0.45, -2.5 ]} rotation={[ 0, -Math.PI / 1.5, 0 ]} scale={0.9} />
+            <primitive object={model.scene} position={[ -10.7, 0.45, -2.5 ]} rotation={[ 0, isAnomalyMedium1 ? Math.PI / 3 : -Math.PI / 1.5, 0 ]} scale={0.9} />
         </>
     );
 };

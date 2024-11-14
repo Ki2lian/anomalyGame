@@ -10,63 +10,70 @@ import { useGLTF } from "@react-three/drei";
 import { Mesh, MeshBasicMaterial } from "three";
 import { GLTF } from "three-stdlib";
 
-export const Burger = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const Burger = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/burger.glb") as GLTFResult;
+
+    const isAnomalyHard1 = isAnomaly && difficulty === "hard" && anomalyType === 1;
 
     return (
         <>
-            <primitive object={model.scene} position={[ -2.65, 0.55, -1.05 ]} scale={0.3} />
+            <primitive object={model.scene} position={[ -2.65, isAnomalyHard1 ? 0.5 : 0.55, -1.05 ]} scale={isAnomalyHard1 ? 0.25 : 0.3} />
         </>
     );
 };
 
 type GLTFResult = GLTF & {
     nodes: {
-      Object_4: Mesh
-      Object_6: Mesh
-      Object_8: Mesh
-      Object_10: Mesh
-      Object_12: Mesh
-      Object_14: Mesh
-      Object_16: Mesh
-      Object_19: Mesh
-      Object_22: Mesh
-      Object_33: Mesh
-      Object_36: Mesh
-      Object_17: Mesh
-      Object_20: Mesh
-      Object_23: Mesh
-      Object_34: Mesh
-      Object_37: Mesh
-      Object_25: Mesh
-      Object_27: Mesh
-      Object_29: Mesh
-      Object_31: Mesh
-      Object_39: Mesh
-    }
+        Object_4: Mesh;
+        Object_6: Mesh;
+        Object_8: Mesh;
+        Object_10: Mesh;
+        Object_12: Mesh;
+        Object_14: Mesh;
+        Object_16: Mesh;
+        Object_19: Mesh;
+        Object_22: Mesh;
+        Object_33: Mesh;
+        Object_36: Mesh;
+        Object_17: Mesh;
+        Object_20: Mesh;
+        Object_23: Mesh;
+        Object_34: Mesh;
+        Object_37: Mesh;
+        Object_25: Mesh;
+        Object_27: Mesh;
+        Object_29: Mesh;
+        Object_31: Mesh;
+        Object_39: Mesh;
+    };
     materials: {
-      sesame_seed: MeshBasicMaterial
-      bun_top: MeshBasicMaterial
-      bun_bottom: MeshBasicMaterial
-      burger: MeshBasicMaterial
-      cheese_top: MeshBasicMaterial
-      cheese_bottom: MeshBasicMaterial
-      pickle_1: MeshBasicMaterial
-      pickle_2: MeshBasicMaterial
-      pickle_3: MeshBasicMaterial
-      pickle_4: MeshBasicMaterial
-      pickle_5: MeshBasicMaterial
-      pickle_center_1: MeshBasicMaterial
-      pickle_center_2: MeshBasicMaterial
-      pickle_center_3: MeshBasicMaterial
-      pickle_center_4: MeshBasicMaterial
-      pickle_center_5: MeshBasicMaterial
-      tomato_1: MeshBasicMaterial
-      tomato_2: MeshBasicMaterial
-      tomato_3: MeshBasicMaterial
-      lettuce: MeshBasicMaterial
-      onion_7: MeshBasicMaterial
-    }
-  }
+        sesame_seed: MeshBasicMaterial;
+        bun_top: MeshBasicMaterial;
+        bun_bottom: MeshBasicMaterial;
+        burger: MeshBasicMaterial;
+        cheese_top: MeshBasicMaterial;
+        cheese_bottom: MeshBasicMaterial;
+        pickle_1: MeshBasicMaterial;
+        pickle_2: MeshBasicMaterial;
+        pickle_3: MeshBasicMaterial;
+        pickle_4: MeshBasicMaterial;
+        pickle_5: MeshBasicMaterial;
+        pickle_center_1: MeshBasicMaterial;
+        pickle_center_2: MeshBasicMaterial;
+        pickle_center_3: MeshBasicMaterial;
+        pickle_center_4: MeshBasicMaterial;
+        pickle_center_5: MeshBasicMaterial;
+        tomato_1: MeshBasicMaterial;
+        tomato_2: MeshBasicMaterial;
+        tomato_3: MeshBasicMaterial;
+        lettuce: MeshBasicMaterial;
+        onion_7: MeshBasicMaterial;
+    };
+};
 
 useGLTF.preload("/models/props/burger.glb");

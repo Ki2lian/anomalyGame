@@ -10,12 +10,19 @@ import { useGLTF } from "@react-three/drei";
 import { Mesh, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
 
-export const FancyPictureFramePainting = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const FancyPictureFramePainting = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/paintings/fancy_picture_frame.glb") as GLTFResult;
+
+    const isAnomalyEasy1 = isAnomaly && difficulty === "easy" && anomalyType === 1;
 
     return (
         <>
-            <primitive object={model.scene} position={[ -2, 2, -4.03 ]} scale={2.5} />
+            <primitive object={model.scene} position={isAnomalyEasy1 ? [ -8, 2, -4.03 ] : [ -2, 2, -4.03 ]} scale={2.5} />
         </>
     );
 };

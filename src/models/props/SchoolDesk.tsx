@@ -7,63 +7,67 @@ Title: School Desk
 */
 
 import { Clone, useGLTF } from "@react-three/drei";
-import React, { useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const SchoolDeskAnomaly = (props: React.JSX.IntrinsicElements["group"]) => {
-    const { nodes, materials } = useGLTF("/models/props/school_desk.glb") as GLTFResult;
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
 
-    return (
-        <group {...props} dispose={null} scale={0.01} rotation={[ 0, 0.82, 0 ]}>
-            <group rotation={[ -Math.PI / 2, 0, -2.39 ]}>
-                <group rotation={[ Math.PI / 2, 0, 0 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.defaultMaterial.geometry} material={materials.ChackerMat} />
-                    <mesh castShadow receiveShadow geometry={nodes.defaultMaterial_1.geometry} material={materials.ChackerMat} />
-                    <mesh castShadow receiveShadow geometry={nodes.defaultMaterial_2.geometry} material={materials.ChackerMat} />
-                    <mesh castShadow receiveShadow geometry={nodes.defaultMaterial_3.geometry} material={materials.ChackerMat} />
-                </group>
-            </group>
-        </group>
-    );
-};
+export const SchoolDesk = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
 
-export const SchoolDesk = () => {
     const model = useGLTF("/models/props/school_desk.glb") as GLTFResult;
+
+    const isAnomalyEasy1 = isAnomaly && difficulty === "easy" && anomalyType === 1;
 
     const deskRef = useRef<Group>(null);
 
-    const positions = useMemo(() => {
+    const chairs = useMemo(() => {
         return [
-            new Vector3(2.2, -0.56, -3.3),
-            new Vector3(2.2, -0.56, -1.2),
-            new Vector3(0.2, -0.56, -3.4),
-            new Vector3(0.2, -0.56, -1.3),
-            new Vector3(-2.1, -0.56, -1.3),
-            new Vector3(-2.2, -0.56, -3.3),
-            new Vector3(-4.2, -0.56, -3.4),
-            new Vector3(-4.2, -0.56, -1.3),
-            new Vector3(-6.2, -0.56, -3.5),
-            new Vector3(-6.2, -0.56, -2.3),
-            new Vector3(-6.2, -0.56, -1.1),
-            new Vector3(-8.2, -0.56, -3.5),
-            new Vector3(-8.2, -0.56, -2.3),
-            new Vector3(-8.2, -0.56, -1.1),
-            new Vector3(-10.2, -0.56, -3.5),
-            new Vector3(-10.2, -0.56, -2.3),
-            new Vector3(-10.2, -0.56, -1.1),
-            new Vector3(-12.25, -0.56, -3.25),
-            new Vector3(-12.1, -0.56, -1.35),
-            new Vector3(-14.2, -0.56, -3.3),
-            new Vector3(-14.2, -0.56, -1.3),
+            { position: new Vector3(2.2, -0.56, -3.3), visible: true },
+            { position: new Vector3(2.2, -0.56, -1.2), visible: true },
+            { position: new Vector3(0.2, -0.56, -3.4), visible: true },
+            { position: new Vector3(0.2, -0.56, -1.3), visible: true },
+            { position: new Vector3(-2.1, -0.56, -1.3), visible: true },
+            { position: new Vector3(-2.2, -0.56, -3.3), visible: true },
+            { position: new Vector3(-4.2, -0.56, -3.4), visible: true },
+            { position: new Vector3(-4.2, -0.56, -1.3), visible: true },
+            { position: new Vector3(-6.2, -0.56, -3.5), visible: true },
+            { position: new Vector3(-6.2, -0.56, -2.3), visible: true },
+            { position: new Vector3(-6.2, -0.56, -1.1), visible: true },
+            { position: new Vector3(-8.2, -0.56, -3.5), visible: true },
+            { position: new Vector3(-8.2, -0.56, -2.3), visible: true },
+            { position: new Vector3(-8.2, -0.56, -1.1), visible: isAnomalyEasy1 ? false : true },
+            { position: new Vector3(-10.2, -0.56, -3.5), visible: true },
+            { position: new Vector3(-10.2, -0.56, -2.3), visible: true },
+            { position: new Vector3(-10.2, -0.56, -1.1), visible: true },
+            { position: new Vector3(-12.25, -0.56, -3.25), visible: true },
+            { position: new Vector3(-12.1, -0.56, -1.35), visible: true },
+            { position: new Vector3(-14.2, -0.56, -3.3), visible: true },
+            { position: new Vector3(-14.2, -0.56, -1.3), visible: true },
         ];
-    }, []);
+    }, [ isAnomalyEasy1 ]);
 
     return (
         <>
-            {positions.map((position, index) => (
-                <Clone key={index} ref={deskRef} object={model.scene} scale={0.01} rotation={[ 0, 0.82, 0 ]} position={position} />
+            {chairs.map((chair, index) => (
+                <Clone key={index} ref={deskRef} object={model.scene} scale={0.01} rotation={[ 0, 0.82, 0 ]} position={chair.position} visible={chair.visible} />
             ))}
+            {isAnomalyEasy1 ? (
+                <group dispose={null} scale={0.01} rotation={[ 0, 0.82, 0 ]} position={[ -8.2, -0.56, -1.1 ]}>
+                    <group rotation={[ -Math.PI / 2, 0, -2.39 ]}>
+                        <group rotation={[ Math.PI / 2, 0, 0 ]}>
+                            <mesh castShadow receiveShadow geometry={model.nodes.defaultMaterial.geometry} material={model.materials.ChackerMat} />
+                            <mesh castShadow receiveShadow geometry={model.nodes.defaultMaterial_1.geometry} material={model.materials.ChackerMat} />
+                            <group rotation={[ 0, Math.PI, 0 ]} position={[ 0, 0, -18 ]}>
+                                <mesh castShadow receiveShadow geometry={model.nodes.defaultMaterial_2.geometry} material={model.materials.ChackerMat} />
+                                <mesh castShadow receiveShadow geometry={model.nodes.defaultMaterial_3.geometry} material={model.materials.ChackerMat} />
+                            </group>
+                        </group>
+                    </group>
+                </group>
+            ) : null}
         </>
     );
 };

@@ -1,5 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
+import { RefObject } from "react";
 import { twMerge } from "tailwind-merge";
+import { Camera, Object3D, Vector3 } from "three";
 
 import { IAspectRatio, ISettings } from "@/components/app/settings/defaultsSettings";
 import { validateSettings } from "@/components/app/settings/import/validators/settingsValidator";
@@ -93,4 +95,31 @@ export const preciseRoundToStep = (value: number, step: number, precision: numbe
 export const getAspectRatio = (AR: IAspectRatio) => {
     if (AR.isNative) return window.innerWidth / window.innerHeight;
     return AR.width / AR.height;
+};
+
+const SEED_LENGTH = 8;
+
+export const generateRandomSeed = () => {
+    const randomValues = crypto.getRandomValues(new Uint8Array(SEED_LENGTH));
+    return Array.from(randomValues, byte => byte.toString(16).padStart(2, "0")).join("");
+};
+
+export const isValidSeed = (seed: string) => {
+    const hexRegex = new RegExp(`^[0-9a-fA-F]{${ SEED_LENGTH * 2 }}$`);
+    return hexRegex.test(seed);
+};
+
+export const isInInteractionRangeAndFacing = (camera: Camera | null, targetRef: RefObject<Object3D>, maxDistance: number = 2, facingThreshold: number = 0.9) => {
+    if (!camera || !targetRef.current) return false;
+
+    const cameraPosition = camera.getWorldPosition(new Vector3());
+    const targetPosition = targetRef.current.getWorldPosition(new Vector3());
+
+    const distanceToTarget = cameraPosition.distanceTo(targetPosition);
+    if (distanceToTarget > maxDistance) return false;
+
+    const cameraDirection = camera.getWorldDirection(new Vector3());
+    const directionToTarget = targetPosition.sub(cameraPosition).normalize();
+
+    return cameraDirection.dot(directionToTarget) > facingThreshold;
 };

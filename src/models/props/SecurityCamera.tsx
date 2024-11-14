@@ -11,17 +11,24 @@ import { useMemo, useRef } from "react";
 import { Bone, Euler, Group, MeshStandardMaterial, SkinnedMesh, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const SecurityCamera = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const SecurityCamera = ({ isAnomaly }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/security_camera.glb") as GLTFResult;
+
+    const isAnomalyEasy = isAnomaly && difficulty === "easy";
 
     const securityCameraRef = useRef<Group>(null);
 
     const securityCameras = useMemo(() => {
         return [
             { position: new Vector3(8.57, 3, 2.5), rotation: new Euler(0, -Math.PI / 1.8, 0) },
-            { position: new Vector3(-21.25, 2.8, -6.23), rotation: new Euler(0, 0, 0) },
+            { position: isAnomalyEasy ? new Vector3(-23.75, 2.8, -6.23) : new Vector3(-21.25, 2.8, -6.23), rotation: new Euler(0, 0, 0) },
         ];
-    }, []);
+    }, [ isAnomalyEasy ]);
 
     return (
         <>

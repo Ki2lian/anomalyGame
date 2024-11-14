@@ -1,8 +1,9 @@
+import Rand from "rand-seed";
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 
 import { defaultSettings, IKeybindings, ISettings } from "@/components/app/settings/defaultsSettings";
-import { getLocalStorage, mapGamepadButtonToCode, mapMouseButtonCodeToIndex } from "@/lib/utils";
+import { generateRandomSeed, getLocalStorage, mapGamepadButtonToCode, mapMouseButtonCodeToIndex } from "@/lib/utils";
 
 type TValidationFunction = () => boolean;
 
@@ -11,12 +12,24 @@ interface IActionSubscriber {
     validate: TValidationFunction;
 }
 
+interface IStage {
+    currentStage: number;
+    visitCount: number;
+    maxAnomalies: number;
+}
+
+export type TDifficulty = "easy" | "medium" | "hard";
+
 interface IGameState {
     keybindings: () => IKeybindings;
 
     isPlaying: boolean;
+    difficulty: TDifficulty;
     isSettingMenu: boolean;
+    isMainMenu: boolean;
     isRebinding: boolean;
+    seed: string;
+    stage: IStage;
     actionSubscribers: { [action: string]: Array<IActionSubscriber> };
 
     subscribeToAction: (action: keyof IKeybindings, callback: () => void, validate: TValidationFunction) => void;
@@ -26,9 +39,12 @@ interface IGameState {
     notifyActionSubscribers: (action: keyof IKeybindings) => void;
 
     toggleSettingMenu: () => void;
+    toggleMainMenu: () => void;
     toggleRebinding: () => void;
-    startGame: () => void;
+    startGame: (difficulty: TDifficulty, seed?: string) => void;
     resetGame: () => void;
+    incrementVisitCount: () => void;
+    setStage: (stageNumber: number) => void;
 }
 
 const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
@@ -39,13 +55,64 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
         },
 
         isPlaying: false,
+        isMainMenu: false,
         isSettingMenu: false,
         isRebinding: false,
 
+        difficulty: "easy",
+        seed: "",
+        stage: {
+            currentStage: 8,
+            visitCount: 0,
+            maxAnomalies: 0,
+        },
+
         actionSubscribers: {},
 
-        startGame: () => set({ isPlaying: true }),
-        resetGame: () => set({ isPlaying: false }),
+        startGame: (difficulty, providedSeed) => {
+            const seed = providedSeed || generateRandomSeed();
+            set({
+                isPlaying: true,
+                difficulty,
+                seed,
+                stage: {
+                    currentStage: 8,
+                    visitCount: 0,
+                    maxAnomalies: generateMaxAnomalies(8, seed, difficulty),
+                },
+            });
+        },
+        resetGame: () => set({
+            isPlaying: false,
+            isMainMenu: false,
+            isSettingMenu: false,
+            isRebinding: false,
+            difficulty: "easy",
+            stage: {
+                currentStage: 8,
+                visitCount: 0,
+                maxAnomalies: 0,
+            },
+        }),
+
+        incrementVisitCount: () =>
+            set(state => ({
+                stage: {
+                    ...state.stage,
+                    visitCount: state.stage.visitCount + 1,
+                },
+            })),
+
+        setStage: stageNumber => {
+            const { seed, difficulty } = get();
+            set({
+                stage: {
+                    currentStage: stageNumber,
+                    visitCount: 0,
+                    maxAnomalies: generateMaxAnomalies(stageNumber, seed, difficulty),
+                },
+            });
+        },
 
         subscribeToAction: (action, callback, validate) => {
             set(state => ({
@@ -107,14 +174,13 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
             let animationRequest: number;
 
             const initializeButtonStates = (gamepad: Gamepad) => {
-                console.log("Gamepad connected");
                 previousButtonStates = new Array(gamepad.buttons.length).fill(false);
                 buttonCodeToActionCache.clear();
 
                 for (let index = 0; index < gamepad.buttons.length; index++) {
                     const buttonCode = mapGamepadButtonToCode(index);
-                    const actionKeys = Object.keys(keybindings).find(actionKey =>
-                        keybindings[actionKey as keyof IKeybindings].controller.code === buttonCode,
+                    const actionKeys = Object.keys(keybindings).find(
+                        actionKey => keybindings[actionKey as keyof IKeybindings].controller.code === buttonCode,
                     );
                     buttonCodeToActionCache.set(index, actionKeys || null);
                 }
@@ -171,8 +237,42 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
         },
 
         toggleSettingMenu: () => set(state => ({ isSettingMenu: !state.isSettingMenu })),
+        toggleMainMenu: () => set(state => ({ isMainMenu: !state.isMainMenu })),
         toggleRebinding: () => set(state => ({ isRebinding: !state.isRebinding })),
     })),
 );
+
+const generateMaxAnomalies = (stageNumber: number, seed: string, difficulty: TDifficulty) => {
+    const rng = new Rand(`${ seed }-${ stageNumber }`);
+    const roll = rng.next();
+
+    let maxAnomalies;
+
+    switch (difficulty) {
+        case "easy":
+            if (roll < 0.5) maxAnomalies = 0;
+            else if (roll < 0.8) maxAnomalies = 1;
+            else maxAnomalies = 2;
+            break;
+        case "medium":
+            if (roll < 0.4) maxAnomalies = 0;
+            else if (roll < 0.7) maxAnomalies = 1;
+            else if (roll < 0.9) maxAnomalies = 2;
+            else maxAnomalies = 3;
+            break;
+        case "hard":
+            if (roll < 0.35) maxAnomalies = 0;
+            else if (roll < 0.6) maxAnomalies = 1;
+            else if (roll < 0.8) maxAnomalies = 2;
+            else if (roll < 0.95) maxAnomalies = 3;
+            else maxAnomalies = 4;
+            break;
+        default:
+            maxAnomalies = 0;
+            break;
+    }
+
+    return maxAnomalies;
+};
 
 export default useGame;

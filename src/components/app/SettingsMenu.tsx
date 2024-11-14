@@ -25,7 +25,7 @@ const SettingsMenu = () => {
 
     return <>
         <div className="absolute inset-0 z-10 bg-black/30 backdrop-blur-lg"></div>
-        <GreyRectangleDepthFlat className="w-6/7 absolute left-1/2 top-1/2 z-10 h-auto min-h-40 -translate-x-1/2 -translate-y-1/2 md:w-3/4 lg:w-1/2">
+        <GreyRectangleDepthFlat className="absolute left-1/2 top-1/2 z-10 h-auto min-h-40 -translate-x-1/2 -translate-y-1/2 md:w-3/4 lg:w-1/2">
             <div className="flex flex-col">
                 <div className="relative mb-5 flex items-center">
                     <Button className="absolute left-0" variant="secondary" onClick={() => toggleSettingMenu()}>

@@ -11,19 +11,26 @@ import { useMemo, useRef } from "react";
 import { Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const WoodenHookRack = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const WoodenHookRack = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/wooden_hook_rack.glb") as GLTFResult;
+
+    const isAnomalyMedium1 = isAnomaly && difficulty === "medium" && anomalyType === 1;
 
     const hookRackRef = useRef<Group>(null);
 
     const positions = useMemo(() => {
         return [
-            new Vector3(3, 1.2, 0.01),
-            new Vector3(-3, 1.2, 0.01),
-            new Vector3(-9, 1.2, 0.01),
-            new Vector3(-15, 1.2, 0.01),
+            new Vector3(3, isAnomalyMedium1 ? 1 : 1.2, 0.01),
+            new Vector3(-3, isAnomalyMedium1 ? 1 : 1.2, 0.01),
+            new Vector3(-9, isAnomalyMedium1 ? 1 : 1.2, 0.01),
+            new Vector3(-15, isAnomalyMedium1 ? 1 : 1.2, 0.01),
         ];
-    }, []);
+    }, [ isAnomalyMedium1 ]);
 
     return (
         <>

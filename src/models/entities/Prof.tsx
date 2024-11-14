@@ -23,7 +23,7 @@ export const Prof = (props: React.JSX.IntrinsicElements["group"]) => {
     }, [ actions.idle ]);
 
     return (
-        <group ref={group} {...props} dispose={null}>
+        <group ref={group} {...props} dispose={null} position={[ -20, -0.554, -3 ]} rotation={[ 0, Math.PI / 3, 0 ]} scale={1.3}>
             <group name="Scene">
                 <group name="Prof" rotation={[ Math.PI / 2, 0, 0 ]} scale={0.01}>
                     <primitive object={nodes.mixamorig4Hips} />

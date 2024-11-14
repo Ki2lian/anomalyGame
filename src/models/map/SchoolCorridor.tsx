@@ -11,11 +11,23 @@ import { RigidBody } from "@react-three/rapier";
 import { Mesh, MeshPhysicalMaterial, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
 
-export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const SchoolCorridor = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const { nodes, materials } = useGLTF("/models/map/school_corridor.glb") as GLTFResult;
 
+    const isAnomalyEasy1 = isAnomaly && difficulty === "easy" && anomalyType === 1;
+    const isAnomalyEasy2 = isAnomaly && difficulty === "easy" && anomalyType === 2;
+    const isAnomalyEasy3 = isAnomaly && difficulty === "easy" && anomalyType === 3;
+    const isAnomalyEasy4 = isAnomaly && difficulty === "easy" && anomalyType === 4;
+    const isAnomalyEasy5 = isAnomaly && difficulty === "easy" && anomalyType === 5;
+    const isAnomalyHard1 = isAnomaly && difficulty === "hard" && anomalyType === 1;
+
     return (
-        <group {...props} dispose={null}>
+        <group dispose={null} position={[ 0, 0, 0 ]} scale={0.5} visible={true}>
             <group position={[ -4.888, -9.716, 11.091 ]} rotation={[ -Math.PI, -0.948, -Math.PI ]}>
                 <mesh castShadow receiveShadow geometry={nodes.Object_4.geometry} material={materials["Material.005"]} />
                 <mesh castShadow receiveShadow geometry={nodes.Object_5.geometry} material={materials["Material.005"]} />
@@ -61,7 +73,7 @@ export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
                     <mesh castShadow receiveShadow geometry={nodes.Object_46.geometry} material={materials.material_8} />
                     <mesh castShadow receiveShadow geometry={nodes.Object_47.geometry} material={materials.den1} />
                 </group>
-                <group position={[ 12, 6.89, 3.026 ]} scale={[ 1.662, 0.027, 0.108 ]}>
+                <group position={[ 12, 6.89, 3.026 ]} scale={[ 1.662, 0.027, 0.108 ]} visible={isAnomalyEasy1 ? false : true}>
                     <mesh castShadow receiveShadow geometry={nodes.Object_46.geometry} material={materials.material_8} />
                     <mesh castShadow receiveShadow geometry={nodes.Object_47.geometry} material={materials.den1} />
                 </group>
@@ -100,11 +112,11 @@ export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
                     <mesh castShadow receiveShadow geometry={nodes.Object_75.geometry} material={materials.material} />
                     <mesh castShadow receiveShadow geometry={nodes.Object_76.geometry} material={materials.kinh} />
                 </group>
-                <group position={[ -14.046, 0, 0 ]}>
+                <group position={isAnomalyEasy3 ? [ -11.981, 0, 0.006 ] : [ -14.046, 0, 0 ]}>
                     <mesh castShadow receiveShadow geometry={nodes.Object_78.geometry} material={materials.material} />
                     <mesh castShadow receiveShadow geometry={nodes.Object_79.geometry} material={materials.kinh} />
                 </group>
-                <group scale={[ -1, 1, 1 ]} position={[ -9.981, 0, 0.006 ]}>
+                <group scale={[ -1, 1, 1 ]} position={isAnomalyEasy3 ? [ -11.94, 0, 0 ] : [ -9.981, 0, 0.006 ]}>
                     <mesh castShadow receiveShadow geometry={nodes.Object_81.geometry} material={materials.material} />
                     <mesh castShadow receiveShadow geometry={nodes.Object_82.geometry} material={materials.kinh} />
                     <mesh castShadow receiveShadow geometry={nodes.Object_83.geometry} material={materials["Material.001"]} />
@@ -149,7 +161,7 @@ export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
                 <group scale={[ -1, 1, 1 ]}>
                     <mesh castShadow receiveShadow geometry={nodes.Object_107.geometry} material={materials.material} />
                     <mesh castShadow receiveShadow geometry={nodes.Object_108.geometry} material={materials.kinh} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_109.geometry} material={materials["Material.001"]} />
+                    <mesh visible={isAnomalyEasy4 ? false : true} castShadow receiveShadow geometry={nodes.Object_109.geometry} material={materials["Material.001"]} />
                 </group>
             </RigidBody>
             <RigidBody type="fixed">
@@ -169,7 +181,7 @@ export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
                     position={[ 0, 2.983, -0.269 ]}
                     scale={[ 5.981, 4.002, 0.261 ]}
                 />
-                <mesh castShadow receiveShadow material={materials.Material} rotation={[ 0, -Math.PI / 2, 0 ]} position={[ 12, 2.9, -0.26 ]}>
+                <mesh castShadow receiveShadow material={isAnomalyEasy5 ? materials["Material.004"] : materials.Material} rotation={[ 0, -Math.PI / 2, 0 ]} position={[ 12, 2.9, -0.26 ]}>
                     <boxGeometry args={[ 0.5, 8, 12 ]} />
                 </mesh>
             </RigidBody>
@@ -180,7 +192,14 @@ export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
             </RigidBody>
             <RigidBody type="fixed" position={[ 0, 1.614, 6.024 ]} rotation={[ 0, 0, -Math.PI / 2 ]}>
                 <mesh castShadow receiveShadow geometry={nodes.Object_40.geometry} material={materials.material} scale={[ 0.08, 5.37, 0.08 ]} />
-                <mesh position={[ 0, 12, 0 ]} castShadow receiveShadow geometry={nodes.Object_40.geometry} material={materials.material} scale={[ 0.08, 5.37, 0.08 ]} />
+                <mesh
+                    position={[ 0, 12, 0 ]}
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Object_40.geometry}
+                    material={materials.material}
+                    scale={[ 0.08, 5.37, 0.08 ]}
+                />
             </RigidBody>
             <RigidBody type="fixed">
                 <mesh
@@ -211,7 +230,7 @@ export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
                     scale={[ 0.319, 1, 1 ]}
                 />
             </RigidBody>
-            <RigidBody type="fixed" position={[ -53.564, 1.48, 2.833 ]} rotation={[ 0, -Math.PI / 2, 0 ]}>
+            <RigidBody type="fixed" position={[ -53.564, 1.48, 2.833 ]} rotation={[ 0, isAnomalyEasy2 ? Math.PI / 2 : -Math.PI / 2, 0 ]}>
                 <mesh castShadow receiveShadow geometry={nodes.Object_53.geometry} material={materials.Material} scale={[ 2.193, 0.046, 0.172 ]} />
             </RigidBody>
             <RigidBody type="fixed">
@@ -259,6 +278,15 @@ export const SchoolCorridor = (props: React.JSX.IntrinsicElements["group"]) => {
             <mesh position={[ -45, 6.8, -6.7 ]} material={materials.Material}>
                 <boxGeometry args={[ 6.8, 0.33, 13.5 ]} />
             </mesh>
+            <group position={[ -57.798, -9.716, -3.5 ]} visible={isAnomalyHard1 ? true : false}>
+                <mesh castShadow receiveShadow geometry={nodes.Object_22.geometry} material={materials["Material.005"]} />
+                <mesh castShadow receiveShadow geometry={nodes.Object_23.geometry} material={materials["Material.005"]} />
+                <mesh castShadow receiveShadow geometry={nodes.Object_25.geometry} material={materials["Leaves.001"]} />
+                <mesh castShadow receiveShadow geometry={nodes.Object_26.geometry} material={materials["Leaves.001"]} />
+                <mesh castShadow receiveShadow geometry={nodes.Object_27.geometry} material={materials["Leaves.001"]} />
+                <mesh castShadow receiveShadow geometry={nodes.Object_28.geometry} material={materials["Leaves.001"]} />
+                <mesh castShadow receiveShadow geometry={nodes.Object_29.geometry} material={materials["Leaves.001"]} />
+            </group>
         </group>
     );
 };

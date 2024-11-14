@@ -22,6 +22,7 @@ const Camera = () => {
             if (camera instanceof PerspectiveCamera) {
                 camera.aspect = getAspectRatio(settings.graphics.aspectRatio);
                 camera.fov = settings.graphics.fov;
+                camera.far = 1 + settings.graphics.renderDistance;
                 camera.updateProjectionMatrix();
             }
             gl.setSize(window.innerWidth, window.innerHeight);
@@ -32,7 +33,7 @@ const Camera = () => {
         window.addEventListener("resize", onWindowResize);
 
         return () => window.removeEventListener("resize", onWindowResize);
-    }, [ camera, gl, settings?.graphics?.aspectRatio, settings?.graphics?.fov ]);
+    }, [ camera, gl, settings?.graphics?.aspectRatio, settings?.graphics?.fov, settings?.graphics?.renderDistance ]);
 
     return null;
 };

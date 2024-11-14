@@ -11,8 +11,15 @@ import { useEffect, useRef, useState } from "react";
 import { Group, MathUtils, Mesh, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
 
-export const Clock = (props: React.JSX.IntrinsicElements["group"]) => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const Clock = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const { nodes, materials } = useGLTF("/models/props/clock.glb") as GLTFResult;
+
+    const isAnomalyEasy1 = isAnomaly && difficulty === "easy" && anomalyType === 1;
 
     const hoursArrowRef = useRef<Group>(null);
     const minutesArrowRef = useRef<Group>(null);
@@ -54,6 +61,7 @@ export const Clock = (props: React.JSX.IntrinsicElements["group"]) => {
     }, [ currentTime ]);
 
     useEffect(() => {
+        if (isAnomalyEasy1) return;
         const updateClock = () => {
             currentSecond.current += 1;
 
@@ -81,10 +89,10 @@ export const Clock = (props: React.JSX.IntrinsicElements["group"]) => {
 
         const intervalId = setInterval(updateClock, 1000);
         return () => clearInterval(intervalId);
-    }, [ currentTime ]);
+    }, [ currentTime, isAnomalyEasy1 ]);
 
     return (
-        <group {...props} dispose={null}>
+        <group dispose={null} scale={0.1} position={[ 2.955, 2, -2.2 ]} rotation={[ Math.PI / 2, 0, Math.PI / 2 ]}>
             <group rotation={[ -Math.PI / 2, 0, 0 ]}>
                 <group position={[ 0, 0, 0.799 ]} scale={0.082} ref={hoursArrowRef}>
                     <mesh

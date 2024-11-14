@@ -1,9 +1,11 @@
 import { useProgress } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { AnimatePresence, motion } from "framer-motion";
 import { Leva, useControls } from "leva";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect } from "react";
 
+import MainMenu from "@/components/app/MainMenu";
 import { defaultSettings, ISettings } from "@/components/app/settings/defaultsSettings";
 import SettingsMenu from "@/components/app/SettingsMenu";
 import EcctrlJoystickControls from "@/components/game/EcctrlJoystickControls";
@@ -15,24 +17,30 @@ import useGame from "@/store/useGame";
 const Game = () => {
     const [ settings ] = useLocalStorage<ISettings>("settings", defaultSettings);
 
-    const { toggleSettingMenu, isSettingMenu, listenToGlobalEvents, subscribeToAction, unsubscribeFromAction } = useGame();
-    const [ fov, setFov ] = useState(1);
+    const {
+        isMainMenu,
+        isSettingMenu,
+        resetGame,
+        toggleMainMenu,
+        toggleSettingMenu,
+        listenToGlobalEvents,
+        subscribeToAction,
+        unsubscribeFromAction,
+    } = useGame();
 
     useEffect(() => {
-        if (settings?.graphics?.fov) {
-            setFov(settings.graphics.fov);
-        }
-    }, [ settings?.graphics?.fov ]);
-
-    useEffect(() => {
-        const handleSettingsMenu = () => {
-            toggleSettingMenu();
+        const handleMainMenu = () => {
+            if (isSettingMenu) {
+                toggleSettingMenu();
+                return;
+            }
+            toggleMainMenu();
         };
 
-        subscribeToAction("menu", handleSettingsMenu, () => true);
+        subscribeToAction("menu", handleMainMenu, () => true);
 
-        return () => unsubscribeFromAction("menu", handleSettingsMenu);
-    }, [ subscribeToAction, unsubscribeFromAction, toggleSettingMenu ]);
+        return () => unsubscribeFromAction("menu", handleMainMenu);
+    }, [ isSettingMenu, subscribeToAction, unsubscribeFromAction, toggleMainMenu, toggleSettingMenu ]);
 
     useEffect(() => {
         const cleanup = listenToGlobalEvents();
@@ -56,16 +64,38 @@ const Game = () => {
 
             <EcctrlJoystickControls />
 
-            {isSettingMenu ? (
-                <SettingsMenu />
-            ) : null}
+            <AnimatePresence mode="sync">
+                {isSettingMenu ? (
+                    <motion.div
+                        key="settings"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute inset-0 z-10"
+                    >
+                        <SettingsMenu />
+                    </motion.div>
+                ) : isMainMenu ? (
+                    <motion.div
+                        key="mainMenu"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute inset-0 z-10"
+                    >
+                        <MainMenu onPlayOrResume={() => toggleMainMenu()} onQuit={() => resetGame()} />
+                    </motion.div>
+                ) : null}
+            </AnimatePresence>
 
             <Canvas
                 shadows={settings.graphics.shadows}
                 camera={{
-                    fov: fov,
+                    fov: 70,
                     near: 0.1,
-                    far: 3 + settings.graphics.renderDistance,
+                    far: 100,
                     aspect: getAspectRatio(settings.graphics.aspectRatio),
                 }}
                 dpr={settings.graphics.resolution}

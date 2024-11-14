@@ -10,12 +10,16 @@ import { Text, useGLTF } from "@react-three/drei";
 import { Mesh, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
 
-interface IBlackBoardProps {
-    text?: string;
-}
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
 
-export const BlackBoard = ({ text }: IBlackBoardProps) => {
+export const BlackBoard = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/black_board.glb") as GLTFResult;
+
+    const isAnomalyMedium1 = isAnomaly && difficulty === "medium" && anomalyType === 1;
+    const isAnomalyHard1 = isAnomaly && difficulty === "hard" && anomalyType === 1;
 
     return (
         <>
@@ -28,8 +32,8 @@ export const BlackBoard = ({ text }: IBlackBoardProps) => {
                 position={[ -20.769, 1.5, -1.7 ]}
                 rotation={ [ 0, Math.PI / 2, 0 ] }
             >
-                {text}
-                <meshBasicMaterial toneMapped={ false } />
+                {isAnomalyMedium1 ? "2x2=4" : "2+2=4"}
+                <meshBasicMaterial toneMapped={ isAnomalyHard1 ? true : false } />
             </Text>
         </>
     );

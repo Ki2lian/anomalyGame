@@ -12,12 +12,12 @@ import Player from "@/components/game/player/Player";
 import useGame from "@/store/useGame";
 
 const Experience = () => {
-    const { isSettingMenu } = useGame();
+    const { isMainMenu } = useGame();
     /**
      * Leva controls
      */
     const { debug } = useControls("World settings", {
-        debug: { value: true, label: "Show/hide colliders" },
+        debug: { value: false, label: "Show/hide colliders" },
     });
 
     const orbitControlsRef = useRef<OrbitControlsImpl>(null);
@@ -53,17 +53,11 @@ const Experience = () => {
 
             <Camera />
 
-            <Physics debug={debug} paused={pausedPhysics || isSettingMenu} timeStep={"vary"}>
-
+            <Physics debug={debug} paused={pausedPhysics || isMainMenu} timeStep={"vary"}>
                 <OrbitControls ref={orbitControlsRef} enabled={orbitControls} />
-                {!orbitControls ? (
-                    <Player width={0.3} height={1} />
-                ) : (
-                    <></>
-                )}
+                {!orbitControls ? <Player width={0.3} height={1} /> : <></>}
 
                 <Level />
-
             </Physics>
 
             <axesHelper args={[ 50 ]} />

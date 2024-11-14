@@ -10,12 +10,19 @@ import { useGLTF } from "@react-three/drei";
 import { Mesh, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
 
-export const SchoolHat = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const SchoolHat = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/school_hat.glb") as GLTFResult;
+
+    const isAnomalyHard1 = isAnomaly && difficulty === "hard" && anomalyType === 1;
 
     return (
         <>
-            <primitive object={model.scene} scale={0.065} position={[ -26.35, -0.45, 1.2 ]} rotation={[ 0, Math.PI / 2.2, 0 ]} />
+            <primitive object={model.scene} scale={0.065} position={[ -26.35, -0.45, 1.2 ]} rotation={[ 0, isAnomalyHard1 ? -Math.PI / 1.84 : Math.PI / 2.2, 0 ]} />
         </>
     );
 };

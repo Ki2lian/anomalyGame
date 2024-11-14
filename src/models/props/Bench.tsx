@@ -12,8 +12,15 @@ import { useMemo, useRef } from "react";
 import { Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const Bench = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const Bench = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/bench.glb") as GLTFResult;
+
+    const isAnomalyMedium1 = isAnomaly && difficulty === "medium" && anomalyType === 1;
 
     const benchRef = useRef<Group>(null);
 
@@ -25,14 +32,14 @@ export const Bench = () => {
             new Vector3(-1.5, -0.12, 2.65),
             new Vector3(-4.5, -0.12, 2.65),
             new Vector3(-7.5, -0.12, 2.65),
-            new Vector3(-10.5, -0.12, 2.65),
+            isAnomalyMedium1 ? new Vector3(-10.75, -0.12, 2.65) : new Vector3(-10.5, -0.12, 2.65),
             new Vector3(-13.5, -0.12, 2.65),
             new Vector3(-16.5, -0.12, 2.65),
             new Vector3(-19.5, -0.12, 2.65),
             new Vector3(-22.5, -0.12, 2.65),
             new Vector3(-25.5, -0.12, 2.65),
         ];
-    }, []);
+    }, [ isAnomalyMedium1 ]);
 
     return (
         <>

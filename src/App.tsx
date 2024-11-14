@@ -4,7 +4,7 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import eruda from "eruda";
 import { useEffect } from "react";
 
-import MainMenu from "@/components/app/MainMenu";
+import Menu from "@/components/app/Menu";
 import { defaultSettings } from "@/components/app/settings/defaultsSettings";
 import Theme from "@/components/app/Theme";
 import Game from "@/components/game/Game";
@@ -30,7 +30,7 @@ const App = () => {
     return <>
         <Toaster position="bottom-right" />
         <Theme />
-        {isPlaying ? <Game /> : <MainMenu />}
+        {isPlaying ? <Game /> : <Menu />}
     </>;
 };
 

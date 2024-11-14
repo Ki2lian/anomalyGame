@@ -10,12 +10,19 @@ import { useGLTF } from "@react-three/drei";
 import { Mesh, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
 
-export const PaperTablet = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const PaperTablet = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/paper_tablet.glb") as GLTFResult;
+
+    const isAnomalyHard1 = isAnomaly && difficulty === "hard" && anomalyType === 1;
 
     return (
         <>
-            <primitive object={model.scene} position={[ -19.25, 0.4, -0.6 ]} rotation={[ -Math.PI / 2, 0, -Math.PI / 1.9 ]} />
+            <primitive object={model.scene} position={isAnomalyHard1 ? [ -19.25, 0.4, -0.4 ] : [ -19.25, 0.4, -0.6 ]} rotation={[ -Math.PI / 2, 0, -Math.PI / 1.9 ]} />
         </>
     );
 };

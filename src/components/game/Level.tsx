@@ -1,84 +1,66 @@
 import { Environment } from "@react-three/drei";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import Rand from "rand-seed";
+import { ComponentType, useMemo } from "react";
 
 import { defaultSettings, ISettings } from "@/components/app/settings/defaultsSettings";
 import { Prof } from "@/models/entities/Prof";
-import { SchoolCorridor } from "@/models/map/SchoolCorridor";
-import { BackpackBrown } from "@/models/props/backpacks/Brown";
-import { BackpackRed } from "@/models/props/backpacks/Red";
-import { BackpackYellow } from "@/models/props/backpacks/Yellow";
-import { Bench } from "@/models/props/Bench";
-import { PlasticRoundBin } from "@/models/props/bins/PlasticRound";
-import { SteelBin } from "@/models/props/bins/Steel";
-import { BlackBoard } from "@/models/props/BlackBoard";
-import { Burger } from "@/models/props/Burger";
-import { CellingLight } from "@/models/props/CellingLight";
-import { ChessSet } from "@/models/props/ChessSet";
-import { Clock } from "@/models/props/Clock";
+import { allProps, easyProps, hardProps, IAnomalyConfig, mediumProps } from "@/models/props";
 import { Elevator } from "@/models/props/Elevator";
-import { Globe } from "@/models/props/Globe";
-import { FancyPictureFramePainting } from "@/models/props/paintings/FancyPictureFrame";
-import { FourColorsPainting } from "@/models/props/paintings/FourColors";
-import { ShadesOfBluePainting } from "@/models/props/paintings/ShadesOfBlue";
-import { SunPainting } from "@/models/props/paintings/Sun";
-import { PaperTablet } from "@/models/props/PaperTablet";
-import { Pencil } from "@/models/props/Pencil";
-import { PencilCaseBlue } from "@/models/props/pencil_cases/Blue";
-import { PencilCaseDakine } from "@/models/props/pencil_cases/Dakine";
-import { Pigeon } from "@/models/props/Pigeon";
-import { Plants } from "@/models/props/Plants";
-import { Rat } from "@/models/props/Rat";
-import { SchoolDesk } from "@/models/props/SchoolDesk";
-import { SchoolDiary } from "@/models/props/SchoolDiary";
-import { SchoolHat } from "@/models/props/SchoolHat";
-import { SecurityCamera } from "@/models/props/SecurityCamera";
-import { Sharpener } from "@/models/props/Sharpener";
-import { TeacherDesk } from "@/models/props/TeacherDesk";
-import { WoodenHookRack } from "@/models/props/WoodenHookRack";
+import useGame from "@/store/useGame";
 
 const Level = () => {
     const [ settings ] = useLocalStorage<ISettings>("settings", defaultSettings);
 
-    return <>
-        <Environment files={`/textures/autumn_field_${ settings.graphics.environmentTexture }.hdr`} background environmentIntensity={0.3} />
+    const { stage, seed, difficulty } = useGame();
+
+    const eligibleProps = useMemo<IAnomalyConfig[]>(() => {
+        switch (difficulty) {
+            case "easy":
+                return easyProps;
+            case "medium":
+                return mediumProps;
+            case "hard":
+                return hardProps;
+            default:
+                return [];
+        }
+    }, [ difficulty ]);
+
+    const anomalies = useMemo<IAnomalyConfig[]>(() => {
+        if (stage.visitCount >= stage.maxAnomalies) return [];
+
+        const rng = new Rand(`${ seed }-${ stage.currentStage }-${ stage.visitCount }-${ difficulty }`);
+        const selectedAnomalies = new Set<IAnomalyConfig>();
+
+        const randomIndex = Math.floor(rng.next() * eligibleProps.length);
+        selectedAnomalies.add(eligibleProps[randomIndex]);
+
+        return Array.from(selectedAnomalies);
+    }, [ seed, stage.currentStage, stage.visitCount, difficulty, eligibleProps, stage.maxAnomalies ]);
+
+    const propsToRender = useMemo<ComponentType[]>(
+        () => {
+            const anomalyComponents = new Set(anomalies.map(anomaly => anomaly.component));
+
+            return allProps.filter(prop => !anomalyComponents.has(prop));
+        },
+        [ anomalies ],
+    );
+
+    return (
         <>
-            <SchoolCorridor position={[ 0, 0, 0 ]} scale={0.5} visible={true} />
-            <WoodenHookRack />
-            <Bench />
-            <Elevator position={[ -22.5, -0.5135, -6.67 ]} rotation={[ 0, -Math.PI / 2, 0 ]} scale={0.8} />
-            <SunPainting />
-            <FourColorsPainting />
-            <ShadesOfBluePainting />
-            <Pigeon />
-            <PlasticRoundBin />
-            <Plants />
-            <SchoolHat />
-            <SecurityCamera />
-            <Rat />
+            <Environment files={`/textures/autumn_field_${ settings.graphics.environmentTexture }.hdr`} background environmentIntensity={0.3} />
+            <Elevator />
+            <Prof />
+            {propsToRender.map((PropComponent, index) => (
+                <PropComponent key={index} />
+            ))}
+            {anomalies.map(({ component: AnomalyComponent, anomalyType }, index) => (
+                <AnomalyComponent key={`anomaly-${ index }`} isAnomaly anomalyType={ anomalyType } />
+            ))}
         </>
-        <>
-            <CellingLight />
-            <TeacherDesk />
-            <Prof position={[ -20, -0.554, -3 ]} rotation={[ 0, Math.PI / 3, 0 ]} scale={1.3}/>
-            <BlackBoard text="2+2=4" />
-            <Globe />
-            <SchoolDesk />
-            <Pencil />
-            <Sharpener />
-            <PencilCaseBlue />
-            <PencilCaseDakine />
-            <BackpackRed />
-            <BackpackBrown />
-            <BackpackYellow />
-            <PaperTablet />
-            <SchoolDiary />
-            <Clock scale={0.1} position={[ 2.955, 2, -2.2 ]} rotation={[ Math.PI / 2, 0, Math.PI / 2 ]} />
-            <SteelBin />
-            <Burger />
-            <FancyPictureFramePainting />
-            <ChessSet />
-        </>
-    </>;
+    );
 };
 
 export default Level;

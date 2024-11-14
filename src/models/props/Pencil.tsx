@@ -11,17 +11,24 @@ import { useMemo, useRef } from "react";
 import { Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const Pencil = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const Pencil = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/pencil.glb") as GLTFResult;
+
+    const isAnomalyMedium1 = isAnomaly && difficulty === "medium" && anomalyType === 1;
 
     const pencilRef = useRef<Group>(null);
 
     const pencils = useMemo(() => {
         return [
-            { position: new Vector3(-0.5, 0.382, -1), rotation: new Euler(0, -Math.PI / 4.7, 0) },
+            { position: new Vector3(-0.5, 0.382, -1), rotation: new Euler(0, isAnomalyMedium1 ? Math.PI / 4.7 : -Math.PI / 4.7, 0) },
             { position: new Vector3(-5, 0.382, -3.5), rotation: new Euler(0, Math.PI / 4.7, 0) },
         ];
-    }, []);
+    }, [ isAnomalyMedium1 ]);
 
     return (
         <>

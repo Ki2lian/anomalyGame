@@ -11,17 +11,24 @@ import { useMemo, useRef } from "react";
 import { Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const Sharpener = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const Sharpener = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/sharpener.glb") as GLTFResult;
+
+    const isAnomalyHard1 = isAnomaly && difficulty === "hard" && anomalyType === 1;
 
     const sharpenerRef = useRef<Group>(null);
 
     const sharpeners = useMemo(() => {
         return [
-            { position: new Vector3(1.4, 0.4595, -1.35), rotation: new Euler(0, -Math.PI / 3, 0) },
+            { position: new Vector3(1.4, 0.4595, -1.35), rotation: new Euler(0, isAnomalyHard1 ? -Math.PI / 5 : -Math.PI / 3, 0) },
             { position: new Vector3(-12.8, 0.4595, -3.3), rotation: new Euler(0, Math.PI / 3, 0) },
         ];
-    }, []);
+    }, [ isAnomalyHard1 ]);
 
     return (
         <>

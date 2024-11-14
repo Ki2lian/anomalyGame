@@ -11,18 +11,25 @@ import { useMemo, useRef } from "react";
 import { Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const PencilCaseBlue = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const PencilCaseBlue = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/pencil_cases/blue.glb") as GLTFResult;
+
+    const isAnomalyMedium1 = isAnomaly && difficulty === "medium" && anomalyType === 1;
 
     const pencilCaseRef = useRef<Group>(null);
 
     const pencilCases = useMemo(() => {
         return [
             { position: new Vector3(-0.55, 0.519, -3.2), rotation: new Euler(0, Math.PI / 1.6, 0) },
-            { position: new Vector3(-6.9, 0.519, -3.8), rotation: new Euler(0, Math.PI / 4, 0) },
-            { position: new Vector3(-8.9, 0.519, -2.28), rotation: new Euler(0, Math.PI / 1.9, 0) },
+            { position: new Vector3(-6.9, 0.519, isAnomalyMedium1 ? -2.28 : -3.8), rotation: new Euler(0, isAnomalyMedium1 ? Math.PI / 1.9 : Math.PI / 4, 0) },
+            { position: new Vector3(-8.9, 0.519, isAnomalyMedium1 ? -3.8 : -2.28), rotation: new Euler(0, isAnomalyMedium1 ? Math.PI / 4 : Math.PI / 1.9, 0) },
         ];
-    }, [ ]);
+    }, [ isAnomalyMedium1 ]);
 
     return (
         <>

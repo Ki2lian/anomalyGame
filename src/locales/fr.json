@@ -1,8 +1,20 @@
 {
     "mainMenu": {
         "play": "Jouer",
+        "resume": "Reprendre",
         "settings": "Paramètres",
         "exit": "Quitter"
+    },
+    "gameSetup": {
+        "title": "Configuration de la partie",
+        "difficulty": "Difficulté",
+        "seed": "Seed (optionnel)",
+        "invalidSeed": "La seed est invalide !",
+        "placeholderSeed": "Laissez vide pour une seed aléatoire",
+        "easy": "Facile",
+        "medium": "Moyen",
+        "hard": "Difficile",
+        "start": "Commencer"
     },
     "settingsMenu": {
         "title": "Paramètres",

@@ -11,19 +11,29 @@ import { useMemo, useRef } from "react";
 import { Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const BackpackRed = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const BackpackRed = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/backpacks/red.glb") as GLTFResult;
+
+    const isAnomalyMedium1 = isAnomaly && difficulty === "medium" && anomalyType === 1;
 
     const backpackRef = useRef<Group>(null);
 
     const backpacks = useMemo(() => {
-        return [ { position: new Vector3(-0.2, -0.255, -2.8), rotation: new Euler(0, 0, 0) } ];
-    }, []);
+        return [
+            { position: new Vector3(-0.2, -0.255, -2.8), rotation: new Euler(0, 0, 0), visible: true },
+            { position: new Vector3(-13, -0.255, -2.8), rotation: new Euler(0, Math.PI / 14, 0), visible: isAnomalyMedium1 },
+        ];
+    }, [ isAnomalyMedium1 ]);
 
     return (
         <>
             {backpacks.map((backpack, index) => (
-                <Clone key={index} ref={backpackRef} object={model.scene} scale={1.2} rotation={backpack.rotation} position={backpack.position} />
+                <Clone key={index} ref={backpackRef} object={model.scene} scale={1.2} rotation={backpack.rotation} position={backpack.position} visible={backpack.visible} />
             ))}
         </>
     );

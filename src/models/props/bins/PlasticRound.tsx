@@ -12,24 +12,31 @@ import { Fragment, useMemo, useRef } from "react";
 import { Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const PlasticRoundBin = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const PlasticRoundBin = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     const model = useGLTF("/models/props/bins/plastic_round.glb") as GLTFResult;
+
+    const { difficulty } = useGame();
+
+    const isAnomalyEasy1 = isAnomaly && difficulty === "easy" && anomalyType === 1;
 
     const plastincRoundBinRef = useRef<Group>(null);
 
     const bins = useMemo(() => {
         return [
-            { position: new Vector3(-0.8, -0.2, 2.65), rotation: new Euler(0, Math.PI, 0) },
-            { position: new Vector3(-25.8, -0.2, -0.3), rotation: new Euler(0, Math.PI / 3, 0) },
+            { position: new Vector3(-0.8, -0.2, 2.65), rotation: new Euler(0, Math.PI, 0), visible: isAnomalyEasy1 ? false : true },
+            { position: new Vector3(-25.8, -0.2, -0.3), rotation: new Euler(0, Math.PI / 3, 0), visible: true },
         ];
-    }, [ ]);
+    }, [ isAnomalyEasy1 ]);
 
     return (
         <>
             {bins.map((bin, index) => (
                 <Fragment key={index}>
                     <RigidBody type="fixed" colliders="hull" position={bin.position} rotation={bin.rotation}>
-                        <Clone ref={plastincRoundBinRef} object={model.scene} />
+                        <Clone ref={plastincRoundBinRef} object={model.scene} visible={bin.visible} />
                     </RigidBody>
                 </Fragment>
             ))}

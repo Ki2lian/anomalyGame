@@ -10,12 +10,19 @@ import { useGLTF } from "@react-three/drei";
 import { Mesh, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
 
-export const SteelBin = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const SteelBin = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/bins/steel.glb") as GLTFResult;
+
+    const isAnomalyHard1 = isAnomaly && difficulty === "hard" && anomalyType === 1;
 
     return (
         <>
-            <primitive object={model.scene} position={[ -19, -0.604, -0.6 ]} scale={1.3} />
+            <primitive object={model.scene} position={[ -19, -0.604, -0.6 ]} scale={1.3} visible={isAnomalyHard1 ? false : true} />
         </>
     );
 };

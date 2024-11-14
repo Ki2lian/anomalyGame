@@ -6,16 +6,35 @@ Source: https://polyhaven.com/a/street_rat
 Title: Street Rat
 */
 
-import { useGLTF } from "@react-three/drei";
-import { Mesh, MeshStandardMaterial } from "three";
+import { Clone, useGLTF } from "@react-three/drei";
+import { useMemo, useRef } from "react";
+import { Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const Rat = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const Rat = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/rat.glb") as GLTFResult;
+
+    const isAnomalyHard1 = isAnomaly && difficulty === "hard" && anomalyType === 1;
+
+    const ratRef = useRef<Group>(null);
+
+    const rats = useMemo(() => {
+        return [
+            { position: new Vector3(0.8, -0.526, 2.6), rotation: new Euler(0, Math.PI / 1.2, 0), scale: 3, visible: true },
+            { position: new Vector3(-9, -0.526, -3.8), rotation: new Euler(0, -Math.PI, 0), scale: 3, visible: isAnomalyHard1 ? false : true },
+        ];
+    }, [ isAnomalyHard1 ]);
 
     return (
         <>
-            <primitive object={model.scene} position={[ 0.8, -0.526, 2.6 ]} rotation={[ 0, Math.PI / 1.2, 0 ]} scale={3} />
+            {rats.map((rat, index) => (
+                <Clone key={index} ref={ratRef} object={model.scene} position={rat.position} rotation={rat.rotation} scale={rat.scale} visible={rat.visible} />
+            ))}
         </>
     );
 };

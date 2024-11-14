@@ -11,18 +11,26 @@ import { useMemo, useRef } from "react";
 import { Euler, Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const Pigeon = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const Pigeon = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/pigeon.glb") as GLTFResult;
+
+    const isAnomalyHard1 = isAnomaly && difficulty === "hard" && anomalyType === 1;
+    const isAnomalyHard2 = isAnomaly && difficulty === "hard" && anomalyType === 2;
 
     const pigeonRef = useRef<Group>(null);
 
     const pigeons = useMemo(() => {
         return [
             { position: new Vector3(8, 0.845, 3), rotation: new Euler(0, Math.PI / 2, 0), scale: 1 },
-            { position: new Vector3(-2, 0.2, 5.1), rotation: new Euler(0, 0, 0), scale: 1 },
-            { position: new Vector3(-16, -1.3, 6), rotation: new Euler(0, Math.PI / 1.6, 0), scale: 1.3 },
+            { position: new Vector3(-2, 0.2, 5.1), rotation: new Euler(0, isAnomalyHard1 ? Math.PI / 2 : 0, 0), scale: 1.2 },
+            { position: new Vector3(-16, -1.3, 6), rotation: new Euler(0, Math.PI / 1.6, 0), scale: isAnomalyHard2 ? 1 : 1.3 },
         ];
-    }, [ ]);
+    }, [ isAnomalyHard1, isAnomalyHard2 ]);
 
     return (
         <>

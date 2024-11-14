@@ -11,8 +11,15 @@ import { useMemo, useRef } from "react";
 import { Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 import { GLTF } from "three-stdlib";
 
-export const CellingLight = () => {
+import { IAnomalyProps } from "@/models/props/props-interface";
+import useGame from "@/store/useGame";
+
+export const CellingLight = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+    const { difficulty } = useGame();
+
     const model = useGLTF("/models/props/ceiling_light.glb") as GLTFResult;
+
+    const isAnomalyMedium1 = isAnomaly && difficulty === "medium" && anomalyType === 1;
 
     const lightRef = useRef<Group>(null);
 
@@ -20,11 +27,11 @@ export const CellingLight = () => {
         return [
             new Vector3(0, 2.92, -2),
             new Vector3(-4.5, 2.92, -2),
-            new Vector3(-9, 2.92, -2),
+            new Vector3(-9, 2.92, isAnomalyMedium1 ? -2.25 : -2),
             new Vector3(-13.5, 2.92, -2),
             new Vector3(-18, 2.92, -2),
         ];
-    }, []);
+    }, [ isAnomalyMedium1 ]);
 
     return (
         <>
