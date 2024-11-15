@@ -42,8 +42,8 @@
             "title": "General",
             "language": "Language",
             "languageDescription": "Adjust localization",
-            "showHUD": "Show HUD",
-            "showHUDDescription": "Show or hide the in-game interface elements",
+            "fpsCounter": "FPS Counter",
+            "fpsCounterDescription": "Show the FPS counter in the top left corner",
             "appearance": "Appearance",
             "appearanceDescription": "Adjust the theme of the interface",
             "themeMode": {

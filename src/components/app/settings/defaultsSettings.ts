@@ -30,7 +30,7 @@ export interface ISettings {
     general: {
         [key: string]: string | boolean;
         language: string;
-        showHUD: boolean;
+        fpsCounter: boolean;
         themeMode: string;
     };
     graphics: {
@@ -55,7 +55,7 @@ export interface ISettings {
 
 export const defaultGeneralSettings: ISettings["general"] = {
     language: "fr",
-    showHUD: true,
+    fpsCounter: false,
     themeMode: "light",
 };
 

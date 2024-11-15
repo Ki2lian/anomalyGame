@@ -14,8 +14,8 @@ export const validateGeneral = (generalData: Partial<ISettings["general"]>): Par
         validatedGeneral.themeMode = generalData.themeMode;
     }
 
-    if (typeof generalData.showHUD === "boolean") {
-        validatedGeneral.showHUD = generalData.showHUD;
+    if (typeof generalData.fpsCounter === "boolean") {
+        validatedGeneral.fpsCounter = generalData.fpsCounter;
     }
 
     return validatedGeneral;

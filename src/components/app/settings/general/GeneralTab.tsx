@@ -44,8 +44,8 @@ const GeneralTab = () => {
                 />
                 <LanguageSelector updateGeneralSetting={updateGeneralSetting} />
                 <ThemeSelector updateGeneralSetting={updateGeneralSetting} />
-                <SettingRow label={t("showHUD")} description={t("showHUDDescription")}>
-                    <Switch checked={settings.general.showHUD} onCheckedChange={value => updateGeneralSetting({ key: "showHUD", value })} />
+                <SettingRow label={t("fpsCounter")} description={t("fpsCounterDescription")}>
+                    <Switch checked={settings.general.fpsCounter} onCheckedChange={value => updateGeneralSetting({ key: "fpsCounter", value })} />
                 </SettingRow>
             </CardContent>
         </Card>

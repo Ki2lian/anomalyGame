@@ -42,8 +42,8 @@
             "title": "Général",
             "language": "Langue",
             "languageDescription": "Ajuster la localisation",
-            "showHUD": "Afficher l'ATH",
-            "showHUDDescription": "Affiche ou masque les éléments graphiques de l'ATH",
+            "fpsCounter": "Compteur de FPS",
+            "fpsCounterDescription": "Afficher le compteur de FPS dans le coin supérieur gauche",
             "appearance": "Apparence",
             "appearanceDescription": "Modifier le thème des interfaces",
             "themeMode": {

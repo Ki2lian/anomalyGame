@@ -56,6 +56,8 @@ const Game = () => {
 
     return (
         <>
+            <div id="fps-counter" className="pointer-events-none fixed left-2 top-2 z-50 hidden select-none rounded-md bg-black/70 p-2 text-sm text-lime-500"></div>
+
             <div className="absolute right-2.5 top-2.5 z-50">
                 <Leva hideCopyButton fill collapsed />
             </div>

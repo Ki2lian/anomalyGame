@@ -1,7 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import { useControls } from "leva";
-import { Perf } from "r3f-perf";
 import { useEffect, useRef, useState } from "react";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
@@ -9,13 +8,16 @@ import Camera from "@/components/game/Camera";
 import Level from "@/components/game/Level";
 import Lights from "@/components/game/Lights";
 import Player from "@/components/game/player/Player";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
 import useGame from "@/store/useGame";
 
 const Experience = () => {
     const { isMainMenu } = useGame();
+
     /**
      * Leva controls
      */
+
     const { debug } = useControls("World settings", {
         debug: { value: false, label: "Show/hide colliders" },
     });
@@ -35,6 +37,7 @@ const Experience = () => {
     /**
      * Delay physics activate
      */
+
     const [ pausedPhysics, setPausedPhysics ] = useState(true);
 
     useEffect(() => {
@@ -47,7 +50,7 @@ const Experience = () => {
 
     return (
         <>
-            <Perf position="top-left" />
+            <PerformanceMonitor />
 
             <Lights />
 
