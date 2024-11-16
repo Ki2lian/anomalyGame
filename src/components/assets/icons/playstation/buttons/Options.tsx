@@ -17,12 +17,12 @@ export const PlaystationButtonOptions = ({ size = 35, ...props }: ComponentProps
                     <rect width="120" height="120"/>
                 </clipPath>
             </defs>
-            <g id="Button_-_PS_Options" data-name="Button - PS Options" clip-path="url(#clip-Button_-_PS_Options)">
-                <g id="Rectangle_57" data-name="Rectangle 57" transform="translate(45 36)" fill="#2a2a2a" stroke="#fff" stroke-width="4">
+            <g id="Button_-_PS_Options" data-name="Button - PS Options" clipPath="url(#clip-Button_-_PS_Options)">
+                <g id="Rectangle_57" data-name="Rectangle 57" transform="translate(45 36)" fill="#2a2a2a" stroke="#fff" strokeWidth="4">
                     <rect width="30" height="68" rx="15" stroke="none"/>
                     <rect x="-2" y="-2" width="34" height="72" rx="17" fill="none"/>
                 </g>
-                <g id="Rectangle_58" data-name="Rectangle 58" transform="translate(49 40)" fill="#404040" stroke="#5b5b5b" stroke-width="4">
+                <g id="Rectangle_58" data-name="Rectangle 58" transform="translate(49 40)" fill="#404040" stroke="#5b5b5b" strokeWidth="4">
                     <rect width="22" height="51" rx="11" stroke="none"/>
                     <rect x="-2" y="-2" width="26" height="55" rx="13" fill="none"/>
                 </g>

@@ -17,12 +17,12 @@ export const XboxButtonStart = ({ size = 35, ...props }: ComponentPropsWithoutRe
                     <rect width="120" height="120"/>
                 </clipPath>
             </defs>
-            <g id="button_xbox_digital_start_1" clip-path="url(#clip-button_xbox_digital_start_1)">
-                <g id="Rectangle_57" data-name="Rectangle 57" transform="translate(30 47)" fill="#2a2a2a" stroke="#fff" stroke-width="4">
+            <g id="button_xbox_digital_start_1" clipPath="url(#clip-button_xbox_digital_start_1)">
+                <g id="Rectangle_57" data-name="Rectangle 57" transform="translate(30 47)" fill="#2a2a2a" stroke="#fff" strokeWidth="4">
                     <rect width="60" height="45" rx="21" stroke="none"/>
                     <rect x="-2" y="-2" width="64" height="49" rx="23" fill="none"/>
                 </g>
-                <g id="Rectangle_58" data-name="Rectangle 58" transform="translate(82 84) rotate(180)" fill="#404040" stroke="#5b5b5b" stroke-width="4">
+                <g id="Rectangle_58" data-name="Rectangle 58" transform="translate(82 84) rotate(180)" fill="#404040" stroke="#5b5b5b" strokeWidth="4">
                     <rect width="44" height="29" rx="14.5" stroke="none"/>
                     <rect x="-2" y="-2" width="48" height="33" rx="16.5" fill="none"/>
                 </g>
