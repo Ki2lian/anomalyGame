@@ -135,7 +135,6 @@ const RebindControls = () => {
                         removePreviousAssignment={removePreviousAssignment}
                     />
                     <ControllerInput
-                        controllerType={settings.controls.controllerType}
                         value={keybindings[actionKey as keyof IKeybindings].controller}
                     />
                 </div>

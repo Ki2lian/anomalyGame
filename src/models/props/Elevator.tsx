@@ -9,13 +9,14 @@ Title: Simple Elevator with Animation
 import { MeshReflectorMaterial, useGLTF } from "@react-three/drei";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import gsap from "gsap";
-import { RefObject, useCallback, useEffect, useRef, useState } from "react";
+import { RefObject, useCallback, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Group, Mesh, MeshPhysicalMaterial, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
 
+import ActionPrompt from "@/components/game/ActionPrompt";
 import { globalCamera } from "@/components/game/Camera";
 import { isInInteractionRangeAndFacing } from "@/lib/utils";
-import useGame from "@/store/useGame";
 
 interface IDoorAnimationParams {
     rigidBodyRef: RefObject<RapierRigidBody>;
@@ -25,8 +26,9 @@ interface IDoorAnimationParams {
 }
 
 export const Elevator = () => {
+    const { t } = useTranslation("game", { keyPrefix: "actions" });
+
     const group = useRef<Group>(null);
-    const { subscribeToAction, unsubscribeFromAction } = useGame();
 
     const [ doorsOpened, setDoorsOpened ] = useState(false);
 
@@ -91,22 +93,14 @@ export const Elevator = () => {
     //     if (doorsOpened) toggleDoors(false);
     // }, [ doorsOpened, toggleDoors ]);
 
-    const validateInteraction = () => {
+    const validateInteraction = useCallback(() => {
+        if (doorsOpened) return false;
         const camera = globalCamera;
         return (
             isInInteractionRangeAndFacing(camera, doorsInRef, 1.5) ||
             isInInteractionRangeAndFacing(camera, doorsOutRef, 1.5)
         );
-    };
-    useEffect(() => {
-        const handleInteraction = () => {
-            openDoors();
-        };
-
-        subscribeToAction("interact", handleInteraction, validateInteraction);
-
-        return () => unsubscribeFromAction("interact", handleInteraction);
-    }, [ subscribeToAction, unsubscribeFromAction, openDoors ]);
+    }, [ doorsOpened, doorsInRef, doorsOutRef ]);
 
     return (
         <group ref={group} position={[ -22.5, -0.5135, -6.67 ]} rotation={[ 0, -Math.PI / 2, 0 ]} scale={0.8} dispose={null}>
@@ -149,6 +143,12 @@ export const Elevator = () => {
                                     </group>
                                 </RigidBody>
                             </group>
+                            <ActionPrompt
+                                actionKey="interact"
+                                description={t("openDoors")}
+                                validateInteraction={validateInteraction}
+                                onAction={openDoors}
+                            />
                             <RigidBody type="fixed" position={[ 0.225, 1, 0 ]} rotation={[ 0, 0, -Math.PI / 2 ]} colliders="trimesh">
                                 <group name="Wall_2">
                                     <mesh name="Object_8" castShadow receiveShadow geometry={nodes.Object_8.geometry} material={materials.Wall} />

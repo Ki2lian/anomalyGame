@@ -20,6 +20,7 @@ const Game = () => {
     const {
         isMainMenu,
         isSettingMenu,
+        isRebinding,
         resetGame,
         toggleMainMenu,
         toggleSettingMenu,
@@ -43,10 +44,11 @@ const Game = () => {
     }, [ isSettingMenu, subscribeToAction, unsubscribeFromAction, toggleMainMenu, toggleSettingMenu ]);
 
     useEffect(() => {
+        if (isRebinding) return;
         const cleanup = listenToGlobalEvents();
 
         return () => cleanup();
-    }, [ listenToGlobalEvents ]);
+    }, [ listenToGlobalEvents, isRebinding ]);
 
     const { progress } = useProgress();
 

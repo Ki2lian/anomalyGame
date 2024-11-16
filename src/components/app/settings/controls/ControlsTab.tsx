@@ -21,7 +21,7 @@ export interface IUpdateControlsSettingProps {
 const ControlsTab = () => {
     const { t } = useTranslation("settingsMenu", { keyPrefix: "controls" });
     const [ settings, setSettings ] = useLocalStorage<ISettings>("settings", defaultSettings);
-    const [ isRebinding, setIsRebinding ] = useState(false);
+    const [ isRebindingMenu, setIsRebinding ] = useState(false);
 
     const [ tempValues, setTempValues ] = useState({
         leftJoystickDeadZone: settings.controls.leftJoystickDeadZone,
@@ -51,7 +51,7 @@ const ControlsTab = () => {
         <Card>
             <CardContent className="p-4">
                 <AnimatePresence mode="wait">
-                    {!isRebinding ? (
+                    {!isRebindingMenu ? (
                         <>
                             <motion.div
                                 key="controls"

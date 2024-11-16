@@ -5,6 +5,7 @@ import { Camera, Object3D, Vector3 } from "three";
 
 import { IAspectRatio, ISettings } from "@/components/app/settings/defaultsSettings";
 import { validateSettings } from "@/components/app/settings/import/validators/settingsValidator";
+import { IBaseControllerIconProps } from "@/components/assets/icons/icon-interface";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -109,7 +110,7 @@ export const isValidSeed = (seed: string) => {
     return hexRegex.test(seed);
 };
 
-export const isInInteractionRangeAndFacing = (camera: Camera | null, targetRef: RefObject<Object3D>, maxDistance: number = 2, facingThreshold: number = 0.9) => {
+export const isInInteractionRangeAndFacing = (camera: Camera | null, targetRef: RefObject<Object3D>, maxDistance: number = 2, facingThreshold: number = 0.1) => {
     if (!camera || !targetRef.current) return false;
 
     const cameraPosition = camera.getWorldPosition(new Vector3());
@@ -122,4 +123,29 @@ export const isInInteractionRangeAndFacing = (camera: Camera | null, targetRef: 
     const directionToTarget = targetPosition.sub(cameraPosition).normalize();
 
     return cameraDirection.dot(directionToTarget) > facingThreshold;
+};
+
+export const mapCodeToIcon = (code: string, controllerType: string) => {
+    const parts = code.split(/(?=[A-Z])/);
+    const lowerCode = code.toLowerCase();
+
+    const getIconProps = (type: string, position: string, side: string) =>
+        ({
+            type,
+            position: position.toLowerCase() as IBaseControllerIconProps["position"],
+            controllerType,
+            side: side.toLowerCase() as IBaseControllerIconProps["side"],
+        }) as IBaseControllerIconProps;
+
+    if (lowerCode.includes("analog")) {
+        const [ side, , position ] = parts;
+        return getIconProps("analog", position, side);
+    }
+
+    if (lowerCode.includes("button")) {
+        const [ side, , position ] = parts;
+        return getIconProps("button", position, side);
+    }
+
+    return null;
 };

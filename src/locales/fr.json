@@ -101,13 +101,15 @@
             "buttonMouse4": "Bouton souris 4",
             "buttonMouse5": "Bouton souris 5",
             "rebindKeyboardSuccessMessage": "Touche reconfigurée avec succès",
-            "rebindMouseSuccessMessage": "Bouton souris reconfigurée avec succès"
+            "rebindMouseSuccessMessage": "Bouton souris reconfigurée avec succès",
+            "notAssigned": "Non assigné"
         }
     },
     "game" : {
         "actions" : {
             "jump" : "Sauter",
-            "interact" : "Interagir"
+            "interact" : "Interagir",
+            "openDoors" : "Ouvrir les portes"
         }
     }
 }

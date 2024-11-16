@@ -104,9 +104,14 @@ const MouseInput = ({ value, onChange, checkIfAssigned, removePreviousAssignment
         }
     };
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         const isConfirmed = window.confirm(t("confirmDeleteAssignation"));
-        if (isConfirmed) onChange({ code: "", display: "" });
+        if (isConfirmed) {
+            onChange({ code: "", display: "" });
+            toggleRebinding();
+            await new Promise(resolve => setTimeout(resolve, 1));
+            toggleRebinding();
+        }
     };
 
     return (

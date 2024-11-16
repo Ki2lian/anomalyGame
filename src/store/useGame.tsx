@@ -5,7 +5,7 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { defaultSettings, IKeybindings, ISettings } from "@/components/app/settings/defaultsSettings";
 import { generateRandomSeed, getLocalStorage, mapGamepadButtonToCode, mapMouseButtonCodeToIndex } from "@/lib/utils";
 
-type TValidationFunction = () => boolean;
+export type TValidationFunction = () => boolean;
 
 interface IActionSubscriber {
     callback: () => void;
@@ -30,6 +30,7 @@ interface IGameState {
     isRebinding: boolean;
     seed: string;
     stage: IStage;
+    isGamepadActive: boolean;
     actionSubscribers: { [action: string]: Array<IActionSubscriber> };
 
     subscribeToAction: (action: keyof IKeybindings, callback: () => void, validate: TValidationFunction) => void;
@@ -67,6 +68,8 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
             maxAnomalies: 0,
         },
 
+        isGamepadActive: false,
+
         actionSubscribers: {},
 
         startGame: (difficulty, providedSeed) => {
@@ -82,18 +85,19 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
                 },
             });
         },
-        resetGame: () => set({
-            isPlaying: false,
-            isMainMenu: false,
-            isSettingMenu: false,
-            isRebinding: false,
-            difficulty: "easy",
-            stage: {
-                currentStage: 8,
-                visitCount: 0,
-                maxAnomalies: 0,
-            },
-        }),
+        resetGame: () =>
+            set({
+                isPlaying: false,
+                isMainMenu: false,
+                isSettingMenu: false,
+                isRebinding: false,
+                difficulty: "easy",
+                stage: {
+                    currentStage: 8,
+                    visitCount: 0,
+                    maxAnomalies: 0,
+                },
+            }),
 
         incrementVisitCount: () =>
             set(state => ({
@@ -137,7 +141,7 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
             if (subscribers) {
                 for (const subscriber of subscribers) {
                     const { callback, validate } = subscriber;
-                    if (validate() && !get().isRebinding && (!get().isSettingMenu || action === "menu")) {
+                    if (validate() && !get().isRebinding && (!get().isMainMenu || action === "menu")) {
                         callback();
                     }
                 }
@@ -189,11 +193,18 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
             const handleGamepadButtons = () => {
                 const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
                 const gamepad = cachedGamepadIndex !== null ? gamepads[cachedGamepadIndex] : null;
+                console.log(gamepad);
+
+                set((prevState) => {
+                    if (prevState.isGamepadActive === !!gamepad) return prevState;
+                    return { ...prevState, isGamepadActive: !!gamepad };
+                });
 
                 if (gamepad) {
                     const buttons = gamepad.buttons;
 
-                    for (let index = 0; index < buttons.length; index++) {
+                    const relevantButtons = buttonCodeToActionCache.keys();
+                    for (const index of relevantButtons) {
                         const button = buttons[index];
                         const buttonPressed = button.pressed;
                         if (buttonPressed === previousButtonStates[index]) continue;
@@ -217,7 +228,7 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
                 animationRequest = requestAnimationFrame(handleGamepadButtons);
             };
 
-            const handleGamepadDeconnected = () => {
+            const handleGamepadDisconnected = () => {
                 cachedGamepadIndex = null;
                 cancelAnimationFrame(animationRequest);
             };
@@ -225,14 +236,13 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
             window.addEventListener("keydown", handleKeyDown);
             window.addEventListener("mousedown", handleMouseDown);
             window.addEventListener("gamepadconnected", handleGamepadConnected);
-            window.addEventListener("gamepaddisconnected", handleGamepadDeconnected);
+            window.addEventListener("gamepaddisconnected", handleGamepadDisconnected);
 
             return () => {
                 window.removeEventListener("keydown", handleKeyDown);
                 window.removeEventListener("mousedown", handleMouseDown);
                 window.removeEventListener("gamepadconnected", handleGamepadConnected);
-                window.removeEventListener("gamepaddisconnected", handleGamepadDeconnected);
-                cancelAnimationFrame(animationRequest);
+                window.removeEventListener("gamepaddisconnected", handleGamepadDisconnected);
             };
         },
 

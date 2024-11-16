@@ -101,13 +101,15 @@
             "buttonMouse4": "Mouse Button 4",
             "buttonMouse5": "Mouse Button 5",
             "rebindKeyboardSuccessMessage": "Key rebinded successfully",
-            "rebindMouseSuccessMessage": "Mouse button rebinded successfully"
+            "rebindMouseSuccessMessage": "Mouse button rebinded successfully",
+            "notAssigned": "Not assigned"
         }
     },
     "game" : {
         "actions" : {
             "jump" : "Jump",
-            "interact" : "Interact"
+            "interact" : "Interact",
+            "openDoors" : "Open Doors"
         }
     }
 }
