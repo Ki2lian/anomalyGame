@@ -8,9 +8,11 @@ import { Suspense, useEffect } from "react";
 import MainMenu from "@/components/app/MainMenu";
 import { defaultSettings, ISettings } from "@/components/app/settings/defaultsSettings";
 import SettingsMenu from "@/components/app/SettingsMenu";
+import CrossHair from "@/components/game/CrossHair";
 import EcctrlJoystickControls from "@/components/game/EcctrlJoystickControls";
 import ElementsLoader from "@/components/game/ElementsLoader";
 import Experience from "@/components/game/Experience";
+import GameEndMessage from "@/components/game/GameEndMessage";
 import { getAspectRatio } from "@/lib/utils";
 import useGame from "@/store/useGame";
 
@@ -21,6 +23,8 @@ const Game = () => {
         isMainMenu,
         isSettingMenu,
         isRebinding,
+        isVictory,
+        isDefeat,
         resetGame,
         toggleMainMenu,
         toggleSettingMenu,
@@ -38,10 +42,30 @@ const Game = () => {
             toggleMainMenu();
         };
 
-        subscribeToAction("menu", handleMainMenu, () => true);
+        const handleEscape = () => {
+            if (document.pointerLockElement) {
+                document.exitPointerLock();
+            } else {
+                handleMainMenu();
+            }
+        };
 
-        return () => unsubscribeFromAction("menu", handleMainMenu);
-    }, [ isSettingMenu, subscribeToAction, unsubscribeFromAction, toggleMainMenu, toggleSettingMenu ]);
+        const handlePointerLockChange = () => {
+            if (!document.pointerLockElement && !isVictory && !isDefeat) {
+                if (!isSettingMenu) {
+                    toggleMainMenu();
+                }
+            }
+        };
+
+        document.addEventListener("pointerlockchange", handlePointerLockChange);
+        subscribeToAction("menu", handleEscape, () => true);
+
+        return () => {
+            unsubscribeFromAction("menu", handleEscape);
+            document.removeEventListener("pointerlockchange", handlePointerLockChange);
+        };
+    }, [ isSettingMenu, subscribeToAction, unsubscribeFromAction, toggleMainMenu, toggleSettingMenu, isVictory, isDefeat ]);
 
     useEffect(() => {
         if (isRebinding) return;
@@ -50,15 +74,25 @@ const Game = () => {
         return () => cleanup();
     }, [ listenToGlobalEvents, isRebinding ]);
 
+    useEffect(() => {
+        if (isVictory || isDefeat) {
+            if (document.pointerLockElement) {
+                document.exitPointerLock();
+            }
+        }
+    }, [ isVictory, isDefeat ]);
+
     const { progress } = useProgress();
 
     const { pointerLock } = useControls("Camera", {
-        pointerLock: { value: false },
+        pointerLock: { value: true },
     });
 
     return (
         <>
             <div id="fps-counter" className="pointer-events-none fixed left-2 top-2 z-50 hidden select-none rounded-md bg-black/70 p-2 text-sm text-lime-500"></div>
+
+            <GameEndMessage />
 
             <div className="absolute right-2.5 top-2.5 z-50">
                 <Leva hideCopyButton fill collapsed />
@@ -93,6 +127,8 @@ const Game = () => {
                     </motion.div>
                 ) : null}
             </AnimatePresence>
+
+            {isMainMenu || progress !== 100 ? null : <CrossHair />}
 
             <Canvas
                 shadows={settings.graphics.shadows}

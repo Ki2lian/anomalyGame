@@ -109,7 +109,12 @@
         "actions" : {
             "jump" : "Sauter",
             "interact" : "Interagir",
-            "openDoors" : "Ouvrir les portes"
-        }
+            "openDoors" : "Ouvrir les portes",
+            "stayHere" : "Rester ici",
+            "nextStage" : "Étage suivant"
+        },
+        "victory" : "Vous avez gagné !",
+        "defeat" : "Vous avez perdu !",
+        "returnToMainMenu" : "Retourner au menu principal"
     }
 }

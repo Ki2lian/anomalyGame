@@ -6,7 +6,7 @@ Source: https://sketchfab.com/3d-models/simple-elevator-with-animation-770488a2f
 Title: Simple Elevator with Animation
 */
 
-import { MeshReflectorMaterial, useGLTF } from "@react-three/drei";
+import { MeshReflectorMaterial, Text, useGLTF } from "@react-three/drei";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import gsap from "gsap";
 import { RefObject, useCallback, useRef, useState } from "react";
@@ -16,7 +16,9 @@ import { GLTF } from "three-stdlib";
 
 import ActionPrompt from "@/components/game/ActionPrompt";
 import { globalCamera } from "@/components/game/Camera";
+import ElevatorPanel from "@/components/game/ElevatorPanel";
 import { isInInteractionRangeAndFacing } from "@/lib/utils";
+import useGame from "@/store/useGame";
 
 interface IDoorAnimationParams {
     rigidBodyRef: RefObject<RapierRigidBody>;
@@ -28,9 +30,9 @@ interface IDoorAnimationParams {
 export const Elevator = () => {
     const { t } = useTranslation("game", { keyPrefix: "actions" });
 
-    const group = useRef<Group>(null);
+    const { stage } = useGame();
 
-    const [ doorsOpened, setDoorsOpened ] = useState(false);
+    const group = useRef<Group>(null);
 
     const rigidBodyLeftDoorOutRef = useRef<RapierRigidBody>(null);
     const rigidBodyRightDoorOutRef = useRef<RapierRigidBody>(null);
@@ -38,6 +40,8 @@ export const Elevator = () => {
     const rigidBodyLeftDoorInRef = useRef<RapierRigidBody>(null);
     const rigidBodyRightDoorInRef = useRef<RapierRigidBody>(null);
     const doorsInRef = useRef<Group>(null);
+
+    const [ doorsOpened, setDoorsOpened ] = useState(false);
 
     const { nodes, materials } = useGLTF("/models/props/elevator.glb") as GLTFResult;
 
@@ -59,47 +63,47 @@ export const Elevator = () => {
         });
     };
 
-    const toggleDoors = useCallback((isOpening: boolean) => {
-        if (
-            !rigidBodyLeftDoorOutRef.current ||
-            !rigidBodyRightDoorOutRef.current ||
-            !rigidBodyLeftDoorInRef.current ||
-            !rigidBodyRightDoorInRef.current
-        ) {
-            return;
-        }
+    const toggleDoors = useCallback(
+        (isOpening: boolean) => {
+            if (
+                !rigidBodyLeftDoorOutRef.current ||
+                !rigidBodyRightDoorOutRef.current ||
+                !rigidBodyLeftDoorInRef.current ||
+                !rigidBodyRightDoorInRef.current
+            ) {
+                return;
+            }
 
-        const directionMultiplier = isOpening ? 1 : -1;
+            const directionMultiplier = isOpening ? 1 : -1;
 
-        const doorAnimations = [
-            { rigidBodyRef: rigidBodyLeftDoorOutRef, direction: -1 * directionMultiplier, distance: 1, duration: 2 },
-            { rigidBodyRef: rigidBodyRightDoorOutRef, direction: 1 * directionMultiplier, distance: 1, duration: 2 },
-            { rigidBodyRef: rigidBodyLeftDoorInRef, direction: -2 * directionMultiplier, distance: 2, duration: 2 },
-            { rigidBodyRef: rigidBodyRightDoorInRef, direction: 2 * directionMultiplier, distance: 2, duration: 2 },
-        ];
+            const doorAnimations = [
+                { rigidBodyRef: rigidBodyLeftDoorOutRef, direction: -1 * directionMultiplier, distance: 1, duration: 2 },
+                { rigidBodyRef: rigidBodyRightDoorOutRef, direction: 1 * directionMultiplier, distance: 1, duration: 2 },
+                { rigidBodyRef: rigidBodyLeftDoorInRef, direction: -2 * directionMultiplier, distance: 2, duration: 2 },
+                { rigidBodyRef: rigidBodyRightDoorInRef, direction: 2 * directionMultiplier, distance: 2, duration: 2 },
+            ];
 
-        for (const door of doorAnimations) {
-            animateDoor(door);
-        }
+            for (const door of doorAnimations) {
+                animateDoor(door);
+            }
 
-        setDoorsOpened(isOpening);
-    }, [ rigidBodyLeftDoorOutRef, rigidBodyRightDoorOutRef, rigidBodyLeftDoorInRef, rigidBodyRightDoorInRef ]);
+            setDoorsOpened(isOpening);
+        },
+        [ rigidBodyLeftDoorOutRef, rigidBodyRightDoorOutRef, rigidBodyLeftDoorInRef, rigidBodyRightDoorInRef ],
+    );
 
     const openDoors = useCallback(() => {
         if (!doorsOpened) toggleDoors(true);
     }, [ doorsOpened, toggleDoors ]);
 
-    // const closeDoors = useCallback(() => {
-    //     if (doorsOpened) toggleDoors(false);
-    // }, [ doorsOpened, toggleDoors ]);
+    const closeDoors = useCallback(() => {
+        if (doorsOpened) toggleDoors(false);
+    }, [ doorsOpened, toggleDoors ]);
 
     const validateInteraction = useCallback(() => {
         if (doorsOpened) return false;
         const camera = globalCamera;
-        return (
-            isInInteractionRangeAndFacing(camera, doorsInRef, 1.5) ||
-            isInInteractionRangeAndFacing(camera, doorsOutRef, 1.5)
-        );
+        return isInInteractionRangeAndFacing(camera, doorsInRef, 1.125) || isInInteractionRangeAndFacing(camera, doorsOutRef, 1.125);
     }, [ doorsOpened, doorsInRef, doorsOutRef ]);
 
     return (
@@ -158,6 +162,22 @@ export const Elevator = () => {
                                 <mesh name="Object_10" castShadow receiveShadow geometry={nodes.Object_10.geometry} material={materials.Metal} />
                             </group>
                             <group name="ElevatorCage_11" position={[ -0.04, 1.015, 0 ]}>
+                                <mesh position={[ -0.1, 1.92, 0 ]} rotation={[ 0, -Math.PI / 2, 0 ]} scale={0.5}>
+                                    <boxGeometry args={[ 0.5, 0.5, 0.005 ]} />
+                                    <meshStandardMaterial color={"black"} />
+                                    <Text
+                                        name="stayHere"
+                                        position={[ 0, 0, 0.01 ]}
+                                        textAlign="center"
+                                        anchorX="center"
+                                        anchorY="middle"
+                                        maxWidth={3.6}
+                                        whiteSpace="overflowWrap"
+                                        fontSize={0.4}
+                                    >
+                                        {stage.currentStage}
+                                    </Text>
+                                </mesh>
                                 <RigidBody type="fixed" colliders="trimesh">
                                     <mesh name="Object_12" castShadow receiveShadow geometry={nodes.Object_12.geometry} material={materials.Metal} />
                                 </RigidBody>
@@ -171,6 +191,7 @@ export const Elevator = () => {
                                         geometry={nodes.Object_16.geometry}
                                         material={materials.Buttons}
                                     />
+                                    <ElevatorPanel closeDoors={closeDoors} />
                                 </group>
                                 <group name="HandleElevator_5" position={[ -1.407, 0.069, 1.294 ]} rotation={[ 0, -Math.PI / 2, 0 ]}>
                                     <mesh name="Object_18" castShadow receiveShadow geometry={nodes.Object_18.geometry} material={materials.Metal} />

@@ -22,7 +22,7 @@ const HoverableComponent = ({ component, hoverComponent, text, isActive, ...prop
             <div className={`absolute inset-0 transition-opacity duration-200 ${ isActive || isHovered ? "opacity-100" : "opacity-0" }`}>
                 {hoverComponent}
             </div>
-            <h1 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none text-lg dark:text-background">{text}</h1>
+            <h1 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none text-nowrap text-lg dark:text-background">{text}</h1>
         </div>
     );
 };

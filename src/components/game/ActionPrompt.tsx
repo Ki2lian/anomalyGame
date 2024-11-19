@@ -26,6 +26,8 @@ const ActionPrompt = ({ actionKey, description, validateInteraction, onAction }:
 
     const [ isVisible, setIsVisible ] = useState(false);
 
+    let lastCheck = 0;
+
     const keyBind = useMemo(() => {
         if (isGamepadActive) {
             const controllerCode = settings.controls.keybindings[actionKey].controller.code || "";
@@ -48,7 +50,11 @@ const ActionPrompt = ({ actionKey, description, validateInteraction, onAction }:
         return t("notAssigned");
     }, [ actionKey, isGamepadActive, settings.controls.keybindings, settings.controls.controllerType, t ]);
 
-    useFrame(() => {
+    useFrame((_, delta) => {
+        lastCheck += delta;
+        if (lastCheck < 0.1) return;
+        lastCheck = 0;
+
         const visible = validateInteraction();
         setIsVisible(prevVisible => (prevVisible !== visible ? visible : prevVisible));
     });

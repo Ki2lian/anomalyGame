@@ -109,7 +109,12 @@
         "actions" : {
             "jump" : "Jump",
             "interact" : "Interact",
-            "openDoors" : "Open Doors"
-        }
+            "openDoors" : "Open Doors",
+            "stayHere" : "Stay Here",
+            "nextStage" : "Next Stage"
+        },
+        "victory" : "You won!",
+        "defeat" : "You lost!",
+        "returnToMainMenu" : "Return to main menu"
     }
 }

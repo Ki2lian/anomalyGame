@@ -12,7 +12,7 @@ import PerformanceMonitor from "@/components/PerformanceMonitor";
 import useGame from "@/store/useGame";
 
 const Experience = () => {
-    const { isMainMenu } = useGame();
+    const { isMainMenu, isVictory, isDefeat } = useGame();
 
     /**
      * Leva controls
@@ -56,7 +56,7 @@ const Experience = () => {
 
             <Camera />
 
-            <Physics debug={debug} paused={pausedPhysics || isMainMenu} timeStep={"vary"}>
+            <Physics debug={debug} paused={pausedPhysics || isMainMenu || isVictory || isDefeat} timeStep={"vary"}>
                 <OrbitControls ref={orbitControlsRef} enabled={orbitControls} />
                 {!orbitControls ? <Player width={0.3} height={1} /> : <></>}
 
