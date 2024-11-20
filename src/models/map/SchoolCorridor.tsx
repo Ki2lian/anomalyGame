@@ -182,7 +182,7 @@ export const SchoolCorridor = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
                     scale={[ 5.981, 4.002, 0.261 ]}
                 />
                 <mesh castShadow receiveShadow material={isAnomalyEasy5 ? materials["Material.004"] : materials.Material} rotation={[ 0, -Math.PI / 2, 0 ]} position={[ 12, 2.9, -0.26 ]}>
-                    <boxGeometry args={[ 0.5, 8, 12 ]} />
+                    <boxGeometry args={[ 0.5, 8, 12.1 ]} />
                 </mesh>
             </RigidBody>
             <RigidBody type="fixed">
