@@ -1,12 +1,28 @@
 import { useProgress } from "@react-three/drei";
+import { useEffect, useState } from "react";
+
+import useGame from "@/store/useGame";
 
 
 const ElementsLoader = () => {
     const { progress } = useProgress();
 
-    if (progress === 100) return <></>;
+    const { gameIsReady } = useGame();
+
+    const [ isVisible, setIsVisible ] = useState(true);
+
+    useEffect(() => {
+        if (progress === 100 && gameIsReady) {
+            setTimeout(() => setIsVisible(false), 500);
+        }
+    }, [ progress, gameIsReady ]);
+
+    if (!isVisible) return null;
+
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-200">
+        <div className={`fixed inset-0 z-[18568369] flex items-center justify-center bg-gray-200 transition-opacity duration-500 ${
+            progress === 100 && gameIsReady ? "opacity-0" : "opacity-100"
+        }`}>
             <div className="w-64">
                 <div className="h-4 overflow-hidden rounded-full bg-gray-300">
                     <div

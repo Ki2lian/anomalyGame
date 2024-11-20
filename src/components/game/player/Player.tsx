@@ -18,7 +18,7 @@ interface IPlayer {
 }
 
 const Player = ({ width, height }: IPlayer) => {
-    const { stage } = useGame();
+    const { stage, gameIsReady, setGameIsReady } = useGame();
 
     const [ settings ] = useLocalStorage<ISettings>("settings", defaultSettings);
     const keyboardMouseMap = generateKeyboardMouseMap(settings.controls.keybindings);
@@ -57,9 +57,10 @@ const Player = ({ width, height }: IPlayer) => {
             setTimeout(() => {
                 player.setTranslation(SPAWN_POSITION, true);
                 camForceDirRef.current = null;
+                if (!gameIsReady) setGameIsReady(true);
             }, 1);
         }
-    }, [ stage, SPAWN_POSITION ]);
+    }, [ stage, SPAWN_POSITION, gameIsReady, setGameIsReady ]);
 
     return (
         <KeyboardMouseControls map={keyboardMouseMap}>

@@ -27,6 +27,7 @@ interface IGameState {
     isMainMenu: boolean;
     isSettingMenu: boolean;
     isRebinding: boolean;
+    gameIsReady: boolean;
     seed: string;
     stage: IStage;
     isVictory: boolean;
@@ -49,6 +50,7 @@ interface IGameState {
     toggleSettingMenu: () => void;
     toggleMainMenu: () => void;
     toggleRebinding: () => void;
+    setGameIsReady: (isReady: boolean) => void;
 
     listenToGlobalEvents: () => () => void;
 }
@@ -108,6 +110,7 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
         isMainMenu: false,
         isSettingMenu: false,
         isRebinding: false,
+        gameIsReady: false,
         difficulty: "easy",
         seed: "",
         stage: { currentStage: 8, visitCount: 0, maxAnomalies: 0 },
@@ -137,6 +140,7 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
                 isRebinding: false,
                 difficulty: "easy",
                 seed: "",
+                gameIsReady: false,
                 stage: { currentStage: 8, visitCount: 0, maxAnomalies: 0 },
                 isVictory: false,
                 isDefeat: false,
@@ -192,6 +196,8 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
         toggleMainMenu: () => set(state => ({ isMainMenu: !state.isMainMenu })),
         toggleSettingMenu: () => set(state => ({ isSettingMenu: !state.isSettingMenu })),
         toggleRebinding: () => set(state => ({ isRebinding: !state.isRebinding })),
+
+        setGameIsReady: isReady => set({ gameIsReady: isReady }),
 
         listenToGlobalEvents: () => {
             const { notifyActionSubscribers } = get();
