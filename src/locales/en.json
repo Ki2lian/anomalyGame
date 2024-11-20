@@ -3,7 +3,9 @@
         "play": "Play",
         "resume": "Resume",
         "settings": "Settings",
-        "exit": "Exit"
+        "exit": "Exit",
+        "copySeed": "Copy Seed",
+        "seedCopied": "Seed copied to clipboard!"
     },
     "gameSetup": {
         "title": "Game Setup",

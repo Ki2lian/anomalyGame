@@ -136,6 +136,7 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
                 isSettingMenu: false,
                 isRebinding: false,
                 difficulty: "easy",
+                seed: "",
                 stage: { currentStage: 8, visitCount: 0, maxAnomalies: 0 },
                 isVictory: false,
                 isDefeat: false,

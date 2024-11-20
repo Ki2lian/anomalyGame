@@ -1,4 +1,6 @@
+import { useCopyToClipboard } from "@uidotdev/usehooks";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 
 import HoverableComponent from "@/components/app/HoverableComponent";
 import { BlueRectangleBorder } from "@/components/assets/sprites/blue/RectangleBorder";
@@ -14,7 +16,15 @@ interface IMainMenuProps {
 
 const MainMenu = ({ onPlayOrResume, onQuit }: IMainMenuProps) => {
     const { t } = useTranslation("mainMenu");
-    const { isPlaying, toggleSettingMenu } = useGame();
+
+    const { isPlaying, seed, toggleSettingMenu } = useGame();
+
+    const [ _, copyToClipboard ] = useCopyToClipboard();
+
+    const handleCopySeed = () => {
+        copyToClipboard(seed);
+        toast.success(t("seedCopied"));
+    };
 
     return <>
         <div className="absolute inset-0 z-10 bg-black/30 backdrop-blur-lg"></div>
@@ -25,6 +35,7 @@ const MainMenu = ({ onPlayOrResume, onQuit }: IMainMenuProps) => {
                 <HoverableComponent onClick={onPlayOrResume} component={<BlueRectangleBorder size={1.5} />} hoverComponent={<BlueRectangleDepthBorder size={1.5} />} text={isPlaying ? t("resume") : t("play")} />
                 <HoverableComponent onClick={() => toggleSettingMenu()} component={<BlueRectangleBorder size={1.5} />} hoverComponent={<BlueRectangleDepthBorder size={1.5} />} text={t("settings")} />
                 <HoverableComponent onClick={onQuit} component={<RedRectangleFlat size={1.5} />} hoverComponent={<RedRectangleDepthFlat size={1.5} />} text={t("exit")} />
+                { seed ? <HoverableComponent onClick={() => handleCopySeed()} component={<BlueRectangleBorder size={1.5} />} hoverComponent={<BlueRectangleDepthBorder size={1.5} />} text={t("copySeed")} /> : null }
             </div>
         </div>
     </>;

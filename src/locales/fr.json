@@ -3,7 +3,9 @@
         "play": "Jouer",
         "resume": "Reprendre",
         "settings": "Paramètres",
-        "exit": "Quitter"
+        "exit": "Quitter",
+        "copySeed": "Copier la seed",
+        "seedCopied": "Seed copiée dans le presse-papier !"
     },
     "gameSetup": {
         "title": "Configuration de la partie",
