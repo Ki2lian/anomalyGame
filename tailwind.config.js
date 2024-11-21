@@ -61,6 +61,15 @@ export default {
                     5: "hsl(var(--chart-5))",
                 },
             },
+            keyframes: {
+                "bounce": {
+                    "0%, 100%": { transform: "translateY(1)" },
+                    "50%": { transform: "translateY(-3px)" },
+                },
+            },
+            animation: {
+                "bounce": "bounce 2s infinite ease-in-out",
+            },
         },
     },
     // eslint-disable-next-line no-undef
