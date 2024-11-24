@@ -36,7 +36,7 @@ const ElementsLoader = () => {
                     </div>
                     <div className="absolute right-2 top-1/2 flex -translate-y-1/2 gap-x-1 text-lg text-white">
                         <Download />
-                        { progress }%
+                        { Math.round(progress) }%
                     </div>
                 </div>
                 <div className="mt-2 flex w-3/4 justify-around text-sm text-white lg:w-1/4">
