@@ -7,9 +7,10 @@ Title: Simple Elevator with Animation
 */
 
 import { MeshReflectorMaterial, Text, useGLTF } from "@react-three/drei";
+import { MeshReflectorMaterialProps } from "@react-three/drei/materials/MeshReflectorMaterial";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import gsap from "gsap";
-import { RefObject, useCallback, useRef, useState } from "react";
+import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Group, Mesh, MeshPhysicalMaterial, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
@@ -33,6 +34,13 @@ export const Elevator = () => {
     const { stage } = useGame();
 
     const group = useRef<Group>(null);
+
+    const reflectorRef = useRef(null);
+
+    useEffect(() => {
+        if (!reflectorRef.current) return;
+        (reflectorRef.current as MeshReflectorMaterialProps).virtualCamera.layers.enable(2);
+    }, []);
 
     const rigidBodyLeftDoorOutRef = useRef<RapierRigidBody>(null);
     const rigidBodyRightDoorOutRef = useRef<RapierRigidBody>(null);
@@ -261,7 +269,14 @@ export const Elevator = () => {
                                     <mesh name="Object_29" castShadow receiveShadow geometry={nodes.Object_29.geometry} />
                                     <mesh rotation={[ -Math.PI / 2, 0, 0 ]} position={[ 0, 0.03, 0 ]}>
                                         <planeGeometry args={[ 1.9, 1.9, 1.9 ]} />
-                                        <MeshReflectorMaterial blur={[ 512, 512 ]} resolution={2048} mirror={1} mixBlur={0} mixStrength={1.5} />
+                                        <MeshReflectorMaterial
+                                            ref={reflectorRef}
+                                            blur={[ 512, 512 ]}
+                                            resolution={2048}
+                                            mirror={1}
+                                            mixBlur={0}
+                                            mixStrength={1.5}
+                                        />
                                     </mesh>
                                     <RigidBody type="fixed">
                                         <mesh

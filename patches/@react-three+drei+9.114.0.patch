@@ -1,3 +1,52 @@
+diff --git a/node_modules/@react-three/drei/core/MeshReflectorMaterial.js b/node_modules/@react-three/drei/core/MeshReflectorMaterial.js
+index 9b572b2..cf69c3b 100644
+--- a/node_modules/@react-three/drei/core/MeshReflectorMaterial.js
++++ b/node_modules/@react-three/drei/core/MeshReflectorMaterial.js
+@@ -36,7 +36,10 @@ const MeshReflectorMaterial = /* @__PURE__ */React.forwardRef(({
+   blur = Array.isArray(blur) ? blur : [blur, blur];
+   const hasBlur = blur[0] + blur[1] > 0;
+   const materialRef = React.useRef(null);
+-  React.useImperativeHandle(ref, () => materialRef.current, []);
++  React.useImperativeHandle(ref, () => ({
++    ...materialRef.current,
++    virtualCamera
++  }), []);
+   const [reflectorPlane] = React.useState(() => new Plane());
+   const [normal] = React.useState(() => new Vector3());
+   const [reflectorWorldPosition] = React.useState(() => new Vector3());
+diff --git a/node_modules/@react-three/drei/materials/MeshReflectorMaterial.d.ts b/node_modules/@react-three/drei/materials/MeshReflectorMaterial.d.ts
+index e906d4c..bbecba3 100644
+--- a/node_modules/@react-three/drei/materials/MeshReflectorMaterial.d.ts
++++ b/node_modules/@react-three/drei/materials/MeshReflectorMaterial.d.ts
+@@ -1,4 +1,4 @@
+-import { Matrix4, MeshStandardMaterial, Texture } from 'three';
++import { Matrix4, MeshStandardMaterial, PerspectiveCamera, Texture } from 'three';
+ export declare class MeshReflectorMaterial extends MeshStandardMaterial {
+     private _tDepth;
+     private _distortionMap;
+@@ -15,6 +15,7 @@ export declare class MeshReflectorMaterial extends MeshStandardMaterial {
+     private _depthToBlurRatioBias;
+     private _distortion;
+     private _mixContrast;
++    private _virtualCamera;
+     constructor(parameters?: {});
+     onBeforeCompile(shader: any): void;
+     get tDiffuse(): Texture | null;
+@@ -47,6 +48,8 @@ export declare class MeshReflectorMaterial extends MeshStandardMaterial {
+     set distortion(v: number);
+     get mixContrast(): number;
+     set mixContrast(v: number);
++    get virtualCamera(): PerspectiveCamera;
++    set virtualCamera(v: PerspectiveCamera);
+ }
+ export type MeshReflectorMaterialProps = {
+     mixBlur: number;
+@@ -63,4 +66,5 @@ export type MeshReflectorMaterialProps = {
+     depthToBlurRatioBias: number;
+     distortion: number;
+     mixContrast: number;
++    virtualCamera: PerspectiveCamera;
+ } & JSX.IntrinsicElements['meshStandardMaterial'];
 diff --git a/node_modules/@react-three/drei/web/KeyboardControls.js b/node_modules/@react-three/drei/web/KeyboardControls.js
 index c0b65cb..7b69751 100644
 --- a/node_modules/@react-three/drei/web/KeyboardControls.js

@@ -65,6 +65,7 @@ const Player = ({ width, height }: IPlayer) => {
     return (
         <KeyboardMouseControls map={keyboardMouseMap}>
             <Ecctrl
+                animated
                 ref={ecctrlRef}
                 position={SPAWN_POSITION}
                 autoBalance={false}

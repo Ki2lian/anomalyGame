@@ -2,6 +2,7 @@ import { Environment } from "@react-three/drei";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import Rand from "rand-seed";
 import { ComponentType, useMemo } from "react";
+import { Vector3 } from "three";
 
 import { defaultSettings, ISettings } from "@/components/app/settings/defaultsSettings";
 import { Amy } from "@/models/entities/Amy";
@@ -57,7 +58,7 @@ const Level = () => {
             <Elevator />
             <Prof />
             <Amy />
-            <Simon />
+            <Simon position={[ 4.2, -0.48, 2.5 ]} rotation={[ 0, -Math.PI, 0 ]} colliderPosition={new Vector3(4.2, 0.25, 2.5)} colliderBoxArgs={[ 0.5, 1.5, 1 ]} />
             <Michelle />
             {propsToRender.map((PropComponent, index) => (
                 <PropComponent key={index} />
