@@ -19,7 +19,7 @@ export const Michelle = (props: React.JSX.IntrinsicElements["group"]) => {
     }, [ actions.Sitting_idle ]);
 
     return (
-        <primitive ref={group} object={model.scene} {...props} />
+        <primitive ref={group} object={model.scene} position={[ -14.2, -0.55, -3.3 ]} rotation={[ 0, -Math.PI / 2, 0 ]} scale={1.2} {...props} />
     );
 };
 
