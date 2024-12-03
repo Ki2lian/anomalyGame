@@ -16,9 +16,8 @@ export const Plants = () => {
 
     return (
         <>
-            <RigidBody type="fixed" colliders="hull" position={[ -25.5, -0.53, 0.6 ]} rotation={[ 0, -Math.PI / 1.3, 0 ]}>
-                <primitive object={model.scene} scale={12} />
-
+            <RigidBody type="fixed" colliders="hull" position={ [ -25.5, -0.53, 0.6 ] } rotation={ [ 0, -Math.PI / 1.3, 0 ] }>
+                <primitive object={ model.scene } scale={ 12 } />
             </RigidBody>
         </>
     );

@@ -15,7 +15,7 @@ index 9b572b2..cf69c3b 100644
    const [normal] = React.useState(() => new Vector3());
    const [reflectorWorldPosition] = React.useState(() => new Vector3());
 diff --git a/node_modules/@react-three/drei/materials/MeshReflectorMaterial.d.ts b/node_modules/@react-three/drei/materials/MeshReflectorMaterial.d.ts
-index e906d4c..bbecba3 100644
+index e906d4c..0c2af6e 100644
 --- a/node_modules/@react-three/drei/materials/MeshReflectorMaterial.d.ts
 +++ b/node_modules/@react-three/drei/materials/MeshReflectorMaterial.d.ts
 @@ -1,4 +1,4 @@
@@ -36,19 +36,20 @@ index e906d4c..bbecba3 100644
      set distortion(v: number);
      get mixContrast(): number;
      set mixContrast(v: number);
-+    get virtualCamera(): PerspectiveCamera;
-+    set virtualCamera(v: PerspectiveCamera);
++    get mixVirtualCamera(): number;
++    set mixVirtualCamera(v: PerspectiveCamera);
  }
  export type MeshReflectorMaterialProps = {
      mixBlur: number;
-@@ -63,4 +66,5 @@ export type MeshReflectorMaterialProps = {
+@@ -63,4 +66,6 @@ export type MeshReflectorMaterialProps = {
      depthToBlurRatioBias: number;
      distortion: number;
      mixContrast: number;
 +    virtualCamera: PerspectiveCamera;
++    
  } & JSX.IntrinsicElements['meshStandardMaterial'];
 diff --git a/node_modules/@react-three/drei/web/KeyboardControls.js b/node_modules/@react-three/drei/web/KeyboardControls.js
-index c0b65cb..7b69751 100644
+index 3fa5ba1..cf126c6 100644
 --- a/node_modules/@react-three/drei/web/KeyboardControls.js
 +++ b/node_modules/@react-three/drei/web/KeyboardControls.js
 @@ -79,6 +79,50 @@ function KeyboardControls({
@@ -68,9 +69,9 @@ index c0b65cb..7b69751 100644
 +          mouseButton = "MouseRight";
 +          break;
 +        default:
-+          return; // Ignorer si ce n'est pas un bouton de souris connu
++          return;
 +      }
-+
++      
 +      const obj = keyMap[mouseButton];
 +      if (!obj) return;
 +      const { fn, pressed, up } = obj;
@@ -92,8 +93,8 @@ index c0b65cb..7b69751 100644
 +        default:
 +          return;
 +      }
-+
-+      const obj = keyMap[mouseButton];
++    
++    const obj = keyMap[mouseButton];
 +      if (!obj) return;
 +      const { fn, up } = obj;
 +      obj.pressed = false;

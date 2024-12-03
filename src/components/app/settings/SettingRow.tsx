@@ -10,8 +10,8 @@ interface ISettingRowProps {
 
 const SettingRow = ({ label, children, description, ...props }: ComponentPropsWithoutRef<"div"> & ISettingRowProps) => {
     return (
-        <div className="mb-2 hover:bg-secondary" {...props}>
-            <TooltipProvider delayDuration={350}>
+        <div className="mb-2 hover:bg-secondary" { ...props }>
+            <TooltipProvider delayDuration={ 350 }>
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <div className="flex w-full cursor-pointer flex-col items-center justify-between p-2 lg:flex-row">

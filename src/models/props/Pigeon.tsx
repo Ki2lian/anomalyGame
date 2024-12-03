@@ -35,7 +35,7 @@ export const Pigeon = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     return (
         <>
             {pigeons.map((pigeon, index) => (
-                <Clone key={index} ref={pigeonRef} object={model.scene} position={pigeon.position} rotation={pigeon.rotation} scale={pigeon.scale} />
+                <Clone key={ index } ref={ pigeonRef } object={ model.scene } position={ pigeon.position } rotation={ pigeon.rotation } scale={ pigeon.scale } />
             ))}
         </>
     );
@@ -49,6 +49,5 @@ type GLTFResult = GLTF & {
         Gascogne_Pigeon_mat: MeshStandardMaterial;
     };
 };
-
 
 useGLTF.preload("/pigeon.glb");

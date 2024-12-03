@@ -33,7 +33,15 @@ export const Rat = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     return (
         <>
             {rats.map((rat, index) => (
-                <Clone key={index} ref={ratRef} object={model.scene} position={rat.position} rotation={rat.rotation} scale={rat.scale} visible={rat.visible} />
+                <Clone
+                    key={ index }
+                    ref={ ratRef }
+                    object={ model.scene }
+                    position={ rat.position }
+                    rotation={ rat.rotation }
+                    scale={ rat.scale }
+                    visible={ rat.visible }
+                />
             ))}
         </>
     );

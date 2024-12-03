@@ -40,12 +40,12 @@ const GeneralTab = () => {
                     section="general"
                     confirmTextKey="confirmResetDefaultGeneral"
                     successMessageKey="resetGeneralSuccessMessage"
-                    onReset={() => changeLanguage(defaultGeneralSettings.language)}
+                    onReset={ () => changeLanguage(defaultGeneralSettings.language) }
                 />
-                <LanguageSelector updateGeneralSetting={updateGeneralSetting} />
-                <ThemeSelector updateGeneralSetting={updateGeneralSetting} />
-                <SettingRow label={t("fpsCounter")} description={t("fpsCounterDescription")}>
-                    <Switch checked={settings.general.fpsCounter} onCheckedChange={value => updateGeneralSetting({ key: "fpsCounter", value })} />
+                <LanguageSelector updateGeneralSetting={ updateGeneralSetting } />
+                <ThemeSelector updateGeneralSetting={ updateGeneralSetting } />
+                <SettingRow label={ t("fpsCounter") } description={ t("fpsCounterDescription") }>
+                    <Switch checked={ settings.general.fpsCounter } onCheckedChange={ value => updateGeneralSetting({ key: "fpsCounter", value }) } />
                 </SettingRow>
             </CardContent>
         </Card>

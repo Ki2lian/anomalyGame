@@ -82,16 +82,16 @@ const KeyboardInput = ({ value, onChange, checkIfAssigned, removePreviousAssignm
     return (
         <div className="flex items-center">
             <Input
-                ref={inputRef}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                onKeyDown={handleKeyDown}
-                value={isActive ? "" : value.display}
+                ref={ inputRef }
+                onFocus={ handleFocus }
+                onBlur={ handleBlur }
+                onKeyDown={ handleKeyDown }
+                value={ isActive ? "" : value.display }
                 readOnly
-                placeholder={isActive ? t("placeholderInputKeyboard") : ""}
+                placeholder={ isActive ? t("placeholderInputKeyboard") : "" }
                 className="cursor-pointer select-none text-center uppercase"
             />
-            <Trash2 className="ml-2 cursor-pointer text-destructive" onClick={handleDelete} />
+            <Trash2 className="ml-2 cursor-pointer text-destructive" onClick={ handleDelete } />
         </div>
     );
 };

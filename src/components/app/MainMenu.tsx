@@ -26,19 +26,43 @@ const MainMenu = ({ onPlayOrResume, onQuit }: IMainMenuProps) => {
         toast.success(t("seedCopied"));
     };
 
-    return <>
-        <div className="absolute inset-0 z-10 bg-black/30 backdrop-blur-lg"></div>
-        <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center">
-            <h1 className="mb-10 select-none text-4xl font-bold text-black">AnomalyGame</h1>
+    return (
+        <>
+            <div className="absolute inset-0 z-10 bg-black/30 backdrop-blur-lg"></div>
+            <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center">
+                <h1 className="mb-10 select-none text-4xl font-bold text-black">AnomalyGame</h1>
 
-            <div className="flex flex-col space-y-4">
-                <HoverableComponent onClick={onPlayOrResume} component={<BlueRectangleBorder size={1.5} />} hoverComponent={<BlueRectangleDepthBorder size={1.5} />} text={isPlaying ? t("resume") : t("play")} />
-                <HoverableComponent onClick={() => toggleSettingMenu()} component={<BlueRectangleBorder size={1.5} />} hoverComponent={<BlueRectangleDepthBorder size={1.5} />} text={t("settings")} />
-                <HoverableComponent onClick={onQuit} component={<RedRectangleFlat size={1.5} />} hoverComponent={<RedRectangleDepthFlat size={1.5} />} text={t("exit")} />
-                { seed ? <HoverableComponent onClick={() => handleCopySeed()} component={<BlueRectangleBorder size={1.5} />} hoverComponent={<BlueRectangleDepthBorder size={1.5} />} text={t("copySeed")} /> : null }
+                <div className="flex flex-col space-y-4">
+                    <HoverableComponent
+                        onClick={ onPlayOrResume }
+                        component={ <BlueRectangleBorder size={ 1.5 } /> }
+                        hoverComponent={ <BlueRectangleDepthBorder size={ 1.5 } /> }
+                        text={ isPlaying ? t("resume") : t("play") }
+                    />
+                    <HoverableComponent
+                        onClick={ () => toggleSettingMenu() }
+                        component={ <BlueRectangleBorder size={ 1.5 } /> }
+                        hoverComponent={ <BlueRectangleDepthBorder size={ 1.5 } /> }
+                        text={ t("settings") }
+                    />
+                    <HoverableComponent
+                        onClick={ onQuit }
+                        component={ <RedRectangleFlat size={ 1.5 } /> }
+                        hoverComponent={ <RedRectangleDepthFlat size={ 1.5 } /> }
+                        text={ t("exit") }
+                    />
+                    {seed ? (
+                        <HoverableComponent
+                            onClick={ () => handleCopySeed() }
+                            component={ <BlueRectangleBorder size={ 1.5 } /> }
+                            hoverComponent={ <BlueRectangleDepthBorder size={ 1.5 } /> }
+                            text={ t("copySeed") }
+                        />
+                    ) : null}
+                </div>
             </div>
-        </div>
-    </>;
+        </>
+    );
 };
 
 export default MainMenu;

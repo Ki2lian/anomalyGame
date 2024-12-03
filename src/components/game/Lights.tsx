@@ -20,7 +20,7 @@ const Lights = ({ propsAmbientLight }: ILightsProps) => {
             position={[ 1, 0, 1 ]}
             intensity={1.5}
         /> */}
-        <ambientLight intensity={0.3} {...propsAmbientLight} />
+        <ambientLight intensity={ 0.3 } { ...propsAmbientLight } />
     </>;
 };
 

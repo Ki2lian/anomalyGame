@@ -17,7 +17,7 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
 }
 
 const App = () => {
-    const isPlaying = useGame((state) => state.isPlaying);
+    const isPlaying = useGame(state => state.isPlaying);
     const [ settings, setSettings ] = useLocalStorage("settings", defaultSettings);
 
     useEffect(() => {
@@ -27,11 +27,13 @@ const App = () => {
         }
     }, [ settings, setSettings ]);
 
-    return <>
-        <Toaster position="bottom-right" />
-        <Theme />
-        {isPlaying ? <Game /> : <Menu />}
-    </>;
+    return (
+        <>
+            <Toaster position="bottom-right" />
+            <Theme />
+            {isPlaying ? <Game /> : <Menu />}
+        </>
+    );
 };
 
 export default App;

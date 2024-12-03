@@ -121,35 +121,35 @@ const ElevatorPanel = ({ closeDoors }: IElevatorPanelProps) => {
     return (
         <>
             {isNearElevator ? (
-                <group position={[ 0, 0.05, 0 ]} rotation={[ -Math.PI / 2, 0, Math.PI / 2 ]} scale={0.1}>
-                    <mesh ref={buttonRefs.stayHere} name="stayHere" position={[ 0, 1, 0 ]}>
-                        <boxGeometry args={[ 3.6, 1, 0.005 ]} />
-                        <meshStandardMaterial color={"gray"} />
+                <group position={ [ 0, 0.05, 0 ] } rotation={ [ -Math.PI / 2, 0, Math.PI / 2 ] } scale={ 0.1 }>
+                    <mesh ref={ buttonRefs.stayHere } name="stayHere" position={ [ 0, 1, 0 ] }>
+                        <boxGeometry args={ [ 3.6, 1, 0.005 ] } />
+                        <meshStandardMaterial color={ "gray" } />
                         <Text
                             name="stayHere"
-                            position={[ 0, 0, 0.01 ]}
+                            position={ [ 0, 0, 0.01 ] }
                             textAlign="center"
                             anchorX="center"
                             anchorY="middle"
-                            maxWidth={3.6}
+                            maxWidth={ 3.6 }
                             whiteSpace="overflowWrap"
-                            fontSize={0.4}
+                            fontSize={ 0.4 }
                         >
                             {t("stayHere")}
                         </Text>
                     </mesh>
-                    <mesh ref={buttonRefs.nextStage} name="nextStage" position={[ 0, -1, 0 ]}>
-                        <boxGeometry args={[ 3.6, 1, 0.005 ]} />
-                        <meshStandardMaterial color={"gray"} />
+                    <mesh ref={ buttonRefs.nextStage } name="nextStage" position={ [ 0, -1, 0 ] }>
+                        <boxGeometry args={ [ 3.6, 1, 0.005 ] } />
+                        <meshStandardMaterial color={ "gray" } />
                         <Text
                             name="nextStage"
-                            position={[ 0, 0, 0.01 ]}
+                            position={ [ 0, 0, 0.01 ] }
                             textAlign="center"
                             anchorX="center"
                             anchorY="middle"
-                            maxWidth={3.6}
+                            maxWidth={ 3.6 }
                             whiteSpace="overflowWrap"
-                            fontSize={0.4}
+                            fontSize={ 0.4 }
                         >
                             {t("nextStage")}
                         </Text>

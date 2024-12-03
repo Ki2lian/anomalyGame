@@ -3,10 +3,9 @@ import { useTranslation } from "react-i18next";
 
 import { defaultGeneralSettings } from "@/components/app/settings/defaultsSettings";
 import { IUpdateSettingProps } from "@/components/app/settings/general/GeneralTab";
+import { themeModeAvailable } from "@/components/app/settings/import/validators/general";
 import SettingRow from "@/components/app/settings/SettingRow";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
-import { themeModeAvailable } from "../import/validators/general";
 
 const ThemeSelector = ({ updateGeneralSetting }: IUpdateSettingProps) => {
     const { t } = useTranslation("settingsMenu", { keyPrefix: "general" });
@@ -14,14 +13,16 @@ const ThemeSelector = ({ updateGeneralSetting }: IUpdateSettingProps) => {
 
     return (
         <>
-            <SettingRow label={t("appearance")} description={t("appearanceDescription")}>
-                <Select value={settings.general.themeMode} onValueChange={value => updateGeneralSetting({ key: "themeMode", value })}>
+            <SettingRow label={ t("appearance") } description={ t("appearanceDescription") }>
+                <Select value={ settings.general.themeMode } onValueChange={ value => updateGeneralSetting({ key: "themeMode", value }) }>
                     <SelectTrigger className="w-full">
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                         {themeModeAvailable.map(theme => (
-                            <SelectItem key={theme} value={theme}>{t(`themeMode.${ theme }`)}</SelectItem>
+                            <SelectItem key={ theme } value={ theme }>
+                                {t(`themeMode.${ theme }`)}
+                            </SelectItem>
                         ))}
                     </SelectContent>
                 </Select>

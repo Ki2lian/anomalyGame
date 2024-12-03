@@ -36,7 +36,7 @@ export const CellingLight = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     return (
         <>
             {positions.map((position, index) => (
-                <Clone key={index} ref={lightRef} object={model.scene} rotation={[ 0, Math.PI / 2, 0 ]} position={position} />
+                <Clone key={ index } ref={ lightRef } object={ model.scene } rotation={ [ 0, Math.PI / 2, 0 ] } position={ position } />
             ))}
         </>
     );
@@ -44,11 +44,11 @@ export const CellingLight = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
 
 type GLTFResult = GLTF & {
     nodes: {
-      SM_Overhead_light001_T_Overhead_light_0: Mesh
-    }
+        SM_Overhead_light001_T_Overhead_light_0: Mesh;
+    };
     materials: {
-      T_Overhead_light: MeshStandardMaterial
-    }
-  }
+        T_Overhead_light: MeshStandardMaterial;
+    };
+};
 
 useGLTF.preload("/models/props/ceiling_light.glb");

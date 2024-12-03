@@ -33,7 +33,7 @@ const ActionPrompt = ({ actionKey, description, validateInteraction, onAction }:
             const controllerCode = settings.controls.keybindings[actionKey].controller.code || "";
             const iconProps = mapCodeToIcon(controllerCode, settings.controls.controllerType);
             if (iconProps) {
-                return <BaseControllerIcon {...iconProps} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />;
+                return <BaseControllerIcon { ...iconProps } className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />;
             }
         }
 
@@ -68,13 +68,13 @@ const ActionPrompt = ({ actionKey, description, validateInteraction, onAction }:
     if (!isVisible || isMainMenu) return null;
 
     return (
-        <Html position={[ 0, 1.5, 0 ]} className="pointer-events-none select-none">
+        <Html position={ [ 0, 1.5, 0 ] } className="pointer-events-none select-none">
             <div className="flex items-center text-nowrap rounded-lg bg-black/80 px-4 py-2 text-white shadow-md">
                 <div
-                    className={cn(
+                    className={ cn(
                         "mr-3 flex items-center justify-center rounded-md bg-white font-bold text-black relative",
                         typeof keyBind === "string" && keyBind.length === 1 ? "size-10" : "p-2",
-                    )}
+                    ) }
                 >
                     {keyBind}
                 </div>

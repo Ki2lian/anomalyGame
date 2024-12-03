@@ -56,14 +56,14 @@ const Experience = () => {
 
             <Camera />
 
-            <Physics debug={debug} paused={pausedPhysics || isMainMenu || isVictory || isDefeat} timeStep={"vary"}>
-                <OrbitControls ref={orbitControlsRef} enabled={orbitControls} />
-                {!orbitControls ? <Player width={0.3} height={1} /> : <></>}
+            <Physics debug={ debug } paused={ pausedPhysics || isMainMenu || isVictory || isDefeat } timeStep={ "vary" }>
+                <OrbitControls ref={ orbitControlsRef } enabled={ orbitControls } />
+                {!orbitControls ? <Player width={ 0.3 } height={ 1 } /> : <></>}
 
                 <Level />
             </Physics>
 
-            <axesHelper args={[ 50 ]} />
+            <axesHelper args={ [ 50 ] } />
         </>
     );
 };

@@ -39,7 +39,7 @@ const GameSetup = ({ onCancel }: IGameSetupProps) => {
         <GreyRectangleDepthFlat className="absolute left-1/2 top-1/2 z-10 h-auto min-h-40 w-5/6 -translate-x-1/2 -translate-y-1/2 md:w-3/4 lg:w-1/2">
             <div className="flex flex-col">
                 <div className="relative mb-5 flex items-center">
-                    <Button className="absolute left-0" variant="secondary" onClick={onCancel}>
+                    <Button className="absolute left-0" variant="secondary" onClick={ onCancel }>
                         <Undo2 />
                     </Button>
                     <h1 className="w-full select-none text-center text-xl font-bold text-foreground lg:text-3xl">{t("title")}</h1>
@@ -49,23 +49,42 @@ const GameSetup = ({ onCancel }: IGameSetupProps) => {
                         <div className="flex w-full cursor-pointer flex-col items-center justify-between p-2 hover:bg-secondary lg:flex-row">
                             <p className="mb-1 select-none uppercase md:mb-0">{t("difficulty")}</p>
                             <div className="flex w-full select-none flex-col items-center justify-end gap-2 lg:w-2/3 lg:flex-row">
-                                <HoverableComponent onClick={() => setDifficulty("easy")} isActive={difficulty === "easy"} component={<BlueRectangleBorder size={0.6} />} hoverComponent={<BlueRectangleDepthBorder size={0.6} />} text={t("easy")} />
-                                <HoverableComponent onClick={() => setDifficulty("medium")} isActive={difficulty === "medium"} component={<BlueRectangleBorder size={0.6} />} hoverComponent={<BlueRectangleDepthBorder size={0.6} />} text={t("medium")} />
-                                <HoverableComponent onClick={() => setDifficulty("hard")} isActive={difficulty === "hard"} component={<BlueRectangleBorder size={0.6} />} hoverComponent={<BlueRectangleDepthBorder size={0.6} />} text={t("hard")} />
+                                <HoverableComponent
+                                    onClick={ () => setDifficulty("easy") }
+                                    isActive={ difficulty === "easy" }
+                                    component={ <BlueRectangleBorder size={ 0.6 } /> }
+                                    hoverComponent={ <BlueRectangleDepthBorder size={ 0.6 } /> }
+                                    text={ t("easy") }
+                                />
+                                <HoverableComponent
+                                    onClick={ () => setDifficulty("medium") }
+                                    isActive={ difficulty === "medium" }
+                                    component={ <BlueRectangleBorder size={ 0.6 } /> }
+                                    hoverComponent={ <BlueRectangleDepthBorder size={ 0.6 } /> }
+                                    text={ t("medium") }
+                                />
+                                <HoverableComponent
+                                    onClick={ () => setDifficulty("hard") }
+                                    isActive={ difficulty === "hard" }
+                                    component={ <BlueRectangleBorder size={ 0.6 } /> }
+                                    hoverComponent={ <BlueRectangleDepthBorder size={ 0.6 } /> }
+                                    text={ t("hard") }
+                                />
                             </div>
                         </div>
                         <div className="my-5 flex w-full cursor-pointer flex-col items-center justify-between p-2 hover:bg-secondary lg:flex-row">
                             <p className="mb-1 select-none uppercase md:mb-0">{t("seed")}</p>
                             <div className="flex w-full select-none items-center justify-center gap-2 lg:w-2/5">
-                                <Input
-                                    value={seed}
-                                    onChange={(e) => setSeed(e.target.value)}
-                                    placeholder={t("placeholderSeed")}
-                                />
+                                <Input value={ seed } onChange={ e => setSeed(e.target.value) } placeholder={ t("placeholderSeed") } />
                             </div>
                         </div>
                         <div className="flex items-center justify-center">
-                            <HoverableComponent onClick={handleStartGame} component={<GreenRectangleFlat size={1} />} hoverComponent={<GreenRectangleDepthFlat size={1} />} text={t("start")} />
+                            <HoverableComponent
+                                onClick={ handleStartGame }
+                                component={ <GreenRectangleFlat size={ 1 } /> }
+                                hoverComponent={ <GreenRectangleDepthFlat size={ 1 } /> }
+                                text={ t("start") }
+                            />
                         </div>
                     </CardContent>
                 </Card>

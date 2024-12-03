@@ -15,7 +15,7 @@ export const SchoolDiary = () => {
 
     return (
         <>
-            <primitive object={model.scene} position={[ -4.7, 0.454, -3.3 ]} scale={0.15} rotation={[ 0, Math.PI / 15, 0 ]} />
+            <primitive object={ model.scene } position={ [ -4.7, 0.454, -3.3 ] } scale={ 0.15 } rotation={ [ 0, Math.PI / 15, 0 ] } />
         </>
     );
 };

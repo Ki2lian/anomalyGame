@@ -33,7 +33,7 @@ export const Pencil = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     return (
         <>
             {pencils.map((pencil, index) => (
-                <Clone key={index} ref={pencilRef} object={model.scene} scale={0.008} rotation={pencil.rotation} position={pencil.position} />
+                <Clone key={ index } ref={ pencilRef } object={ model.scene } scale={ 0.008 } rotation={ pencil.rotation } position={ pencil.position } />
             ))}
         </>
     );

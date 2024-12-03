@@ -22,7 +22,12 @@ export const ChessSet = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
 
     return (
         <>
-            <primitive object={model.scene} position={[ -10.7, 0.45, -2.5 ]} rotation={[ 0, isAnomalyMedium1 ? Math.PI / 3 : -Math.PI / 1.5, 0 ]} scale={0.9} />
+            <primitive
+                object={ model.scene }
+                position={ [ -10.7, 0.45, -2.5 ] }
+                rotation={ [ 0, isAnomalyMedium1 ? Math.PI / 3 : -Math.PI / 1.5, 0 ] }
+                scale={ 0.9 }
+            />
         </>
     );
 };

@@ -35,7 +35,7 @@ export const Clock = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
 
         const hourRotation = (hours + minutes / 60) * 30;
         const minuteRotation = (minutes + seconds / 60) * 6;
-        const secondRotation = (seconds) * 6;
+        const secondRotation = seconds * 6;
 
         return {
             hourRotation: MathUtils.degToRad(hourRotation),
@@ -92,378 +92,378 @@ export const Clock = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     }, [ currentTime, isAnomalyEasy1 ]);
 
     return (
-        <group dispose={null} scale={0.1} position={[ 2.955, 2, -2.2 ]} rotation={[ Math.PI / 2, 0, Math.PI / 2 ]}>
-            <group rotation={[ -Math.PI / 2, 0, 0 ]}>
-                <group position={[ 0, 0, 0.799 ]} scale={0.082} ref={hoursArrowRef}>
+        <group dispose={ null } scale={ 0.1 } position={ [ 2.955, 2, -2.2 ] } rotation={ [ Math.PI / 2, 0, Math.PI / 2 ] }>
+            <group rotation={ [ -Math.PI / 2, 0, 0 ] }>
+                <group position={ [ 0, 0, 0.799 ] } scale={ 0.082 } ref={ hoursArrowRef }>
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes.hour_hand_0.geometry}
-                        material={materials.hands_plastic}
-                        position={[ 0, 0, -4.01 ]}
-                        scale={12.143}
+                        geometry={ nodes.hour_hand_0.geometry }
+                        material={ materials.hands_plastic }
+                        position={ [ 0, 0, -4.01 ] }
+                        scale={ 12.143 }
                     />
                 </group>
-                <group position={[ 0, 0, 0.624 ]} scale={0.082} ref={minutesArrowRef}>
+                <group position={ [ 0, 0, 0.624 ] } scale={ 0.082 } ref={ minutesArrowRef }>
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes.minute_hand_0.geometry}
-                        material={materials.hands_plastic}
-                        position={[ 0, 0, -1.524 ]}
-                        scale={[ 1.085, 1.085, 0.683 ]}
+                        geometry={ nodes.minute_hand_0.geometry }
+                        material={ materials.hands_plastic }
+                        position={ [ 0, 0, -1.524 ] }
+                        scale={ [ 1.085, 1.085, 0.683 ] }
                     />
                 </group>
-                <group position={[ 0, 0, 1.025 ]} scale={0.526}>
+                <group position={ [ 0, 0, 1.025 ] } scale={ 0.526 }>
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes["1_0"].geometry}
-                        material={materials.Numbers}
-                        position={[ 1.93, 3.24, -1.171 ]}
-                        scale={1.249}
+                        geometry={ nodes["1_0"].geometry }
+                        material={ materials.Numbers }
+                        position={ [ 1.93, 3.24, -1.171 ] }
+                        scale={ 1.249 }
                     />
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes["10_0"].geometry}
-                        material={materials.Numbers}
-                        position={[ -3.53, 1.86, -1.171 ]}
-                        scale={1.249}
+                        geometry={ nodes["10_0"].geometry }
+                        material={ materials.Numbers }
+                        position={ [ -3.53, 1.86, -1.171 ] }
+                        scale={ 1.249 }
                     />
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes["11_0"].geometry}
-                        material={materials.Numbers}
-                        position={[ -2.144, 3.235, -1.171 ]}
-                        scale={1.249}
+                        geometry={ nodes["11_0"].geometry }
+                        material={ materials.Numbers }
+                        position={ [ -2.144, 3.235, -1.171 ] }
+                        scale={ 1.249 }
                     />
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes["12_0"].geometry}
-                        material={materials.Numbers}
-                        position={[ -0.284, 3.767, -1.171 ]}
-                        scale={1.249}
+                        geometry={ nodes["12_0"].geometry }
+                        material={ materials.Numbers }
+                        position={ [ -0.284, 3.767, -1.171 ] }
+                        scale={ 1.249 }
                     />
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes["2_0"].geometry}
-                        material={materials.Numbers}
-                        position={[ 3.235, 1.865, -1.171 ]}
-                        scale={1.249}
+                        geometry={ nodes["2_0"].geometry }
+                        material={ materials.Numbers }
+                        position={ [ 3.235, 1.865, -1.171 ] }
+                        scale={ 1.249 }
                     />
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes["3_0"].geometry}
-                        material={materials.Numbers}
-                        position={[ 3.767, -0.017, -1.171 ]}
-                        scale={1.249}
+                        geometry={ nodes["3_0"].geometry }
+                        material={ materials.Numbers }
+                        position={ [ 3.767, -0.017, -1.171 ] }
+                        scale={ 1.249 }
                     />
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes["4_0"].geometry}
-                        material={materials.Numbers}
-                        position={[ 3.24, -1.93, -1.171 ]}
-                        scale={1.249}
+                        geometry={ nodes["4_0"].geometry }
+                        material={ materials.Numbers }
+                        position={ [ 3.24, -1.93, -1.171 ] }
+                        scale={ 1.249 }
                     />
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes["5_0"].geometry}
-                        material={materials.Numbers}
-                        position={[ 1.865, -3.235, -1.171 ]}
-                        scale={1.249}
+                        geometry={ nodes["5_0"].geometry }
+                        material={ materials.Numbers }
+                        position={ [ 1.865, -3.235, -1.171 ] }
+                        scale={ 1.249 }
                     />
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes["6_0"].geometry}
-                        material={materials.Numbers}
-                        position={[ -0.017, -3.767, -1.171 ]}
-                        scale={1.249}
+                        geometry={ nodes["6_0"].geometry }
+                        material={ materials.Numbers }
+                        position={ [ -0.017, -3.767, -1.171 ] }
+                        scale={ 1.249 }
                     />
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes["7_0"].geometry}
-                        material={materials.Numbers}
-                        position={[ -1.93, -3.24, -1.171 ]}
-                        scale={1.249}
+                        geometry={ nodes["7_0"].geometry }
+                        material={ materials.Numbers }
+                        position={ [ -1.93, -3.24, -1.171 ] }
+                        scale={ 1.249 }
                     />
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes["8_0"].geometry}
-                        material={materials.Numbers}
-                        position={[ -3.235, -1.865, -1.171 ]}
-                        scale={1.249}
+                        geometry={ nodes["8_0"].geometry }
+                        material={ materials.Numbers }
+                        position={ [ -3.235, -1.865, -1.171 ] }
+                        scale={ 1.249 }
                     />
                     <mesh
                         castShadow
                         receiveShadow
-                        geometry={nodes["9_0"].geometry}
-                        material={materials.Numbers}
-                        position={[ -3.73, -0.017, -1.171 ]}
-                        scale={1.249}
-                    />
-                </group>
-                <group position={[ 0, 0, 0.94 ]} scale={0.082} ref={secondsArrowRef}>
-                    <mesh
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.second_hand_0.geometry}
-                        material={materials.hands_plastic}
-                        position={[ 0, 0, -5.08 ]}
-                        scale={[ 1.085, 1.085, 0.321 ]}
+                        geometry={ nodes["9_0"].geometry }
+                        material={ materials.Numbers }
+                        position={ [ -3.73, -0.017, -1.171 ] }
+                        scale={ 1.249 }
                     />
                 </group>
-                <mesh castShadow receiveShadow geometry={nodes.clock_main_0.geometry} material={materials.clock_metal} />
-                <mesh castShadow receiveShadow geometry={nodes.clock_main_1.geometry} material={materials.dial} />
+                <group position={ [ 0, 0, 0.94 ] } scale={ 0.082 } ref={ secondsArrowRef }>
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={ nodes.second_hand_0.geometry }
+                        material={ materials.hands_plastic }
+                        position={ [ 0, 0, -5.08 ] }
+                        scale={ [ 1.085, 1.085, 0.321 ] }
+                    />
+                </group>
+                <mesh castShadow receiveShadow geometry={ nodes.clock_main_0.geometry } material={ materials.clock_metal } />
+                <mesh castShadow receiveShadow geometry={ nodes.clock_main_1.geometry } material={ materials.dial } />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark002_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 0, -2.44, 0.413 ]}
-                    rotation={[ 0, 0, -Math.PI ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark002_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 0, -2.44, 0.413 ] }
+                    rotation={ [ 0, 0, -Math.PI ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark003_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 1.22, -2.113, 0.413 ]}
-                    rotation={[ 0, 0, -2.617 ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark003_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 1.22, -2.113, 0.413 ] }
+                    rotation={ [ 0, 0, -2.617 ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark004_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 2.113, -1.22, 0.413 ]}
-                    rotation={[ 0, 0, -2.095 ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark004_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 2.113, -1.22, 0.413 ] }
+                    rotation={ [ 0, 0, -2.095 ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark005_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 2.44, 0, 0.413 ]}
-                    rotation={[ 0, 0, -Math.PI / 2 ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark005_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 2.44, 0, 0.413 ] }
+                    rotation={ [ 0, 0, -Math.PI / 2 ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark006_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 2.113, 1.22, 0.413 ]}
-                    rotation={[ 0, 0, -1.047 ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark006_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 2.113, 1.22, 0.413 ] }
+                    rotation={ [ 0, 0, -1.047 ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark007_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 1.22, 2.113, 0.413 ]}
-                    rotation={[ 0, 0, -0.524 ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark007_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 1.22, 2.113, 0.413 ] }
+                    rotation={ [ 0, 0, -0.524 ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark008_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 0, 2.44, 0.413 ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark008_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 0, 2.44, 0.413 ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark009_0.geometry}
-                    material={materials.Numbers}
-                    position={[ -1.22, 2.113, 0.413 ]}
-                    rotation={[ 0, 0, 0.524 ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark009_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ -1.22, 2.113, 0.413 ] }
+                    rotation={ [ 0, 0, 0.524 ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark010_0.geometry}
-                    material={materials.Numbers}
-                    position={[ -2.113, 1.22, 0.413 ]}
-                    rotation={[ 0, 0, 1.047 ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark010_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ -2.113, 1.22, 0.413 ] }
+                    rotation={ [ 0, 0, 1.047 ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark011_0.geometry}
-                    material={materials.Numbers}
-                    position={[ -2.44, 0, 0.413 ]}
-                    rotation={[ 0, 0, Math.PI / 2 ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark011_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ -2.44, 0, 0.413 ] }
+                    rotation={ [ 0, 0, Math.PI / 2 ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark012_0.geometry}
-                    material={materials.Numbers}
-                    position={[ -2.113, -1.22, 0.413 ]}
-                    rotation={[ 0, 0, 2.095 ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark012_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ -2.113, -1.22, 0.413 ] }
+                    rotation={ [ 0, 0, 2.095 ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark013_0.geometry}
-                    material={materials.Numbers}
-                    position={[ -1.22, -2.113, 0.413 ]}
-                    rotation={[ 0, 0, 2.617 ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark013_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ -1.22, -2.113, 0.413 ] }
+                    rotation={ [ 0, 0, 2.617 ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.hourmark014_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 0, -2.44, 0.413 ]}
-                    rotation={[ 0, 0, -Math.PI ]}
-                    scale={[ 0.024, 0.082, 0.028 ]}
+                    geometry={ nodes.hourmark014_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 0, -2.44, 0.413 ] }
+                    rotation={ [ 0, 0, -Math.PI ] }
+                    scale={ [ 0.024, 0.082, 0.028 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.middle_0.geometry}
-                    material={materials.hands_plastic}
-                    position={[ 0, 0, 0.455 ]}
-                    scale={0.055}
+                    geometry={ nodes.middle_0.geometry }
+                    material={ materials.hands_plastic }
+                    position={ [ 0, 0, 0.455 ] }
+                    scale={ 0.055 }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark002_0.geometry}
-                    material={materials.Numbers}
-                    position={[ -0.634, -2.369, 0.413 ]}
-                    rotation={[ 0, 0, 2.723 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark002_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ -0.634, -2.369, 0.413 ] }
+                    rotation={ [ 0, 0, 2.723 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark003_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 0.635, -2.369, 0.413 ]}
-                    rotation={[ 0, 0, -3.036 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark003_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 0.635, -2.369, 0.413 ] }
+                    rotation={ [ 0, 0, -3.036 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark004_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 1.734, -1.733, 0.413 ]}
-                    rotation={[ 0, 0, -2.514 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark004_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 1.734, -1.733, 0.413 ] }
+                    rotation={ [ 0, 0, -2.514 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark005_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 2.369, -0.634, 0.413 ]}
-                    rotation={[ 0, 0, -1.99 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark005_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 2.369, -0.634, 0.413 ] }
+                    rotation={ [ 0, 0, -1.99 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark006_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 2.369, 0.635, 0.413 ]}
-                    rotation={[ 0, 0, -1.465 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark006_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 2.369, 0.635, 0.413 ] }
+                    rotation={ [ 0, 0, -1.465 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark007_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 1.734, 1.734, 0.413 ]}
-                    rotation={[ 0, 0, -0.943 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark007_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 1.734, 1.734, 0.413 ] }
+                    rotation={ [ 0, 0, -0.943 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark008_0.geometry}
-                    material={materials.Numbers}
-                    position={[ 0.634, 2.369, 0.413 ]}
-                    rotation={[ 0, 0, -0.419 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark008_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ 0.634, 2.369, 0.413 ] }
+                    rotation={ [ 0, 0, -0.419 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark009_0.geometry}
-                    material={materials.Numbers}
-                    position={[ -0.635, 2.369, 0.413 ]}
-                    rotation={[ 0, 0, 0.105 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark009_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ -0.635, 2.369, 0.413 ] }
+                    rotation={ [ 0, 0, 0.105 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark010_0.geometry}
-                    material={materials.Numbers}
-                    position={[ -1.734, 1.733, 0.413 ]}
-                    rotation={[ 0, 0, 0.628 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark010_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ -1.734, 1.733, 0.413 ] }
+                    rotation={ [ 0, 0, 0.628 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark011_0.geometry}
-                    material={materials.Numbers}
-                    position={[ -2.369, 0.634, 0.413 ]}
-                    rotation={[ 0, 0, 1.152 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark011_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ -2.369, 0.634, 0.413 ] }
+                    rotation={ [ 0, 0, 1.152 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark012_0.geometry}
-                    material={materials.Numbers}
-                    position={[ -2.369, -0.635, 0.413 ]}
-                    rotation={[ 0, 0, 1.676 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark012_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ -2.369, -0.635, 0.413 ] }
+                    rotation={ [ 0, 0, 1.676 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark013_0.geometry}
-                    material={materials.Numbers}
-                    position={[ -1.733, -1.734, 0.413 ]}
-                    rotation={[ 0, 0, 2.198 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark013_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ -1.733, -1.734, 0.413 ] }
+                    rotation={ [ 0, 0, 2.198 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.minutemark014_0.geometry}
-                    material={materials.Numbers}
-                    position={[ -0.634, -2.369, 0.413 ]}
-                    rotation={[ 0, 0, 2.723 ]}
-                    scale={[ 0.014, 0.049, 0.017 ]}
+                    geometry={ nodes.minutemark014_0.geometry }
+                    material={ materials.Numbers }
+                    position={ [ -0.634, -2.369, 0.413 ] }
+                    rotation={ [ 0, 0, 2.723 ] }
+                    scale={ [ 0.014, 0.049, 0.017 ] }
                 />
             </group>
         </group>

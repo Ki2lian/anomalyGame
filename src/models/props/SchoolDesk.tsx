@@ -52,17 +52,35 @@ export const SchoolDesk = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     return (
         <>
             {chairs.map((chair, index) => (
-                <Clone key={index} ref={deskRef} object={model.scene} scale={0.01} rotation={[ 0, 0.82, 0 ]} position={chair.position} visible={chair.visible} />
+                <Clone
+                    key={ index }
+                    ref={ deskRef }
+                    object={ model.scene }
+                    scale={ 0.01 }
+                    rotation={ [ 0, 0.82, 0 ] }
+                    position={ chair.position }
+                    visible={ chair.visible }
+                />
             ))}
             {isAnomalyEasy1 ? (
-                <group dispose={null} scale={0.01} rotation={[ 0, 0.82, 0 ]} position={[ -8.2, -0.56, -1.1 ]}>
-                    <group rotation={[ -Math.PI / 2, 0, -2.39 ]}>
-                        <group rotation={[ Math.PI / 2, 0, 0 ]}>
-                            <mesh castShadow receiveShadow geometry={model.nodes.defaultMaterial.geometry} material={model.materials.ChackerMat} />
-                            <mesh castShadow receiveShadow geometry={model.nodes.defaultMaterial_1.geometry} material={model.materials.ChackerMat} />
-                            <group rotation={[ 0, Math.PI, 0 ]} position={[ 0, 0, -18 ]}>
-                                <mesh castShadow receiveShadow geometry={model.nodes.defaultMaterial_2.geometry} material={model.materials.ChackerMat} />
-                                <mesh castShadow receiveShadow geometry={model.nodes.defaultMaterial_3.geometry} material={model.materials.ChackerMat} />
+                <group dispose={ null } scale={ 0.01 } rotation={ [ 0, 0.82, 0 ] } position={ [ -8.2, -0.56, -1.1 ] }>
+                    <group rotation={ [ -Math.PI / 2, 0, -2.39 ] }>
+                        <group rotation={ [ Math.PI / 2, 0, 0 ] }>
+                            <mesh castShadow receiveShadow geometry={ model.nodes.defaultMaterial.geometry } material={ model.materials.ChackerMat } />
+                            <mesh castShadow receiveShadow geometry={ model.nodes.defaultMaterial_1.geometry } material={ model.materials.ChackerMat } />
+                            <group rotation={ [ 0, Math.PI, 0 ] } position={ [ 0, 0, -18 ] }>
+                                <mesh
+                                    castShadow
+                                    receiveShadow
+                                    geometry={ model.nodes.defaultMaterial_2.geometry }
+                                    material={ model.materials.ChackerMat }
+                                />
+                                <mesh
+                                    castShadow
+                                    receiveShadow
+                                    geometry={ model.nodes.defaultMaterial_3.geometry }
+                                    material={ model.materials.ChackerMat }
+                                />
                             </group>
                         </group>
                     </group>

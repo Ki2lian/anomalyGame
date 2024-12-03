@@ -60,7 +60,8 @@ export const Simon = ({
 
     useEffect(() => {
         if (isPlayer) return;
-        actions.Sitting_idle && actions.Sitting_idle.play();
+        if (!actions.Sitting_idle) return;
+        actions.Sitting_idle.play();
     }, [ actions.Sitting_idle, isPlayer ]);
 
     useEffect(() => {
@@ -73,24 +74,22 @@ export const Simon = ({
 
         action.getMixer().addEventListener("finished", resetAnimation);
 
-
         return () => {
             action.fadeOut(0.2);
             action.getMixer().removeEventListener("finished", resetAnimation);
-
         };
     }, [ curAnimation, actions, animationSet, resetAnimation, isPlayer ]);
 
     return (
         <>
             {!isPlayer ? (
-                <RigidBody type="fixed" position={colliderPosition} includeInvisible={true}>
-                    <mesh visible={false}>
-                        <boxGeometry args={colliderBoxArgs} />
+                <RigidBody type="fixed" position={ colliderPosition } includeInvisible={ true }>
+                    <mesh visible={ false }>
+                        <boxGeometry args={ colliderBoxArgs } />
                     </mesh>
                 </RigidBody>
             ) : null}
-            <primitive ref={group} object={clone} {...props} />
+            <primitive ref={ group } object={ clone } { ...props } />
         </>
     );
 };

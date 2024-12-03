@@ -33,7 +33,7 @@ export const Sharpener = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     return (
         <>
             {sharpeners.map((sharpener, index) => (
-                <Clone key={index} ref={sharpenerRef} object={model.scene} scale={0.03} rotation={sharpener.rotation} position={sharpener.position} />
+                <Clone key={ index } ref={ sharpenerRef } object={ model.scene } scale={ 0.03 } rotation={ sharpener.rotation } position={ sharpener.position } />
             ))}
         </>
     );

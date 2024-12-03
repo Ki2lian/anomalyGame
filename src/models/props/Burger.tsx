@@ -22,7 +22,7 @@ export const Burger = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
 
     return (
         <>
-            <primitive object={model.scene} position={[ -2.65, isAnomalyHard1 ? 0.5 : 0.55, -1.05 ]} scale={isAnomalyHard1 ? 0.25 : 0.3} />
+            <primitive object={ model.scene } position={ [ -2.65, isAnomalyHard1 ? 0.5 : 0.55, -1.05 ] } scale={ isAnomalyHard1 ? 0.25 : 0.3 } />
         </>
     );
 };

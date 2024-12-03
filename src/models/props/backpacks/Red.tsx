@@ -33,7 +33,15 @@ export const BackpackRed = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     return (
         <>
             {backpacks.map((backpack, index) => (
-                <Clone key={index} ref={backpackRef} object={model.scene} scale={1.2} rotation={backpack.rotation} position={backpack.position} visible={backpack.visible} />
+                <Clone
+                    key={ index }
+                    ref={ backpackRef }
+                    object={ model.scene }
+                    scale={ 1.2 }
+                    rotation={ backpack.rotation }
+                    position={ backpack.position }
+                    visible={ backpack.visible }
+                />
             ))}
         </>
     );

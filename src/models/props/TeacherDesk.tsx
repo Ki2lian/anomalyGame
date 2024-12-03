@@ -15,7 +15,7 @@ export const TeacherDesk = () => {
 
     return (
         <>
-            <primitive object={model.scene} rotation={[ 0, -Math.PI / 2, 0 ]} position={[ -19.4, -0.54, -1.22 ]} />
+            <primitive object={ model.scene } rotation={ [ 0, -Math.PI / 2, 0 ] } position={ [ -19.4, -0.54, -1.22 ] } />
         </>
     );
 };

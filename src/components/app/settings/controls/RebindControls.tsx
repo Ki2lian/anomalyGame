@@ -14,9 +14,8 @@ import {
     IKeybindings,
     ISettings,
 } from "@/components/app/settings/defaultsSettings";
+import ResetButton from "@/components/app/settings/ResetButton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
-import ResetButton from "../ResetButton";
 
 interface IUpdateKeybindingsProps {
     actionKey: keyof IKeybindings;
@@ -98,7 +97,7 @@ const RebindControls = () => {
                 subSection="keybindings"
                 confirmTextKey="confirmResetDefaultKeybindings"
                 successMessageKey="resetKeybindingsSuccessMessage"
-                onReset={() => setKeybindings(defaultControlsSettings.keybindings)}
+                onReset={ () => setKeybindings(defaultControlsSettings.keybindings) }
             />
 
             <div className="grid grid-cols-4 gap-4 p-2 text-center uppercase">
@@ -107,7 +106,7 @@ const RebindControls = () => {
                 <span className="font-bold">{t("mouse")}</span>
                 <div className="flex flex-col">
                     <span className="font-bold">{t("controller")}</span>
-                    <Select value={settings.controls.controllerType} onValueChange={handleControllerTypeChange}>
+                    <Select value={ settings.controls.controllerType } onValueChange={ handleControllerTypeChange }>
                         <SelectTrigger className="uppercase">
                             <SelectValue />
                         </SelectTrigger>
@@ -120,22 +119,22 @@ const RebindControls = () => {
             </div>
 
             {Object.keys(keybindings).map(actionKey => (
-                <div key={actionKey} className="mt-2 grid grid-cols-4 items-center gap-4 p-2 hover:bg-secondary">
+                <div key={ actionKey } className="mt-2 grid grid-cols-4 items-center gap-4 p-2 hover:bg-secondary">
                     <span>{t(actionKey)}</span>
                     <KeyboardInput
-                        value={keybindings[actionKey as keyof IKeybindings].keyboard}
-                        onChange={newValue => updateKeybindings({ actionKey, newValue, device: "keyboard" })}
-                        checkIfAssigned={checkIfAssigned}
-                        removePreviousAssignment={removePreviousAssignment}
+                        value={ keybindings[actionKey as keyof IKeybindings].keyboard }
+                        onChange={ newValue => updateKeybindings({ actionKey, newValue, device: "keyboard" }) }
+                        checkIfAssigned={ checkIfAssigned }
+                        removePreviousAssignment={ removePreviousAssignment }
                     />
                     <MouseInput
-                        value={keybindings[actionKey as keyof IKeybindings].mouse}
-                        onChange={newValue => updateKeybindings({ actionKey, newValue, device: "mouse" })}
-                        checkIfAssigned={checkIfAssigned}
-                        removePreviousAssignment={removePreviousAssignment}
+                        value={ keybindings[actionKey as keyof IKeybindings].mouse }
+                        onChange={ newValue => updateKeybindings({ actionKey, newValue, device: "mouse" }) }
+                        checkIfAssigned={ checkIfAssigned }
+                        removePreviousAssignment={ removePreviousAssignment }
                     />
                     <ControllerInput
-                        value={keybindings[actionKey as keyof IKeybindings].controller}
+                        value={ keybindings[actionKey as keyof IKeybindings].controller }
                     />
                 </div>
             ))}

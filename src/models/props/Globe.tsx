@@ -15,7 +15,7 @@ export const Globe = () => {
 
     return (
         <>
-            <primitive object={model.scene} position={[ -19.8, 0.67, -1.4 ]} rotation={[ 0, Math.PI / 4, 0 ]} />
+            <primitive object={ model.scene } position={ [ -19.8, 0.67, -1.4 ] } rotation={ [ 0, Math.PI / 4, 0 ] } />
         </>
     );
 };

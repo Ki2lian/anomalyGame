@@ -22,7 +22,7 @@ export const FancyPictureFramePainting = ({ isAnomaly, anomalyType }: IAnomalyPr
 
     return (
         <>
-            <primitive object={model.scene} position={isAnomalyEasy1 ? [ -8, 2, -4.03 ] : [ -2, 2, -4.03 ]} scale={2.5} />
+            <primitive object={ model.scene } position={ isAnomalyEasy1 ? [ -8, 2, -4.03 ] : [ -2, 2, -4.03 ] } scale={ 2.5 } />
         </>
     );
 };

@@ -39,7 +39,7 @@ const ControlsTab = () => {
     };
 
     const handleSliderChange = ({ key, value }: IUpdateControlsSettingProps) => {
-        setTempValues((prevValues) => ({
+        setTempValues(prevValues => ({
             ...prevValues,
             [key]: value,
         }));
@@ -60,7 +60,7 @@ const ControlsTab = () => {
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                <Button onClick={toggleRebinding} variant={"outline"} className="hidden w-full uppercase lg:flex">
+                                <Button onClick={ toggleRebinding } variant={ "outline" } className="hidden w-full uppercase lg:flex">
                                     {t("rebindControls")}
                                 </Button>
                                 <div className="mt-4">
@@ -68,58 +68,58 @@ const ControlsTab = () => {
                                         section="controls"
                                         confirmTextKey="confirmResetDefaultControls"
                                         successMessageKey="resetControlsSuccessMessage"
-                                        excludeSubSections={[ "keybindings" ]}
+                                        excludeSubSections={ [ "keybindings" ] }
                                     />
                                 </div>
-                                <SettingRow label={t("camInvertX")} description={t("camInvertXDescription")}>
+                                <SettingRow label={ t("camInvertX") } description={ t("camInvertXDescription") }>
                                     <Switch
-                                        checked={settings.controls.camInvertX}
-                                        onCheckedChange={value => updateControlsSetting({ key: "camInvertX", value })}
+                                        checked={ settings.controls.camInvertX }
+                                        onCheckedChange={ value => updateControlsSetting({ key: "camInvertX", value }) }
                                     />
                                 </SettingRow>
 
-                                <SettingRow label={t("camInvertY")} description={t("camInvertYDescription")}>
+                                <SettingRow label={ t("camInvertY") } description={ t("camInvertYDescription") }>
                                     <Switch
-                                        checked={settings.controls.camInvertY}
-                                        onCheckedChange={value => updateControlsSetting({ key: "camInvertY", value })}
+                                        checked={ settings.controls.camInvertY }
+                                        onCheckedChange={ value => updateControlsSetting({ key: "camInvertY", value }) }
                                     />
                                 </SettingRow>
 
                                 <SettingRow
-                                    label={t("leftJoystickDeadZone")}
-                                    description={t("leftJoystickDeadZoneDescription")}
+                                    label={ t("leftJoystickDeadZone") }
+                                    description={ t("leftJoystickDeadZoneDescription") }
                                     className="hidden lg:flex"
                                 >
                                     <Slider
-                                        value={[ tempValues.leftJoystickDeadZone ]}
-                                        min={0}
-                                        max={1}
-                                        step={0.05}
-                                        onValueChange={value => handleSliderChange({ key: "leftJoystickDeadZone", value: value[0] })}
-                                        onValueCommit={value => updateControlsSetting({ key: "leftJoystickDeadZone", value: value[0] })}
+                                        value={ [ tempValues.leftJoystickDeadZone ] }
+                                        min={ 0 }
+                                        max={ 1 }
+                                        step={ 0.05 }
+                                        onValueChange={ value => handleSliderChange({ key: "leftJoystickDeadZone", value: value[0] }) }
+                                        onValueCommit={ value => updateControlsSetting({ key: "leftJoystickDeadZone", value: value[0] }) }
                                     />
                                     <Input
-                                        value={tempValues.leftJoystickDeadZone.toFixed(2)}
+                                        value={ tempValues.leftJoystickDeadZone.toFixed(2) }
                                         readOnly
                                         className="w-1/4 cursor-default text-center focus-visible:ring-0"
                                     />
                                 </SettingRow>
 
                                 <SettingRow
-                                    label={t("rightJoystickDeadZone")}
-                                    description={t("rightJoystickDeadZoneDescription")}
+                                    label={ t("rightJoystickDeadZone") }
+                                    description={ t("rightJoystickDeadZoneDescription") }
                                     className="hidden lg:flex"
                                 >
                                     <Slider
-                                        value={[ tempValues.rightJoystickDeadZone ]}
-                                        min={0}
-                                        max={1}
-                                        step={0.05}
-                                        onValueChange={value => handleSliderChange({ key: "rightJoystickDeadZone", value: value[0] })}
-                                        onValueCommit={value => updateControlsSetting({ key: "rightJoystickDeadZone", value: value[0] })}
+                                        value={ [ tempValues.rightJoystickDeadZone ] }
+                                        min={ 0 }
+                                        max={ 1 }
+                                        step={ 0.05 }
+                                        onValueChange={ value => handleSliderChange({ key: "rightJoystickDeadZone", value: value[0] }) }
+                                        onValueCommit={ value => updateControlsSetting({ key: "rightJoystickDeadZone", value: value[0] }) }
                                     />
                                     <Input
-                                        value={tempValues.rightJoystickDeadZone.toFixed(2)}
+                                        value={ tempValues.rightJoystickDeadZone.toFixed(2) }
                                         readOnly
                                         className="w-1/4 cursor-default text-center focus-visible:ring-0"
                                     />
@@ -135,7 +135,7 @@ const ControlsTab = () => {
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                <Button onClick={toggleRebinding} variant={"outline"} className="w-full uppercase">
+                                <Button onClick={ toggleRebinding } variant={ "outline" } className="w-full uppercase">
                                     {t("hideRebindControls")}
                                 </Button>
                                 <RebindControls />

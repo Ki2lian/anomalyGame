@@ -43,28 +43,30 @@ const Level = () => {
         return Array.from(selectedAnomalies);
     }, [ seed, stage.currentStage, stage.visitCount, difficulty, eligibleProps, stage.maxAnomalies ]);
 
-    const propsToRender = useMemo<ComponentType[]>(
-        () => {
-            const anomalyComponents = new Set(anomalies.map(anomaly => anomaly.component));
+    const propsToRender = useMemo<ComponentType[]>(() => {
+        const anomalyComponents = new Set(anomalies.map(anomaly => anomaly.component));
 
-            return allProps.filter(prop => !anomalyComponents.has(prop));
-        },
-        [ anomalies ],
-    );
+        return allProps.filter(prop => !anomalyComponents.has(prop));
+    }, [ anomalies ]);
 
     return (
         <>
-            <Environment files={`/textures/autumn_field_${ settings.graphics.environmentTexture }.hdr`} background environmentIntensity={0.3} />
+            <Environment files={ `/textures/autumn_field_${ settings.graphics.environmentTexture }.hdr` } background environmentIntensity={ 0.3 } />
             <Elevator />
             <Prof />
             <Amy />
-            <Simon position={[ 4.2, -0.48, 2.5 ]} rotation={[ 0, -Math.PI, 0 ]} colliderPosition={new Vector3(4.2, 0.25, 2.5)} colliderBoxArgs={[ 0.5, 1.5, 1 ]} />
+            <Simon
+                position={ [ 4.2, -0.48, 2.5 ] }
+                rotation={ [ 0, -Math.PI, 0 ] }
+                colliderPosition={ new Vector3(4.2, 0.25, 2.5) }
+                colliderBoxArgs={ [ 0.5, 1.5, 1 ] }
+            />
             <Michelle />
             {propsToRender.map((PropComponent, index) => (
-                <PropComponent key={index} />
+                <PropComponent key={ index } />
             ))}
             {anomalies.map(({ component: AnomalyComponent, anomalyType }, index) => (
-                <AnomalyComponent key={`anomaly-${ index }`} isAnomaly anomalyType={ anomalyType } />
+                <AnomalyComponent key={ `anomaly-${ index }` } isAnomaly anomalyType={ anomalyType } />
             ))}
         </>
     );

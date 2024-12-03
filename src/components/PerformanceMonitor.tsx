@@ -39,7 +39,7 @@ const PerformanceMonitor = () => {
         };
     }, [ settings?.general?.fpsCounter ]);
 
-    return <PerfHeadless logsPerSecond={1} />;
+    return <PerfHeadless logsPerSecond={ 1 } />;
 };
 
 export default PerformanceMonitor;

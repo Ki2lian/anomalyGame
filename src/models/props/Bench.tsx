@@ -44,8 +44,8 @@ export const Bench = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     return (
         <>
             {positions.map((position, index) => (
-                <RigidBody key={index} type="fixed" position={position} rotation={[ 0, Math.PI / 2, 0 ]}>
-                    <Clone key={index} ref={benchRef} object={model.scene} />
+                <RigidBody key={ index } type="fixed" position={ position } rotation={ [ 0, Math.PI / 2, 0 ] }>
+                    <Clone key={ index } ref={ benchRef } object={ model.scene } />
                 </RigidBody>
             ))}
         </>
@@ -54,10 +54,10 @@ export const Bench = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
 
 type GLTFResult = GLTF & {
     nodes: {
-      Object_4: Mesh
-    }
+        Object_4: Mesh;
+    };
     materials: {
-      bench04: MeshStandardMaterial
-    }
-  }
+        bench04: MeshStandardMaterial;
+    };
+};
 useGLTF.preload("/models/props/bench.glb");

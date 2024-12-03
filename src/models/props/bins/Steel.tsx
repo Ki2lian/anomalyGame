@@ -22,7 +22,7 @@ export const SteelBin = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
 
     return (
         <>
-            <primitive object={model.scene} position={[ -19, -0.604, -0.6 ]} scale={1.3} visible={isAnomalyHard1 ? false : true} />
+            <primitive object={ model.scene } position={ [ -19, -0.604, -0.6 ] } scale={ 1.3 } visible={ isAnomalyHard1 ? false : true } />
         </>
     );
 };

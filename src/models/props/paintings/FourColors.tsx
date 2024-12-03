@@ -22,7 +22,11 @@ export const FourColorsPainting = ({ isAnomaly, anomalyType }: IAnomalyProps) =>
 
     return (
         <>
-            <primitive object={model.scene} position={isAnomalyMedium1 ? [ -20.84, 1.8, -1.73 ] : [ -20.84, 1.5, -2 ]} rotation={[ 0, -Math.PI / 2, isAnomalyMedium1 ? Math.PI / 2 : 0 ]} />
+            <primitive
+                object={ model.scene }
+                position={ isAnomalyMedium1 ? [ -20.84, 1.8, -1.73 ] : [ -20.84, 1.5, -2 ] }
+                rotation={ [ 0, -Math.PI / 2, isAnomalyMedium1 ? Math.PI / 2 : 0 ] }
+            />
         </>
     );
 };

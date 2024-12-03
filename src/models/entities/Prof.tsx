@@ -15,12 +15,11 @@ export const Prof = (props: React.JSX.IntrinsicElements["group"]) => {
     const { actions } = useAnimations(model.animations, group);
 
     useEffect(() => {
-        actions.idle && actions.idle.play();
+        if (!actions.idle) return;
+        actions.idle.play();
     }, [ actions.idle ]);
 
-    return (
-        <primitive ref={group} object={model.scene} position={[ -20, -0.554, -3 ]} rotation={[ 0, Math.PI / 3, 0 ]} scale={1.3} {...props} />
-    );
+    return <primitive ref={ group } object={ model.scene } position={ [ -20, -0.554, -3 ] } rotation={ [ 0, Math.PI / 3, 0 ] } scale={ 1.3 } { ...props } />;
 };
 
 type TActionName = "idle" | "t-pose";

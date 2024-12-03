@@ -26,15 +26,28 @@ export const PencilCaseBlue = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     const pencilCases = useMemo(() => {
         return [
             { position: new Vector3(-0.55, 0.519, -3.2), rotation: new Euler(0, Math.PI / 1.6, 0) },
-            { position: new Vector3(-6.9, 0.519, isAnomalyMedium1 ? -2.28 : -3.8), rotation: new Euler(0, isAnomalyMedium1 ? Math.PI / 1.9 : Math.PI / 4, 0) },
-            { position: new Vector3(-8.9, 0.519, isAnomalyMedium1 ? -3.8 : -2.28), rotation: new Euler(0, isAnomalyMedium1 ? Math.PI / 4 : Math.PI / 1.9, 0) },
+            {
+                position: new Vector3(-6.9, 0.519, isAnomalyMedium1 ? -2.28 : -3.8),
+                rotation: new Euler(0, isAnomalyMedium1 ? Math.PI / 1.9 : Math.PI / 4, 0),
+            },
+            {
+                position: new Vector3(-8.9, 0.519, isAnomalyMedium1 ? -3.8 : -2.28),
+                rotation: new Euler(0, isAnomalyMedium1 ? Math.PI / 4 : Math.PI / 1.9, 0),
+            },
         ];
     }, [ isAnomalyMedium1 ]);
 
     return (
         <>
             {pencilCases.map((pencilCase, index) => (
-                <Clone key={index} ref={pencilCaseRef} object={model.scene} scale={1.7} rotation={pencilCase.rotation} position={pencilCase.position} />
+                <Clone
+                    key={ index }
+                    ref={ pencilCaseRef }
+                    object={ model.scene }
+                    scale={ 1.7 }
+                    rotation={ pencilCase.rotation }
+                    position={ pencilCase.position }
+                />
             ))}
         </>
     );

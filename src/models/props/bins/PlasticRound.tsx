@@ -34,9 +34,9 @@ export const PlasticRoundBin = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     return (
         <>
             {bins.map((bin, index) => (
-                <Fragment key={index}>
-                    <RigidBody type="fixed" colliders="hull" position={bin.position} rotation={bin.rotation}>
-                        <Clone ref={plastincRoundBinRef} object={model.scene} visible={bin.visible} />
+                <Fragment key={ index }>
+                    <RigidBody type="fixed" colliders="hull" position={ bin.position } rotation={ bin.rotation }>
+                        <Clone ref={ plastincRoundBinRef } object={ model.scene } visible={ bin.visible } />
                     </RigidBody>
                 </Fragment>
             ))}

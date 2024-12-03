@@ -15,7 +15,7 @@ export const SunPainting = () => {
 
     return (
         <>
-            <primitive object={model.scene} position={[ 8.84, 1.5, 1 ]} rotation={[ 0, -Math.PI / 2, 0 ]} />
+            <primitive object={ model.scene } position={ [ 8.84, 1.5, 1 ] } rotation={ [ 0, -Math.PI / 2, 0 ] } />
         </>
     );
 };

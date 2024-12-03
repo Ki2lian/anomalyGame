@@ -23,7 +23,7 @@ export const BackpackYellow = () => {
     return (
         <>
             {backpacks.map((backpack, index) => (
-                <Clone key={index} ref={backpackRef} object={model.scene} scale={2} rotation={backpack.rotation} position={backpack.position} />
+                <Clone key={ index } ref={ backpackRef } object={ model.scene } scale={ 2 } rotation={ backpack.rotation } position={ backpack.position } />
             ))}
         </>
     );

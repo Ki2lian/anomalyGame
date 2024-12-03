@@ -25,20 +25,20 @@ const EcctrlJoystickControls = () => {
             {isTouchScreen && (
                 <>
                     <EcctrlJoystick
-                        buttonNumber={1}
-                        joystickBaseProps={sharedLargeBaseMaterial}
-                        joystickStickProps={sharedSmallBaseMaterial}
-                        joystickHandleProps={sharedTopMaterial}
-                        buttonLargeBaseProps={sharedLargeBaseMaterial}
-                        buttonSmallBaseProps={sharedSmallBaseMaterial}
-                        buttonTop1Props={sharedTopMaterial}
-                        buttonGroup1Position={[ 0.5, -1.3, 0.5 ]}
+                        buttonNumber={ 1 }
+                        joystickBaseProps={ sharedLargeBaseMaterial }
+                        joystickStickProps={ sharedSmallBaseMaterial }
+                        joystickHandleProps={ sharedTopMaterial }
+                        buttonLargeBaseProps={ sharedLargeBaseMaterial }
+                        buttonSmallBaseProps={ sharedSmallBaseMaterial }
+                        buttonTop1Props={ sharedTopMaterial }
+                        buttonGroup1Position={ [ 0.5, -1.3, 0.5 ] }
                         buttonText1Props={{
                             value: t("jump"),
                             fontSize: 0.35,
                             fontWeight: "bold",
                         }}
-                        customButtons={[
+                        customButtons={ [
                             {
                                 position: [ 2, 1, 0 ],
                                 callback: () => notifyActionSubscribers("interact"),
@@ -63,7 +63,7 @@ const EcctrlJoystickControls = () => {
                                     fontWeight: "bold",
                                 },
                             },
-                        ]}
+                        ] }
                     />
                 </>
             )}

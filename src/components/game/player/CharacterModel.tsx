@@ -9,8 +9,8 @@ interface ICapsuleGeometryProps {
 
 const CharacterModel = ({ args }: ICapsuleGeometryProps) => {
     return (
-        <Suspense fallback={<capsuleGeometry args={args} />}>
-            <Simon isPlayer position={[ 0, -0.8, -0.2 ]} />
+        <Suspense fallback={ <capsuleGeometry args={ args } /> }>
+            <Simon isPlayer position={ [ 0, -0.8, -0.2 ] } />
         </Suspense>
     );
 };

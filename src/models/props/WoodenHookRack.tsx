@@ -35,7 +35,7 @@ export const WoodenHookRack = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     return (
         <>
             {positions.map((position, index) => (
-                <Clone key={index} ref={hookRackRef} object={model.scene} position={position} />
+                <Clone key={ index } ref={ hookRackRef } object={ model.scene } position={ position } />
             ))}
         </>
     );

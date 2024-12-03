@@ -45,7 +45,7 @@ const ResetButton = ({ section, subSection, excludeSubSections, confirmTextKey, 
         }
     };
     return (
-        <Button onClick={handleReset} variant="default" className="mb-2 uppercase">
+        <Button onClick={ handleReset } variant="default" className="mb-2 uppercase">
             {t("reset")}
         </Button>
     );

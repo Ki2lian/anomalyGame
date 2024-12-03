@@ -117,17 +117,17 @@ const MouseInput = ({ value, onChange, checkIfAssigned, removePreviousAssignment
     return (
         <div className="flex items-center">
             <Input
-                ref={inputRef}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                onMouseDown={handleMouseDown}
-                onContextMenu={handleContextMenu}
-                value={isActive ? "" : value.display ? t(value.display) : ""}
+                ref={ inputRef }
+                onFocus={ handleFocus }
+                onBlur={ handleBlur }
+                onMouseDown={ handleMouseDown }
+                onContextMenu={ handleContextMenu }
+                value={ isActive ? "" : value.display ? t(value.display) : "" }
                 readOnly
-                placeholder={isActive ? t("placeholderInputMouse") : ""}
+                placeholder={ isActive ? t("placeholderInputMouse") : "" }
                 className="cursor-pointer select-none text-center uppercase"
             />
-            <Trash2 className="ml-2 cursor-pointer text-destructive" onClick={handleDelete} />
+            <Trash2 className="ml-2 cursor-pointer text-destructive" onClick={ handleDelete } />
         </div>
     );
 };

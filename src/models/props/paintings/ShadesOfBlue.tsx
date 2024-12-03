@@ -15,7 +15,7 @@ export const ShadesOfBluePainting = () => {
 
     return (
         <>
-            <primitive object={model.scene} position={[ -3, 2, 0 ]} />
+            <primitive object={ model.scene } position={ [ -3, 2, 0 ] } />
         </>
     );
 };

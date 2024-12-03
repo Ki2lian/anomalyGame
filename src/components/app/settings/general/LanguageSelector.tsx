@@ -18,14 +18,14 @@ const LanguageSelector = ({ updateGeneralSetting }: IUpdateSettingProps) => {
 
     return (
         <>
-            <SettingRow label={t("language")} description={t("languageDescription")}>
-                <Select value={settings.general.language} onValueChange={value => handleUpdateLanguage(value)}>
+            <SettingRow label={ t("language") } description={ t("languageDescription") }>
+                <Select value={ settings.general.language } onValueChange={ value => handleUpdateLanguage(value) }>
                     <SelectTrigger className="w-full">
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                         {languageAvailable.map(({ value, label }) => (
-                            <SelectItem key={value} value={value}>
+                            <SelectItem key={ value } value={ value }>
                                 {label}
                             </SelectItem>
                         ))}

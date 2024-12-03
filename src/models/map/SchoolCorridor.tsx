@@ -27,265 +27,277 @@ export const SchoolCorridor = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     const isAnomalyHard1 = isAnomaly && difficulty === "hard" && anomalyType === 1;
 
     return (
-        <group dispose={null} position={[ 0, 0, 0 ]} scale={0.5} visible={true}>
-            <group position={[ -4.888, -9.716, 11.091 ]} rotation={[ -Math.PI, -0.948, -Math.PI ]}>
-                <mesh castShadow receiveShadow geometry={nodes.Object_4.geometry} material={materials["Material.005"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_5.geometry} material={materials["Material.005"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_7.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_8.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_9.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_10.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_11.geometry} material={materials["Leaves.001"]} />
+        <group dispose={ null } position={ [ 0, 0, 0 ] } scale={ 0.5 } visible={ true }>
+            <group position={ [ -4.888, -9.716, 11.091 ] } rotation={ [ -Math.PI, -0.948, -Math.PI ] }>
+                <mesh castShadow receiveShadow geometry={ nodes.Object_4.geometry } material={ materials["Material.005"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_5.geometry } material={ materials["Material.005"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_7.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_8.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_9.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_10.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_11.geometry } material={ materials["Leaves.001"] } />
             </group>
-            <group position={[ -29.043, -9.716, 11.306 ]} rotation={[ -Math.PI, -0.948, -Math.PI ]}>
-                <mesh castShadow receiveShadow geometry={nodes.Object_13.geometry} material={materials["Material.005"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_14.geometry} material={materials["Material.005"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_16.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_17.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_18.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_19.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_20.geometry} material={materials["Leaves.001"]} />
+            <group position={ [ -29.043, -9.716, 11.306 ] } rotation={ [ -Math.PI, -0.948, -Math.PI ] }>
+                <mesh castShadow receiveShadow geometry={ nodes.Object_13.geometry } material={ materials["Material.005"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_14.geometry } material={ materials["Material.005"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_16.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_17.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_18.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_19.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_20.geometry } material={ materials["Leaves.001"] } />
             </group>
-            <group position={[ -57.798, -9.716, 6.672 ]} rotation={[ -Math.PI, -0.948, -Math.PI ]}>
-                <mesh castShadow receiveShadow geometry={nodes.Object_22.geometry} material={materials["Material.005"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_23.geometry} material={materials["Material.005"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_25.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_26.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_27.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_28.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_29.geometry} material={materials["Leaves.001"]} />
+            <group position={ [ -57.798, -9.716, 6.672 ] } rotation={ [ -Math.PI, -0.948, -Math.PI ] }>
+                <mesh castShadow receiveShadow geometry={ nodes.Object_22.geometry } material={ materials["Material.005"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_23.geometry } material={ materials["Material.005"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_25.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_26.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_27.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_28.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_29.geometry } material={ materials["Leaves.001"] } />
             </group>
             <RigidBody type="fixed">
-                <group position={[ 0, -1.112, 2.96 ]} scale={[ 5.981, 0.034, 3 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_33.geometry} material={materials["Material.003"]} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_34.geometry} material={materials["Material.004"]} />
+                <group position={ [ 0, -1.112, 2.96 ] } scale={ [ 5.981, 0.034, 3 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_33.geometry } material={ materials["Material.003"] } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_34.geometry } material={ materials["Material.004"] } />
                 </group>
-                <group position={[ 12, -1.111, 2.96 ]} scale={[ 5.981, 0.034, 3 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_33.geometry} material={materials["Material.003"]} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_34.geometry} material={materials["Material.004"]} />
+                <group position={ [ 12, -1.111, 2.96 ] } scale={ [ 5.981, 0.034, 3 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_33.geometry } material={ materials["Material.003"] } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_34.geometry } material={ materials["Material.004"] } />
                 </group>
-                <group position={[ 0, 3.053, 6.785 ]} scale={[ 1, 4.196, 1 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_36.geometry} material={materials.tuongxanh} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_37.geometry} material={materials.Material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_38.geometry} material={materials["Material.003"]} />
+                <group position={ [ 0, 3.053, 6.785 ] } scale={ [ 1, 4.196, 1 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_36.geometry } material={ materials.tuongxanh } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_37.geometry } material={ materials.Material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_38.geometry } material={ materials["Material.003"] } />
                 </group>
-                <group position={[ 0, 6.89, 3.026 ]} scale={[ 1.662, 0.027, 0.108 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_46.geometry} material={materials.material_8} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_47.geometry} material={materials.den1} />
+                <group position={ [ 0, 6.89, 3.026 ] } scale={ [ 1.662, 0.027, 0.108 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_46.geometry } material={ materials.material_8 } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_47.geometry } material={ materials.den1 } />
                 </group>
-                <group position={[ 12, 6.89, 3.026 ]} scale={[ 1.662, 0.027, 0.108 ]} visible={isAnomalyEasy1 ? false : true}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_46.geometry} material={materials.material_8} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_47.geometry} material={materials.den1} />
-                </group>
-            </RigidBody>
-            <RigidBody type="fixed" position={[ -44.997, -1.04, -6.7 ]} rotation={[ 0, -Math.PI / 2, 0 ]}>
-                <group scale={[ 6.69, 0.038, 3.355 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_59.geometry} material={materials["Material.003"]} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_60.geometry} material={materials["Material.004"]} />
+                <group position={ [ 12, 6.89, 3.026 ] } scale={ [ 1.662, 0.027, 0.108 ] } visible={ isAnomalyEasy1 ? false : true }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_46.geometry } material={ materials.material_8 } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_47.geometry } material={ materials.den1 } />
                 </group>
             </RigidBody>
-            <RigidBody type="fixed" position={[ -47.938, 6.307, 3.298 ]} rotation={[ Math.PI / 2, 0, Math.PI / 2 ]}>
-                <group scale={[ 0.497, 0.035, 0.244 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_62.geometry} material={materials["Material.007"]} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_63.geometry} material={materials.material_8} />
+            <RigidBody type="fixed" position={ [ -44.997, -1.04, -6.7 ] } rotation={ [ 0, -Math.PI / 2, 0 ] }>
+                <group scale={ [ 6.69, 0.038, 3.355 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_59.geometry } material={ materials["Material.003"] } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_60.geometry } material={ materials["Material.004"] } />
                 </group>
             </RigidBody>
-            <RigidBody type="fixed">
-                <group position={[ -2.046, 0, 0 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_65.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_66.geometry} material={materials.kinh} />
-                </group>
-            </RigidBody>
-            <RigidBody type="fixed" position={[ 2.018, 0, 0.006 ]} rotation={[ 0, 0.008, 0 ]}>
-                <group scale={[ -1, 1, 1 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_68.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_69.geometry} material={materials.kinh} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_70.geometry} material={materials["Material.001"]} />
+            <RigidBody type="fixed" position={ [ -47.938, 6.307, 3.298 ] } rotation={ [ Math.PI / 2, 0, Math.PI / 2 ] }>
+                <group scale={ [ 0.497, 0.035, 0.244 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_62.geometry } material={ materials["Material.007"] } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_63.geometry } material={ materials.material_8 } />
                 </group>
             </RigidBody>
             <RigidBody type="fixed">
-                <group position={[ 2.184, 1.95, 0 ]} scale={[ 0.192, 0.056, 0.147 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_72.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_73.geometry} material={materials.kinh} />
+                <group position={ [ -2.046, 0, 0 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_65.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_66.geometry } material={ materials.kinh } />
                 </group>
-                <group position={[ 2.183, 4.565, 0 ]} scale={[ 0.192, 0.033, 0.147 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_75.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_76.geometry} material={materials.kinh} />
-                </group>
-                <group position={isAnomalyEasy3 ? [ -11.981, 0, 0.006 ] : [ -14.046, 0, 0 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_78.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_79.geometry} material={materials.kinh} />
-                </group>
-                <group scale={[ -1, 1, 1 ]} position={isAnomalyEasy3 ? [ -11.94, 0, 0 ] : [ -9.981, 0, 0.006 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_81.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_82.geometry} material={materials.kinh} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_83.geometry} material={materials["Material.001"]} />
+            </RigidBody>
+            <RigidBody type="fixed" position={ [ 2.018, 0, 0.006 ] } rotation={ [ 0, 0.008, 0 ] }>
+                <group scale={ [ -1, 1, 1 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_68.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_69.geometry } material={ materials.kinh } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_70.geometry } material={ materials["Material.001"] } />
                 </group>
             </RigidBody>
             <RigidBody type="fixed">
-                <group position={[ -9.815, 1.95, 0 ]} scale={[ 0.192, 0.056, 0.147 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_85.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_86.geometry} material={materials.kinh} />
+                <group position={ [ 2.184, 1.95, 0 ] } scale={ [ 0.192, 0.056, 0.147 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_72.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_73.geometry } material={ materials.kinh } />
                 </group>
-                <group position={[ -9.816, 4.565, 0 ]} scale={[ 0.192, 0.033, 0.147 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_88.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_89.geometry} material={materials.kinh} />
+                <group position={ [ 2.183, 4.565, 0 ] } scale={ [ 0.192, 0.033, 0.147 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_75.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_76.geometry } material={ materials.kinh } />
                 </group>
-                <group position={[ -25.987, 0, 0 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_91.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_92.geometry} material={materials.kinh} />
+                <group position={ isAnomalyEasy3 ? [ -11.981, 0, 0.006 ] : [ -14.046, 0, 0 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_78.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_79.geometry } material={ materials.kinh } />
                 </group>
-            </RigidBody>
-            <RigidBody type="fixed" position={[ -21.923, 0, 0.006 ]} rotation={[ 0, 0.035, 0 ]}>
-                <group scale={[ -1, 1, 1 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_94.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_95.geometry} material={materials.kinh} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_96.geometry} material={materials["Material.001"]} />
+                <group scale={ [ -1, 1, 1 ] } position={ isAnomalyEasy3 ? [ -11.94, 0, 0 ] : [ -9.981, 0, 0.006 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_81.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_82.geometry } material={ materials.kinh } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_83.geometry } material={ materials["Material.001"] } />
                 </group>
             </RigidBody>
             <RigidBody type="fixed">
-                <group position={[ -21.756, 1.95, 0 ]} scale={[ 0.192, 0.056, 0.147 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_98.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_99.geometry} material={materials.kinh} />
+                <group position={ [ -9.815, 1.95, 0 ] } scale={ [ 0.192, 0.056, 0.147 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_85.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_86.geometry } material={ materials.kinh } />
                 </group>
-                <group position={[ -21.758, 4.565, 0 ]} scale={[ 0.192, 0.033, 0.147 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_101.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_102.geometry} material={materials.kinh} />
+                <group position={ [ -9.816, 4.565, 0 ] } scale={ [ 0.192, 0.033, 0.147 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_88.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_89.geometry } material={ materials.kinh } />
                 </group>
-                <group position={[ -37.952, 0, 0 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_104.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_105.geometry} material={materials.kinh} />
+                <group position={ [ -25.987, 0, 0 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_91.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_92.geometry } material={ materials.kinh } />
                 </group>
             </RigidBody>
-            <RigidBody type="fixed" position={[ -33.887, 0, 0.006 ]} rotation={[ 0, 0.008, 0 ]}>
-                <group scale={[ -1, 1, 1 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_107.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_108.geometry} material={materials.kinh} />
-                    <mesh visible={isAnomalyEasy4 ? false : true} castShadow receiveShadow geometry={nodes.Object_109.geometry} material={materials["Material.001"]} />
+            <RigidBody type="fixed" position={ [ -21.923, 0, 0.006 ] } rotation={ [ 0, 0.035, 0 ] }>
+                <group scale={ [ -1, 1, 1 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_94.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_95.geometry } material={ materials.kinh } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_96.geometry } material={ materials["Material.001"] } />
                 </group>
             </RigidBody>
             <RigidBody type="fixed">
-                <group position={[ -33.721, 1.95, 0 ]} scale={[ 0.192, 0.056, 0.147 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_111.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_112.geometry} material={materials.kinh} />
+                <group position={ [ -21.756, 1.95, 0 ] } scale={ [ 0.192, 0.056, 0.147 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_98.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_99.geometry } material={ materials.kinh } />
                 </group>
-                <group position={[ -33.722, 4.565, 0 ]} scale={[ 0.192, 0.033, 0.147 ]}>
-                    <mesh castShadow receiveShadow geometry={nodes.Object_114.geometry} material={materials.material} />
-                    <mesh castShadow receiveShadow geometry={nodes.Object_115.geometry} material={materials.kinh} />
+                <group position={ [ -21.758, 4.565, 0 ] } scale={ [ 0.192, 0.033, 0.147 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_101.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_102.geometry } material={ materials.kinh } />
+                </group>
+                <group position={ [ -37.952, 0, 0 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_104.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_105.geometry } material={ materials.kinh } />
+                </group>
+            </RigidBody>
+            <RigidBody type="fixed" position={ [ -33.887, 0, 0.006 ] } rotation={ [ 0, 0.008, 0 ] }>
+                <group scale={ [ -1, 1, 1 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_107.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_108.geometry } material={ materials.kinh } />
+                    <mesh
+                        visible={ isAnomalyEasy4 ? false : true }
+                        castShadow
+                        receiveShadow
+                        geometry={ nodes.Object_109.geometry }
+                        material={ materials["Material.001"] }
+                    />
+                </group>
+            </RigidBody>
+            <RigidBody type="fixed">
+                <group position={ [ -33.721, 1.95, 0 ] } scale={ [ 0.192, 0.056, 0.147 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_111.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_112.geometry } material={ materials.kinh } />
+                </group>
+                <group position={ [ -33.722, 4.565, 0 ] } scale={ [ 0.192, 0.033, 0.147 ] }>
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_114.geometry } material={ materials.material } />
+                    <mesh castShadow receiveShadow geometry={ nodes.Object_115.geometry } material={ materials.kinh } />
                 </group>
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Object_31.geometry}
-                    material={materials.Material}
-                    position={[ 0, 2.983, -0.269 ]}
-                    scale={[ 5.981, 4.002, 0.261 ]}
+                    geometry={ nodes.Object_31.geometry }
+                    material={ materials.Material }
+                    position={ [ 0, 2.983, -0.269 ] }
+                    scale={ [ 5.981, 4.002, 0.261 ] }
                 />
-                <mesh castShadow receiveShadow material={isAnomalyEasy5 ? materials["Material.004"] : materials.Material} rotation={[ 0, -Math.PI / 2, 0 ]} position={[ 12, 2.9, -0.26 ]}>
-                    <boxGeometry args={[ 0.5, 8, 12.1 ]} />
+                <mesh
+                    castShadow
+                    receiveShadow
+                    material={ isAnomalyEasy5 ? materials["Material.004"] : materials.Material }
+                    rotation={ [ 0, -Math.PI / 2, 0 ] }
+                    position={ [ 12, 2.9, -0.26 ] }
+                >
+                    <boxGeometry args={ [ 0.5, 8, 12.1 ] } />
                 </mesh>
             </RigidBody>
             <RigidBody type="fixed">
-                <mesh castShadow receiveShadow material={materials.Material} rotation={[ -Math.PI / 2, 0, 0 ]} position={[ 18, 2.9, 3 ]}>
-                    <boxGeometry args={[ 0.5, 7, 8 ]} />
+                <mesh castShadow receiveShadow material={ materials.Material } rotation={ [ -Math.PI / 2, 0, 0 ] } position={ [ 18, 2.9, 3 ] }>
+                    <boxGeometry args={ [ 0.5, 7, 8 ] } />
                 </mesh>
             </RigidBody>
-            <RigidBody type="fixed" position={[ 0, 1.614, 6.024 ]} rotation={[ 0, 0, -Math.PI / 2 ]}>
-                <mesh castShadow receiveShadow geometry={nodes.Object_40.geometry} material={materials.material} scale={[ 0.08, 5.37, 0.08 ]} />
+            <RigidBody type="fixed" position={ [ 0, 1.614, 6.024 ] } rotation={ [ 0, 0, -Math.PI / 2 ] }>
+                <mesh castShadow receiveShadow geometry={ nodes.Object_40.geometry } material={ materials.material } scale={ [ 0.08, 5.37, 0.08 ] } />
                 <mesh
-                    position={[ 0, 12, 0 ]}
+                    position={ [ 0, 12, 0 ] }
                     castShadow
                     receiveShadow
-                    geometry={nodes.Object_40.geometry}
-                    material={materials.material}
-                    scale={[ 0.08, 5.37, 0.08 ]}
+                    geometry={ nodes.Object_40.geometry }
+                    material={ materials.material }
+                    scale={ [ 0.08, 5.37, 0.08 ] }
                 />
             </RigidBody>
             <RigidBody type="fixed">
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Object_42.geometry}
-                    material={materials.Material}
-                    position={[ 0, 6.936, 2.96 ]}
-                    scale={[ 5.981, 0.034, 3 ]}
+                    geometry={ nodes.Object_42.geometry }
+                    material={ materials.Material }
+                    position={ [ 0, 6.936, 2.96 ] }
+                    scale={ [ 5.981, 0.034, 3 ] }
                 />
-                <mesh castShadow receiveShadow geometry={nodes.Object_44.geometry} material={materials.material_0} position={[ 4.913, 0, -1.481 ]} />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_44.geometry } material={ materials.material_0 } position={ [ 4.913, 0, -1.481 ] } />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Object_49.geometry}
-                    material={materials.material_0}
-                    position={[ -50.803, 3.99, 6.027 ]}
-                    scale={[ 2.454, 2.701, 0.107 ]}
+                    geometry={ nodes.Object_49.geometry }
+                    material={ materials.material_0 }
+                    position={ [ -50.803, 3.99, 6.027 ] }
+                    scale={ [ 2.454, 2.701, 0.107 ] }
                 />
             </RigidBody>
             <RigidBody type="fixed" colliders="trimesh">
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Object_51.geometry}
-                    material={materials.tuongxanh}
-                    position={[ -53.437, -0.118, 0 ]}
-                    scale={[ 0.319, 1, 1 ]}
+                    geometry={ nodes.Object_51.geometry }
+                    material={ materials.tuongxanh }
+                    position={ [ -53.437, -0.118, 0 ] }
+                    scale={ [ 0.319, 1, 1 ] }
                 />
             </RigidBody>
-            <RigidBody type="fixed" position={[ -53.564, 1.48, 2.833 ]} rotation={[ 0, isAnomalyEasy2 ? Math.PI / 2 : -Math.PI / 2, 0 ]}>
-                <mesh castShadow receiveShadow geometry={nodes.Object_53.geometry} material={materials.Material} scale={[ 2.193, 0.046, 0.172 ]} />
+            <RigidBody type="fixed" position={ [ -53.564, 1.48, 2.833 ] } rotation={ [ 0, isAnomalyEasy2 ? Math.PI / 2 : -Math.PI / 2, 0 ] }>
+                <mesh castShadow receiveShadow geometry={ nodes.Object_53.geometry } material={ materials.Material } scale={ [ 2.193, 0.046, 0.172 ] } />
             </RigidBody>
             <RigidBody type="fixed">
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Object_55.geometry}
-                    material={materials.material_0}
-                    position={[ -45.448, 1.573, 6.106 ]}
-                    scale={[ 2.978, 0.046, 0.172 ]}
+                    geometry={ nodes.Object_55.geometry }
+                    material={ materials.material_0 }
+                    position={ [ -45.448, 1.573, 6.106 ] }
+                    scale={ [ 2.978, 0.046, 0.172 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Object_57.geometry}
-                    material={materials["Material.002"]}
-                    position={[ 0, 6.363, 0.386 ]}
-                    scale={[ 5.981, 0.166, 0.283 ]}
+                    geometry={ nodes.Object_57.geometry }
+                    material={ materials["Material.002"] }
+                    position={ [ 0, 6.363, 0.386 ] }
+                    scale={ [ 5.981, 0.166, 0.283 ] }
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Object_57.geometry}
-                    material={materials["Material.002"]}
-                    position={[ 12, 6.363, 0.386 ]}
-                    scale={[ 5.981, 0.166, 0.283 ]}
+                    geometry={ nodes.Object_57.geometry }
+                    material={ materials["Material.002"] }
+                    position={ [ 12, 6.363, 0.386 ] }
+                    scale={ [ 5.981, 0.166, 0.283 ] }
                 />
             </RigidBody>
             {/* Custom */}
             <RigidBody type="fixed">
-                <mesh position={[ -48.365, 2.65, -9.2 ]} material={materials.tuongxanh}>
-                    <boxGeometry args={[ 0.215, 7.64, 8.5 ]} />
+                <mesh position={ [ -48.365, 2.65, -9.2 ] } material={ materials.tuongxanh }>
+                    <boxGeometry args={ [ 0.215, 7.64, 8.5 ] } />
                 </mesh>
             </RigidBody>
             <RigidBody type="fixed">
-                <mesh position={[ -48.365, 6.6, -6.7 ]} material={materials.tuongxanh}>
-                    <boxGeometry args={[ 0.215, 0.33, 13.5 ]} />
+                <mesh position={ [ -48.365, 6.6, -6.7 ] } material={ materials.tuongxanh }>
+                    <boxGeometry args={ [ 0.215, 0.33, 13.5 ] } />
                 </mesh>
             </RigidBody>
             <RigidBody type="fixed">
-                <mesh position={[ -41.565, 2.9, -10.7 ]} material={materials.material_0}>
-                    <boxGeometry args={[ 0.215, 8, 5.4 ]} />
+                <mesh position={ [ -41.565, 2.9, -10.7 ] } material={ materials.material_0 }>
+                    <boxGeometry args={ [ 0.215, 8, 5.4 ] } />
                 </mesh>
             </RigidBody>
-            <mesh position={[ -45, 6.8, -6.7 ]} material={materials.Material}>
-                <boxGeometry args={[ 6.8, 0.33, 13.5 ]} />
+            <mesh position={ [ -45, 6.8, -6.7 ] } material={ materials.Material }>
+                <boxGeometry args={ [ 6.8, 0.33, 13.5 ] } />
             </mesh>
-            <group position={[ -57.798, -9.716, -3.5 ]} visible={isAnomalyHard1 ? true : false}>
-                <mesh castShadow receiveShadow geometry={nodes.Object_22.geometry} material={materials["Material.005"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_23.geometry} material={materials["Material.005"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_25.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_26.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_27.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_28.geometry} material={materials["Leaves.001"]} />
-                <mesh castShadow receiveShadow geometry={nodes.Object_29.geometry} material={materials["Leaves.001"]} />
+            <group position={ [ -57.798, -9.716, -3.5 ] } visible={ isAnomalyHard1 ? true : false }>
+                <mesh castShadow receiveShadow geometry={ nodes.Object_22.geometry } material={ materials["Material.005"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_23.geometry } material={ materials["Material.005"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_25.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_26.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_27.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_28.geometry } material={ materials["Leaves.001"] } />
+                <mesh castShadow receiveShadow geometry={ nodes.Object_29.geometry } material={ materials["Leaves.001"] } />
             </group>
         </group>
     );

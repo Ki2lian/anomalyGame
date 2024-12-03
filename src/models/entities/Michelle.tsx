@@ -15,12 +15,11 @@ export const Michelle = (props: React.JSX.IntrinsicElements["group"]) => {
     const { actions } = useAnimations(model.animations, group);
 
     useEffect(() => {
-        actions.Sitting_idle && actions.Sitting_idle.play();
+        if (!actions.Sitting_idle) return;
+        actions.Sitting_idle.play();
     }, [ actions.Sitting_idle ]);
 
-    return (
-        <primitive ref={group} object={model.scene} position={[ -14.2, -0.55, -3.3 ]} rotation={[ 0, -Math.PI / 2, 0 ]} scale={1.2} {...props} />
-    );
+    return <primitive ref={ group } object={ model.scene } position={ [ -14.2, -0.55, -3.3 ] } rotation={ [ 0, -Math.PI / 2, 0 ] } scale={ 1.2 } { ...props } />;
 };
 
 type TActionName = "Sitting_idle" | "T-pose";

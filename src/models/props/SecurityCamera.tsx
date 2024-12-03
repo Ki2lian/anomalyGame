@@ -34,11 +34,11 @@ export const SecurityCamera = ({ isAnomaly }: IAnomalyProps) => {
         <>
             {securityCameras.map((securityCamera, index) => (
                 <Clone
-                    key={index}
-                    ref={securityCameraRef}
-                    object={model.scene}
-                    position={securityCamera.position}
-                    rotation={securityCamera.rotation}
+                    key={ index }
+                    ref={ securityCameraRef }
+                    object={ model.scene }
+                    position={ securityCamera.position }
+                    rotation={ securityCamera.rotation }
                 />
             ))}
         </>

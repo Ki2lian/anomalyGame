@@ -123,7 +123,7 @@ const Game = () => {
                         transition={{ duration: 0.2 }}
                         className="absolute inset-0 z-10"
                     >
-                        <MainMenu onPlayOrResume={() => toggleMainMenu()} onQuit={() => resetGame()} />
+                        <MainMenu onPlayOrResume={ () => toggleMainMenu() } onQuit={ () => resetGame() } />
                     </motion.div>
                 ) : null}
             </AnimatePresence>
@@ -131,22 +131,22 @@ const Game = () => {
             {isMainMenu || progress !== 100 ? null : <CrossHair />}
 
             <Canvas
-                shadows={settings.graphics.shadows}
+                shadows={ settings.graphics.shadows }
                 camera={{
                     fov: 70,
                     near: 0.1,
                     far: 100,
                     aspect: getAspectRatio(settings.graphics.aspectRatio),
                 }}
-                dpr={settings.graphics.resolution}
-                onPointerDown={e => {
+                dpr={ settings.graphics.resolution }
+                onPointerDown={ e => {
                     if (!pointerLock) return;
                     if (e.pointerType === "mouse" && progress === 100) {
                         (e.target as HTMLCanvasElement).requestPointerLock();
                     }
-                }}
+                } }
             >
-                <Suspense fallback={null}>
+                <Suspense fallback={ null }>
                     <Experience />
                 </Suspense>
             </Canvas>

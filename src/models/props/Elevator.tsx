@@ -115,167 +115,167 @@ export const Elevator = () => {
     }, [ doorsOpened, doorsInRef, doorsOutRef ]);
 
     return (
-        <group ref={group} position={[ -22.5, -0.5135, -6.67 ]} rotation={[ 0, -Math.PI / 2, 0 ]} scale={0.8} dispose={null}>
+        <group ref={ group } position={ [ -22.5, -0.5135, -6.67 ] } rotation={ [ 0, -Math.PI / 2, 0 ] } scale={ 0.8 } dispose={ null }>
             <group name="Sketchfab_Scene">
-                <group name="Sketchfab_model" rotation={[ -Math.PI / 2, 0, 0 ]}>
+                <group name="Sketchfab_model" rotation={ [ -Math.PI / 2, 0, 0 ] }>
                     <group name="root">
-                        <group name="GLTF_SceneRootNode" rotation={[ Math.PI / 2, 0, 0 ]}>
+                        <group name="GLTF_SceneRootNode" rotation={ [ Math.PI / 2, 0, 0 ] }>
                             {/* Doors */}
-                            <group ref={doorsOutRef}>
+                            <group ref={ doorsOutRef }>
                                 <RigidBody
                                     type="kinematicPosition"
-                                    ref={rigidBodyLeftDoorOutRef}
-                                    position={[ 0.026, 1, 0 ]}
-                                    rotation={[ 0, 0, -Math.PI / 2 ]}
+                                    ref={ rigidBodyLeftDoorOutRef }
+                                    position={ [ 0.026, 1, 0 ] }
+                                    rotation={ [ 0, 0, -Math.PI / 2 ] }
                                 >
                                     <group name="LeftOutsideDoor_0">
                                         <mesh
                                             name="Object_4"
                                             castShadow
                                             receiveShadow
-                                            geometry={nodes.Object_4.geometry}
-                                            material={materials.Metal}
+                                            geometry={ nodes.Object_4.geometry }
+                                            material={ materials.Metal }
                                         />
                                     </group>
                                 </RigidBody>
                                 <RigidBody
                                     type="kinematicPosition"
-                                    ref={rigidBodyRightDoorOutRef}
-                                    position={[ 0.026, 1, 0 ]}
-                                    rotation={[ 0, 0, -Math.PI / 2 ]}
+                                    ref={ rigidBodyRightDoorOutRef }
+                                    position={ [ 0.026, 1, 0 ] }
+                                    rotation={ [ 0, 0, -Math.PI / 2 ] }
                                 >
                                     <group name="RightOutsideDoor_1">
                                         <mesh
                                             name="Object_6"
                                             castShadow
                                             receiveShadow
-                                            geometry={nodes.Object_6.geometry}
-                                            material={materials.Metal}
+                                            geometry={ nodes.Object_6.geometry }
+                                            material={ materials.Metal }
                                         />
                                     </group>
                                 </RigidBody>
                             </group>
                             <ActionPrompt
                                 actionKey="interact"
-                                description={t("openDoors")}
-                                validateInteraction={validateInteraction}
-                                onAction={openDoors}
+                                description={ t("openDoors") }
+                                validateInteraction={ validateInteraction }
+                                onAction={ openDoors }
                             />
-                            <RigidBody type="fixed" position={[ 0.225, 1, 0 ]} rotation={[ 0, 0, -Math.PI / 2 ]} colliders="trimesh">
+                            <RigidBody type="fixed" position={ [ 0.225, 1, 0 ] } rotation={ [ 0, 0, -Math.PI / 2 ] } colliders="trimesh">
                                 <group name="Wall_2">
-                                    <mesh name="Object_8" castShadow receiveShadow geometry={nodes.Object_8.geometry} material={materials.Wall} />
+                                    <mesh name="Object_8" castShadow receiveShadow geometry={ nodes.Object_8.geometry } material={ materials.Wall } />
                                 </group>
                             </RigidBody>
-                            <group name="ElevatorOutsideArmature_3" position={[ 0.114, 1, 0 ]} rotation={[ 0, 0, -Math.PI / 2 ]}>
-                                <mesh name="Object_10" castShadow receiveShadow geometry={nodes.Object_10.geometry} material={materials.Metal} />
+                            <group name="ElevatorOutsideArmature_3" position={ [ 0.114, 1, 0 ] } rotation={ [ 0, 0, -Math.PI / 2 ] }>
+                                <mesh name="Object_10" castShadow receiveShadow geometry={ nodes.Object_10.geometry } material={ materials.Metal } />
                             </group>
-                            <group name="ElevatorCage_11" position={[ -0.04, 1.015, 0 ]}>
-                                <mesh position={[ -0.1, 1.92, 0 ]} rotation={[ 0, -Math.PI / 2, 0 ]} scale={0.5}>
-                                    <boxGeometry args={[ 0.5, 0.5, 0.005 ]} />
-                                    <meshStandardMaterial color={"black"} />
+                            <group name="ElevatorCage_11" position={ [ -0.04, 1.015, 0 ] }>
+                                <mesh position={ [ -0.1, 1.92, 0 ] } rotation={ [ 0, -Math.PI / 2, 0 ] } scale={ 0.5 }>
+                                    <boxGeometry args={ [ 0.5, 0.5, 0.005 ] } />
+                                    <meshStandardMaterial color={ "black" } />
                                     <Text
                                         name="stayHere"
-                                        position={[ 0, 0, 0.01 ]}
+                                        position={ [ 0, 0, 0.01 ] }
                                         textAlign="center"
                                         anchorX="center"
                                         anchorY="middle"
-                                        maxWidth={3.6}
+                                        maxWidth={ 3.6 }
                                         whiteSpace="overflowWrap"
-                                        fontSize={0.4}
+                                        fontSize={ 0.4 }
                                     >
                                         {stage.currentStage}
                                     </Text>
                                 </mesh>
                                 <RigidBody type="fixed" colliders="trimesh">
-                                    <mesh name="Object_12" castShadow receiveShadow geometry={nodes.Object_12.geometry} material={materials.Metal} />
+                                    <mesh name="Object_12" castShadow receiveShadow geometry={ nodes.Object_12.geometry } material={ materials.Metal } />
                                 </RigidBody>
-                                <mesh name="Object_13" castShadow receiveShadow geometry={nodes.Object_13.geometry} material={materials.Emission} />
-                                <group name="ElevatorInteriorButtons_4" position={[ -0.507, 0.733, -1.404 ]} rotation={[ Math.PI / 2, -Math.PI / 2, 0 ]}>
-                                    <mesh name="Object_15" castShadow receiveShadow geometry={nodes.Object_15.geometry} material={materials.Metal} />
+                                <mesh name="Object_13" castShadow receiveShadow geometry={ nodes.Object_13.geometry } material={ materials.Emission } />
+                                <group name="ElevatorInteriorButtons_4" position={ [ -0.507, 0.733, -1.404 ] } rotation={ [ Math.PI / 2, -Math.PI / 2, 0 ] }>
+                                    <mesh name="Object_15" castShadow receiveShadow geometry={ nodes.Object_15.geometry } material={ materials.Metal } />
                                     <mesh
                                         name="Object_16"
                                         castShadow
                                         receiveShadow
-                                        geometry={nodes.Object_16.geometry}
-                                        material={materials.Buttons}
+                                        geometry={ nodes.Object_16.geometry }
+                                        material={ materials.Buttons }
                                     />
-                                    <ElevatorPanel closeDoors={closeDoors} />
+                                    <ElevatorPanel closeDoors={ closeDoors } />
                                 </group>
-                                <group name="HandleElevator_5" position={[ -1.407, 0.069, 1.294 ]} rotation={[ 0, -Math.PI / 2, 0 ]}>
-                                    <mesh name="Object_18" castShadow receiveShadow geometry={nodes.Object_18.geometry} material={materials.Metal} />
+                                <group name="HandleElevator_5" position={ [ -1.407, 0.069, 1.294 ] } rotation={ [ 0, -Math.PI / 2, 0 ] }>
+                                    <mesh name="Object_18" castShadow receiveShadow geometry={ nodes.Object_18.geometry } material={ materials.Metal } />
                                     <mesh
                                         name="Object_19"
                                         castShadow
                                         receiveShadow
-                                        geometry={nodes.Object_19.geometry}
-                                        material={materials.DarkerMetal}
+                                        geometry={ nodes.Object_19.geometry }
+                                        material={ materials.DarkerMetal }
                                     />
                                 </group>
-                                <group name="HandleElevator001_6" position={[ -2.589, 0.069, -0.028 ]}>
-                                    <mesh name="Object_21" castShadow receiveShadow geometry={nodes.Object_21.geometry} material={materials.Metal} />
+                                <group name="HandleElevator001_6" position={ [ -2.589, 0.069, -0.028 ] }>
+                                    <mesh name="Object_21" castShadow receiveShadow geometry={ nodes.Object_21.geometry } material={ materials.Metal } />
                                     <mesh
                                         name="Object_22"
                                         castShadow
                                         receiveShadow
-                                        geometry={nodes.Object_22.geometry}
-                                        material={materials.DarkerMetal}
+                                        geometry={ nodes.Object_22.geometry }
+                                        material={ materials.DarkerMetal }
                                     />
                                 </group>
-                                <group name="HandleElevator002_7" position={[ -1.407, 0.069, -1.375 ]} rotation={[ 0, -Math.PI / 2, 0 ]}>
-                                    <mesh name="Object_24" castShadow receiveShadow geometry={nodes.Object_24.geometry} material={materials.Metal} />
+                                <group name="HandleElevator002_7" position={ [ -1.407, 0.069, -1.375 ] } rotation={ [ 0, -Math.PI / 2, 0 ] }>
+                                    <mesh name="Object_24" castShadow receiveShadow geometry={ nodes.Object_24.geometry } material={ materials.Metal } />
                                     <mesh
                                         name="Object_25"
                                         castShadow
                                         receiveShadow
-                                        geometry={nodes.Object_25.geometry}
-                                        material={materials.DarkerMetal}
+                                        geometry={ nodes.Object_25.geometry }
+                                        material={ materials.DarkerMetal }
                                     />
                                 </group>
-                                <group ref={doorsInRef}>
+                                <group ref={ doorsInRef }>
                                     <RigidBody
                                         type="kinematicPosition"
-                                        ref={rigidBodyLeftDoorInRef}
-                                        position={[ -0.008, 0, 0 ]}
-                                        rotation={[ 0, 0, -Math.PI / 2 ]}
+                                        ref={ rigidBodyLeftDoorInRef }
+                                        position={ [ -0.008, 0, 0 ] }
+                                        rotation={ [ 0, 0, -Math.PI / 2 ] }
                                     >
                                         <group name="LeftInteriorDoor_8">
                                             <mesh
                                                 name="Object_27"
                                                 castShadow
                                                 receiveShadow
-                                                geometry={nodes.Object_27.geometry}
-                                                material={materials.Metal}
+                                                geometry={ nodes.Object_27.geometry }
+                                                material={ materials.Metal }
                                             />
                                         </group>
                                     </RigidBody>
                                     <RigidBody
                                         type="kinematicPosition"
-                                        ref={rigidBodyRightDoorInRef}
-                                        position={[ -0.01, 0.4, -0.003 ]}
-                                        rotation={[ 0, 0, -Math.PI / 2 ]}
+                                        ref={ rigidBodyRightDoorInRef }
+                                        position={ [ -0.01, 0.4, -0.003 ] }
+                                        rotation={ [ 0, 0, -Math.PI / 2 ] }
                                     >
                                         <group name="RightInteriorDoor_10">
                                             <mesh
                                                 name="Object_32"
                                                 castShadow
                                                 receiveShadow
-                                                geometry={nodes.Object_32.geometry}
-                                                material={materials.Metal}
+                                                geometry={ nodes.Object_32.geometry }
+                                                material={ materials.Metal }
                                             />
                                         </group>
                                     </RigidBody>
                                 </group>
-                                <group name="Mirror_9" position={[ -2.643, 1.456, -0.026 ]} rotation={[ 0, 0, -Math.PI / 2 ]} scale={[ 1.083, 1, 1.092 ]}>
-                                    <mesh name="Object_29" castShadow receiveShadow geometry={nodes.Object_29.geometry} />
-                                    <mesh rotation={[ -Math.PI / 2, 0, 0 ]} position={[ 0, 0.03, 0 ]}>
-                                        <planeGeometry args={[ 1.9, 1.9, 1.9 ]} />
+                                <group name="Mirror_9" position={ [ -2.643, 1.456, -0.026 ] } rotation={ [ 0, 0, -Math.PI / 2 ] } scale={ [ 1.083, 1, 1.092 ] }>
+                                    <mesh name="Object_29" castShadow receiveShadow geometry={ nodes.Object_29.geometry } />
+                                    <mesh rotation={ [ -Math.PI / 2, 0, 0 ] } position={ [ 0, 0.03, 0 ] }>
+                                        <planeGeometry args={ [ 1.9, 1.9, 1.9 ] } />
                                         <MeshReflectorMaterial
-                                            ref={reflectorRef}
-                                            blur={[ 512, 512 ]}
-                                            resolution={2048}
-                                            mirror={1}
-                                            mixBlur={0}
-                                            mixStrength={1.5}
+                                            ref={ reflectorRef }
+                                            blur={ [ 512, 512 ] }
+                                            resolution={ 2048 }
+                                            mirror={ 1 }
+                                            mixBlur={ 0 }
+                                            mixStrength={ 1.5 }
                                         />
                                     </mesh>
                                     <RigidBody type="fixed">
@@ -283,39 +283,39 @@ export const Elevator = () => {
                                             name="Object_30"
                                             castShadow
                                             receiveShadow
-                                            geometry={nodes.Object_30.geometry}
-                                            material={materials.DarkerMetal}
+                                            geometry={ nodes.Object_30.geometry }
+                                            material={ materials.DarkerMetal }
                                         />
                                     </RigidBody>
                                 </group>
                             </group>
-                            <group name="ElevatorCallingButtons_12" position={[ 0.173, 1.463, -1.335 ]} rotation={[ 0, 0, -Math.PI / 2 ]} scale={1.192}>
-                                <mesh name="Object_34" castShadow receiveShadow geometry={nodes.Object_34.geometry} material={materials.Metal} />
-                                <mesh name="Object_35" castShadow receiveShadow geometry={nodes.Object_35.geometry} material={materials.Emission} />
+                            <group name="ElevatorCallingButtons_12" position={ [ 0.173, 1.463, -1.335 ] } rotation={ [ 0, 0, -Math.PI / 2 ] } scale={ 1.192 }>
+                                <mesh name="Object_34" castShadow receiveShadow geometry={ nodes.Object_34.geometry } material={ materials.Metal } />
+                                <mesh name="Object_35" castShadow receiveShadow geometry={ nodes.Object_35.geometry } material={ materials.Emission } />
                             </group>
-                            <group name="ElevatorCallingButtons007_13" position={[ 0.188, 3.322, 0.086 ]}>
-                                <mesh name="Object_37" castShadow receiveShadow geometry={nodes.Object_37.geometry} material={materials.Emission} />
+                            <group name="ElevatorCallingButtons007_13" position={ [ 0.188, 3.322, 0.086 ] }>
+                                <mesh name="Object_37" castShadow receiveShadow geometry={ nodes.Object_37.geometry } material={ materials.Emission } />
                             </group>
                             <group
                                 name="ElevatorCallingButtons006_14"
-                                position={[ 0.188, 3.283, -0.072 ]}
-                                rotation={[ Math.PI, 0, Math.PI ]}
-                                scale={0.01}
+                                position={ [ 0.188, 3.283, -0.072 ] }
+                                rotation={ [ Math.PI, 0, Math.PI ] }
+                                scale={ 0.01 }
                             >
-                                <mesh name="Object_39" castShadow receiveShadow geometry={nodes.Object_39.geometry} material={materials.Emission} />
+                                <mesh name="Object_39" castShadow receiveShadow geometry={ nodes.Object_39.geometry } material={ materials.Emission } />
                             </group>
                             <group
                                 name="ElevatorCallingButtons003_15"
-                                position={[ 0.188, 3.3, 0 ]}
-                                rotation={[ -Math.PI / 2, 0, -Math.PI / 2 ]}
-                                scale={1.322}
+                                position={ [ 0.188, 3.3, 0 ] }
+                                rotation={ [ -Math.PI / 2, 0, -Math.PI / 2 ] }
+                                scale={ 1.322 }
                             >
                                 <mesh
                                     name="Object_41"
                                     castShadow
                                     receiveShadow
-                                    geometry={nodes.Object_41.geometry}
-                                    material={materials.DarkerMetal}
+                                    geometry={ nodes.Object_41.geometry }
+                                    material={ materials.DarkerMetal }
                                 />
                             </group>
                             {/* <group name="Plane_16" position={[ -0.785, 0, -0.114 ]}>

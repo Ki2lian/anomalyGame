@@ -21,12 +21,19 @@ export const PencilCaseDakine = () => {
             { position: new Vector3(1.5, 0.4765, -1.5), rotation: new Euler(0, Math.PI / 3, 0) },
             { position: new Vector3(-4.9, 0.4765, -1.2), rotation: new Euler(0, Math.PI / 2.6, 0) },
         ];
-    }, [ ]);
+    }, []);
 
     return (
         <>
             {pencilCases.map((pencilCase, index) => (
-                <Clone key={index} ref={pencilCaseRef} object={model.scene} scale={1.3} rotation={pencilCase.rotation} position={pencilCase.position} />
+                <Clone
+                    key={ index }
+                    ref={ pencilCaseRef }
+                    object={ model.scene }
+                    scale={ 1.3 }
+                    rotation={ pencilCase.rotation }
+                    position={ pencilCase.position }
+                />
             ))}
         </>
     );

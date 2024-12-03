@@ -1,8 +1,7 @@
 import { KeyboardControls as KeyboardMouseControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import type { RapierRigidBody } from "@react-three/rapier";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import Ecctrl from "ecctrl";
+import Ecctrl, { CustomEcctrlRigidBody } from "ecctrl";
 import { useEffect, useMemo, useRef } from "react";
 import { Vector3 } from "three";
 
@@ -10,7 +9,6 @@ import { defaultSettings, ISettings } from "@/components/app/settings/defaultsSe
 import CharacterModel from "@/components/game/player/CharacterModel";
 import { generateKeyboardMouseMap } from "@/lib/controls";
 import useGame from "@/store/useGame";
-
 
 interface IPlayer {
     width: number;
@@ -25,8 +23,7 @@ const Player = ({ width, height }: IPlayer) => {
 
     const fallThreshold = -5;
 
-    const ecctrlRef = useRef<RapierRigidBody>(null);
-    const camForceDirRef = useRef<{x: number, y: number} | null>(null);
+    const ecctrlRef = useRef<CustomEcctrlRigidBody>(null);
 
     const SPAWN_POSITION = useMemo(() => new Vector3(-22.5, 2, -8), []);
 
@@ -39,8 +36,9 @@ const Player = ({ width, height }: IPlayer) => {
         if (lastCheck < 0.1) return;
         lastCheck = 0;
 
-        if (ecctrlRef.current) {
-            const player = ecctrlRef.current;
+        const player = ecctrlRef.current;
+
+        if (player) {
             const position = player.translation();
 
             if (position.y < fallThreshold) {
@@ -50,44 +48,47 @@ const Player = ({ width, height }: IPlayer) => {
     });
 
     useEffect(() => {
-        if (ecctrlRef.current) {
-            const player = ecctrlRef.current;
+        const player = ecctrlRef.current;
 
-            camForceDirRef.current = { x: 0, y: 0 };
+        if (player) {
             setTimeout(() => {
                 player.setTranslation(SPAWN_POSITION, true);
-                camForceDirRef.current = null;
+                if (player.setCameraRotation) {
+                    player.setCameraRotation(0, 0);
+                }
                 if (!gameIsReady) setGameIsReady(true);
             }, 1);
         }
-    }, [ stage, SPAWN_POSITION, gameIsReady, setGameIsReady ]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ ecctrlRef.current, stage ]);
 
     return (
-        <KeyboardMouseControls map={keyboardMouseMap}>
+        <KeyboardMouseControls map={ keyboardMouseMap }>
             <Ecctrl
                 animated
-                ref={ecctrlRef}
-                position={SPAWN_POSITION}
-                autoBalance={false}
-                floatHeight={0}
-                jumpVel={2.5}
+                ref={ ecctrlRef }
+                position={ SPAWN_POSITION }
+                autoBalance={ false }
+                floatHeight={ 0 }
+                jumpVel={ 2.5 }
+                camInvertX={ settings.controls.camInvertX }
+                camInvertY={ settings.controls.camInvertY }
+                leftJoystickDeadZoneThreshold={ settings.controls.leftJoystickDeadZone }
+                rightJoystickDeadZoneThreshold={ settings.controls.rightJoystickDeadZone }
+                capsuleRadius={ width }
+                capsuleHalfHeight={ height / 2 }
+                camCollision={ false }
                 camInitDir={{ x: 0, y: 0 }}
-                camForceDir={camForceDirRef.current}
-                camInitDis={-0.001}
-                camMinDis={-0.001}
-                camMaxDis={-0.001}
-                camInvertX={settings.controls.camInvertX ? -1 : 1}
-                camInvertY={settings.controls.camInvertY ? -1 : 1}
-                leftJoystickDeadZoneThreshold={settings.controls.leftJoystickDeadZone}
-                rightJoystickDeadZoneThreshold={settings.controls.rightJoystickDeadZone}
-                camFollowMult={100}
-                turnVelMultiplier={1}
-                turnSpeed={100}
-                capsuleRadius={width}
-                capsuleHalfHeight={height / 2}
+                camFollowMult={ 1000 }
+                camLerpMult={ 1000 }
+                turnVelMultiplier={ 1 }
+                turnSpeed={ 100 }
+                camInitDis={ -0.01 }
+                camMinDis={ -0.01 }
+                camMaxDis={ -0.01 }
                 mode="CameraBasedMovement"
             >
-                <CharacterModel args={[ width, height ]} />
+                <CharacterModel args={ [ width, height ] } />
                 <mesh />
             </Ecctrl>
         </KeyboardMouseControls>

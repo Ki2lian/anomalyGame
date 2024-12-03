@@ -22,7 +22,11 @@ export const PaperTablet = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
 
     return (
         <>
-            <primitive object={model.scene} position={isAnomalyHard1 ? [ -19.25, 0.4, -0.4 ] : [ -19.25, 0.4, -0.6 ]} rotation={[ -Math.PI / 2, 0, -Math.PI / 1.9 ]} />
+            <primitive
+                object={ model.scene }
+                position={ isAnomalyHard1 ? [ -19.25, 0.4, -0.4 ] : [ -19.25, 0.4, -0.6 ] }
+                rotation={ [ -Math.PI / 2, 0, -Math.PI / 1.9 ] }
+            />
         </>
     );
 };

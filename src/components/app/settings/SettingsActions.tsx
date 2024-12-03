@@ -19,7 +19,7 @@ const SettingsActions = () => {
         try {
             const parsedData = JSON.parse(jsonInput);
             handleImportSettings(parsedData);
-        } catch (error) {
+        } catch {
             toast.error(t("importErrorMessage"));
         }
         setJsonInput("");
@@ -28,7 +28,7 @@ const SettingsActions = () => {
 
     return (
         <div className="mb-2 flex flex-col gap-2 md:flex-row md:items-center">
-            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <Dialog open={ isDialogOpen } onOpenChange={ setIsDialogOpen }>
                 <DialogTrigger asChild>
                     <Button className="uppercase" variant="default">
                         {t("import")}
@@ -39,16 +39,16 @@ const SettingsActions = () => {
                         <DialogTitle className="select-none text-center text-xl">{t("importSettingsTitle")}</DialogTitle>
                         <DialogDescription className="select-none text-center text-xl">{t("importSettingsDescription")}</DialogDescription>
                     </DialogHeader>
-                    <Textarea value={jsonInput} onChange={e => setJsonInput(e.target.value)} className="mt-4" />
-                    <Button variant="secondary" className="mt-4 uppercase" onClick={handleImportClick}>
+                    <Textarea value={ jsonInput } onChange={ e => setJsonInput(e.target.value) } className="mt-4" />
+                    <Button variant="secondary" className="mt-4 uppercase" onClick={ handleImportClick }>
                         {t("import")}
                     </Button>
                 </DialogContent>
             </Dialog>
-            <Button className="uppercase" onClick={handleExportSettings}>
+            <Button className="uppercase" onClick={ handleExportSettings }>
                 {t("export")}
             </Button>
-            <Button className="uppercase" onClick={handleResetSettings}>
+            <Button className="uppercase" onClick={ handleResetSettings }>
                 {t("reset")}
             </Button>
         </div>
