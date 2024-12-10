@@ -5,16 +5,19 @@ import { toast } from "sonner";
 import { defaultSettings, ISettings } from "@/components/app/settings/defaultsSettings";
 import { Button } from "@/components/ui/button";
 
-interface IResetButtonProps {
-    section: "controls" | "general" | "graphics";
-    subSection?: "keybindings";
-    excludeSubSections?: string[];
+type SectionKeys = keyof ISettings;
+type SubSections<S extends SectionKeys> = keyof ISettings[S];
+
+interface IResetButtonProps<S extends SectionKeys> {
+    section: S;
+    subSection?: SubSections<S>;
+    excludeSubSections?: SubSections<S>[];
     confirmTextKey: string;
     successMessageKey: string;
     onReset?: () => void;
 }
 
-const ResetButton = ({ section, subSection, excludeSubSections, confirmTextKey, successMessageKey, onReset }: IResetButtonProps) => {
+const ResetButton = <S extends keyof ISettings>({ section, subSection, excludeSubSections, confirmTextKey, successMessageKey, onReset }: IResetButtonProps<S>) => {
     const { t } = useTranslation("settingsMenu");
 
     const [ _, setSettings ] = useLocalStorage<ISettings>("settings", defaultSettings);
@@ -23,15 +26,15 @@ const ResetButton = ({ section, subSection, excludeSubSections, confirmTextKey, 
         const isConfirmed = window.confirm(t(confirmTextKey));
         if (isConfirmed) {
             setSettings(prevSettings => {
-                const updatedSection = { ...defaultSettings[section as keyof ISettings] };
+                const updatedSection = { ...defaultSettings[section] };
 
                 if (subSection) {
-                    updatedSection[subSection] = defaultSettings[section as keyof ISettings][subSection];
+                    updatedSection[subSection] = defaultSettings[section][subSection];
                 }
 
                 if (excludeSubSections && Array.isArray(excludeSubSections)) {
                     for (const sub of excludeSubSections) {
-                        updatedSection[sub] = prevSettings[section as keyof ISettings][sub];
+                        updatedSection[sub] = prevSettings[section][sub];
                     }
                 }
 
