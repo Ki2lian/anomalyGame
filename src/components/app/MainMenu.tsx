@@ -17,7 +17,7 @@ interface IMainMenuProps {
 const MainMenu = ({ onPlayOrResume, onQuit }: IMainMenuProps) => {
     const { t } = useTranslation("mainMenu");
 
-    const { isPlaying, seed, toggleSettingMenu } = useGame();
+    const { isPlaying, seed, setActiveMenu } = useGame();
 
     const [ _, copyToClipboard ] = useCopyToClipboard();
 
@@ -38,18 +38,21 @@ const MainMenu = ({ onPlayOrResume, onQuit }: IMainMenuProps) => {
                         component={ <BlueRectangleBorder size={ 1.5 } /> }
                         hoverComponent={ <BlueRectangleDepthBorder size={ 1.5 } /> }
                         text={ isPlaying ? t("resume") : t("play") }
+                        menuName="main"
                     />
                     <HoverableComponent
-                        onClick={ () => toggleSettingMenu() }
+                        onClick={ () => setActiveMenu("settings") }
                         component={ <BlueRectangleBorder size={ 1.5 } /> }
                         hoverComponent={ <BlueRectangleDepthBorder size={ 1.5 } /> }
                         text={ t("settings") }
+                        menuName="main"
                     />
                     <HoverableComponent
                         onClick={ onQuit }
                         component={ <RedRectangleFlat size={ 1.5 } /> }
                         hoverComponent={ <RedRectangleDepthFlat size={ 1.5 } /> }
                         text={ t("exit") }
+                        menuName="main"
                     />
                     {seed ? (
                         <HoverableComponent
@@ -57,6 +60,7 @@ const MainMenu = ({ onPlayOrResume, onQuit }: IMainMenuProps) => {
                             component={ <BlueRectangleBorder size={ 1.5 } /> }
                             hoverComponent={ <BlueRectangleDepthBorder size={ 1.5 } /> }
                             text={ t("copySeed") }
+                            menuName="main"
                         />
                     ) : null}
                 </div>

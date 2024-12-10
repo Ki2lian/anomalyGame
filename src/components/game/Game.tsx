@@ -20,14 +20,12 @@ const Game = () => {
     const [ settings ] = useLocalStorage<ISettings>("settings", defaultSettings);
 
     const {
-        isMainMenu,
-        isSettingMenu,
+        activeMenu,
         isRebinding,
         isVictory,
         isDefeat,
         resetGame,
-        toggleMainMenu,
-        toggleSettingMenu,
+        setActiveMenu,
         listenToGlobalEvents,
         subscribeToAction,
         unsubscribeFromAction,
@@ -35,11 +33,11 @@ const Game = () => {
 
     useEffect(() => {
         const handleMainMenu = () => {
-            if (isSettingMenu) {
-                toggleSettingMenu();
+            if (activeMenu === "main") {
+                setActiveMenu("");
                 return;
             }
-            toggleMainMenu();
+            setActiveMenu("main");
         };
 
         const handleEscape = () => {
@@ -52,8 +50,8 @@ const Game = () => {
 
         const handlePointerLockChange = () => {
             if (!document.pointerLockElement && !isVictory && !isDefeat) {
-                if (!isSettingMenu) {
-                    toggleMainMenu();
+                if (activeMenu !== "settings") {
+                    setActiveMenu("");
                 }
             }
         };
@@ -65,7 +63,7 @@ const Game = () => {
             unsubscribeFromAction("menu", handleEscape);
             document.removeEventListener("pointerlockchange", handlePointerLockChange);
         };
-    }, [ isSettingMenu, subscribeToAction, unsubscribeFromAction, toggleMainMenu, toggleSettingMenu, isVictory, isDefeat ]);
+    }, [ subscribeToAction, unsubscribeFromAction, isVictory, isDefeat, activeMenu, setActiveMenu ]);
 
     useEffect(() => {
         if (isRebinding) return;
@@ -103,7 +101,7 @@ const Game = () => {
             <EcctrlJoystickControls />
 
             <AnimatePresence mode="sync">
-                {isSettingMenu ? (
+                {activeMenu === "settings" ? (
                     <motion.div
                         key="settings"
                         initial={{ opacity: 0 }}
@@ -114,7 +112,7 @@ const Game = () => {
                     >
                         <SettingsMenu />
                     </motion.div>
-                ) : isMainMenu ? (
+                ) : activeMenu === "main" ? (
                     <motion.div
                         key="mainMenu"
                         initial={{ opacity: 0 }}
@@ -123,12 +121,12 @@ const Game = () => {
                         transition={{ duration: 0.2 }}
                         className="absolute inset-0 z-10"
                     >
-                        <MainMenu onPlayOrResume={ () => toggleMainMenu() } onQuit={ () => resetGame() } />
+                        <MainMenu onPlayOrResume={ () => setActiveMenu("") } onQuit={ () => resetGame() } />
                     </motion.div>
                 ) : null}
             </AnimatePresence>
 
-            {isMainMenu || progress !== 100 ? null : <CrossHair />}
+            {activeMenu !== "" || progress !== 100 ? null : <CrossHair />}
 
             <Canvas
                 shadows={ settings.graphics.shadows }

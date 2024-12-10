@@ -18,7 +18,7 @@ import { GLTF } from "three-stdlib";
 import ActionPrompt from "@/components/game/ActionPrompt";
 import { globalCamera } from "@/components/game/Camera";
 import ElevatorPanel from "@/components/game/ElevatorPanel";
-import { isInInteractionRangeAndFacing } from "@/lib/utils";
+import { isInInteractionRangeAndFacing, playSound } from "@/lib/utils";
 import useGame from "@/store/useGame";
 
 interface IDoorAnimationParams {
@@ -50,6 +50,7 @@ export const Elevator = () => {
     const doorsInRef = useRef<Group>(null);
 
     const [ doorsOpened, setDoorsOpened ] = useState(false);
+    const [ doorsCanBeToggled, setDoorsCanBeToggled ] = useState(true);
 
     const { nodes, materials } = useGLTF("/models/props/elevator.glb") as GLTFResult;
 
@@ -72,7 +73,7 @@ export const Elevator = () => {
     };
 
     const toggleDoors = useCallback(
-        (isOpening: boolean) => {
+        (isOpening: boolean, duration: number) => {
             if (
                 !rigidBodyLeftDoorOutRef.current ||
                 !rigidBodyRightDoorOutRef.current ||
@@ -82,13 +83,15 @@ export const Elevator = () => {
                 return;
             }
 
+            setDoorsCanBeToggled(false);
+
             const directionMultiplier = isOpening ? 1 : -1;
 
             const doorAnimations = [
-                { rigidBodyRef: rigidBodyLeftDoorOutRef, direction: -1 * directionMultiplier, distance: 1, duration: 2 },
-                { rigidBodyRef: rigidBodyRightDoorOutRef, direction: 1 * directionMultiplier, distance: 1, duration: 2 },
-                { rigidBodyRef: rigidBodyLeftDoorInRef, direction: -2 * directionMultiplier, distance: 2, duration: 2 },
-                { rigidBodyRef: rigidBodyRightDoorInRef, direction: 2 * directionMultiplier, distance: 2, duration: 2 },
+                { rigidBodyRef: rigidBodyLeftDoorOutRef, direction: -1 * directionMultiplier, distance: 1, duration },
+                { rigidBodyRef: rigidBodyRightDoorOutRef, direction: 1 * directionMultiplier, distance: 1, duration },
+                { rigidBodyRef: rigidBodyLeftDoorInRef, direction: -1.5 * directionMultiplier, distance: 1.5, duration },
+                { rigidBodyRef: rigidBodyRightDoorInRef, direction: 1.5 * directionMultiplier, distance: 1.5, duration },
             ];
 
             for (const door of doorAnimations) {
@@ -96,23 +99,32 @@ export const Elevator = () => {
             }
 
             setDoorsOpened(isOpening);
+            setTimeout(() => {
+                setDoorsCanBeToggled(true);
+            }, duration * 1000);
         },
         [ rigidBodyLeftDoorOutRef, rigidBodyRightDoorOutRef, rigidBodyLeftDoorInRef, rigidBodyRightDoorInRef ],
     );
 
     const openDoors = useCallback(() => {
-        if (!doorsOpened) toggleDoors(true);
-    }, [ doorsOpened, toggleDoors ]);
+        if (!doorsOpened && doorsCanBeToggled) {
+            toggleDoors(true, 8);
+            playSound("/audio/elevator-open.wav", "action");
+        }
+    }, [ doorsOpened, toggleDoors, doorsCanBeToggled ]);
 
     const closeDoors = useCallback(() => {
-        if (doorsOpened) toggleDoors(false);
-    }, [ doorsOpened, toggleDoors ]);
+        if (doorsOpened && doorsCanBeToggled) {
+            toggleDoors(false, 5);
+            playSound("/audio/elevator-close.wav", "action");
+        }
+    }, [ doorsOpened, toggleDoors, doorsCanBeToggled ]);
 
     const validateInteraction = useCallback(() => {
-        if (doorsOpened) return false;
+        if (doorsOpened || !doorsCanBeToggled) return false;
         const camera = globalCamera;
         return isInInteractionRangeAndFacing(camera, doorsInRef, 1.125) || isInInteractionRangeAndFacing(camera, doorsOutRef, 1.125);
-    }, [ doorsOpened, doorsInRef, doorsOutRef ]);
+    }, [ doorsOpened, doorsInRef, doorsOutRef, doorsCanBeToggled ]);
 
     return (
         <group ref={ group } position={ [ -22.5, -0.5135, -6.67 ] } rotation={ [ 0, -Math.PI / 2, 0 ] } scale={ 0.8 } dispose={ null }>
@@ -199,7 +211,7 @@ export const Elevator = () => {
                                         geometry={ nodes.Object_16.geometry }
                                         material={ materials.Buttons }
                                     />
-                                    <ElevatorPanel closeDoors={ closeDoors } />
+                                    <ElevatorPanel closeDoors={ closeDoors } doorsCanBeToggled={ doorsCanBeToggled } />
                                 </group>
                                 <group name="HandleElevator_5" position={ [ -1.407, 0.069, 1.294 ] } rotation={ [ 0, -Math.PI / 2, 0 ] }>
                                     <mesh name="Object_18" castShadow receiveShadow geometry={ nodes.Object_18.geometry } material={ materials.Metal } />

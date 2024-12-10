@@ -77,6 +77,7 @@ export const mergeSettings = (defaultSettings: ISettings, newSettings: Partial<I
         general: { ...defaultSettings.general, ...newSettings.general },
         controls: { ...defaultSettings.controls, ...newSettings.controls },
         graphics: { ...defaultSettings.graphics, ...newSettings.graphics },
+        audio: { ...defaultSettings.audio, ...newSettings.audio },
     };
 
     return mergedSettings;
@@ -110,7 +111,12 @@ export const isValidSeed = (seed: string) => {
     return hexRegex.test(seed);
 };
 
-export const isInInteractionRangeAndFacing = (camera: Camera | null, targetRef: RefObject<Object3D>, maxDistance: number = 2, facingThreshold: number = 0.1) => {
+export const isInInteractionRangeAndFacing = (
+    camera: Camera | null,
+    targetRef: RefObject<Object3D>,
+    maxDistance: number = 2,
+    facingThreshold: number = 0.1,
+) => {
     if (!camera || !targetRef.current) return false;
 
     const cameraPosition = camera.getWorldPosition(new Vector3());
@@ -148,4 +154,43 @@ export const mapCodeToIcon = (code: string, controllerType: string) => {
     }
 
     return null;
+};
+
+export const calculateVolume = (masterVolume: number, specificVolume: number): number => {
+    return Math.max(0, Math.min(1, masterVolume * specificVolume));
+};
+
+const cachedVolumes = new Map<string, { lastVolume: number | null; lastMaster: number | null; lastSpecific: number | null }>();
+
+export const playSound = (path: string, type: "ui" | "action") => {
+    if (!path) return;
+
+    const settings = getLocalStorage("settings") as ISettings;
+
+    const { masterVolume, uiVolume, actionVolume } = settings.audio;
+
+    const specificVolume = type === "ui" ? uiVolume : actionVolume;
+
+    if (!cachedVolumes.has(type)) {
+        cachedVolumes.set(type, {
+            lastVolume: null,
+            lastMaster: null,
+            lastSpecific: null,
+        });
+    }
+
+    const cache = cachedVolumes.get(type)!;
+
+    if (cache.lastVolume === null || cache.lastMaster !== masterVolume || cache.lastSpecific !== specificVolume) {
+        cache.lastVolume = calculateVolume(masterVolume, specificVolume);
+        cache.lastMaster = masterVolume;
+        cache.lastSpecific = specificVolume;
+    }
+
+    const audio = new Audio(path);
+    audio.volume = cache.lastVolume;
+    audio.play().catch(error => {
+        // eslint-disable-next-line no-console
+        console.error("Error playing sound:", error);
+    });
 };

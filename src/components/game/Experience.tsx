@@ -4,6 +4,7 @@ import { useControls } from "leva";
 import { useEffect, useRef, useState } from "react";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
+import AudioGroup from "@/components/game/audio/AudioGroup";
 import Camera from "@/components/game/Camera";
 import Level from "@/components/game/Level";
 import Lights from "@/components/game/Lights";
@@ -12,7 +13,7 @@ import PerformanceMonitor from "@/components/PerformanceMonitor";
 import useGame from "@/store/useGame";
 
 const Experience = () => {
-    const { isMainMenu, isVictory, isDefeat } = useGame();
+    const { activeMenu, isVictory, isDefeat } = useGame();
 
     /**
      * Leva controls
@@ -56,7 +57,9 @@ const Experience = () => {
 
             <Camera />
 
-            <Physics debug={ debug } paused={ pausedPhysics || isMainMenu || isVictory || isDefeat } timeStep={ "vary" }>
+            <AudioGroup />
+
+            <Physics debug={ debug } paused={ pausedPhysics || activeMenu === "main" || isVictory || isDefeat } timeStep={ "vary" }>
                 <OrbitControls ref={ orbitControlsRef } enabled={ orbitControls } />
                 {!orbitControls ? <Player width={ 0.3 } height={ 1 } /> : <></>}
 

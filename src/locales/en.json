@@ -105,6 +105,17 @@
             "rebindKeyboardSuccessMessage": "Key rebinded successfully",
             "rebindMouseSuccessMessage": "Mouse button rebinded successfully",
             "notAssigned": "Not assigned"
+        },
+        "audio": {
+            "title": "Audio",
+            "masterVolume": "Master Volume",
+            "masterVolumeDescription": "Adjust all sound",
+            "ambientVolume": "Ambient Volume",
+            "ambientVolumeDescription": "Background sound volume",
+            "actionVolume": "Action Volume",
+            "actionVolumeDescription": "Audio performed on action",
+            "uiVolume": "UI Volume",
+            "uiVolumeDescription": "Menu interface volume"
         }
     },
     "game" : {

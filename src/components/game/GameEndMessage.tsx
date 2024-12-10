@@ -26,6 +26,7 @@ const GameEndMessage = () => {
                             component={ <BlueRectangleBorder size={ 1.5 } /> }
                             hoverComponent={ <BlueRectangleDepthBorder size={ 1.5 } /> }
                             text={ t("returnToMainMenu") }
+                            menuName="endGame"
                         />
                     </div>
                 </div>

@@ -8,9 +8,10 @@ import useGame from "@/store/useGame";
 
 interface IElevatorPanelProps {
     closeDoors: () => void;
+    doorsCanBeToggled: boolean;
 }
 
-const ElevatorPanel = ({ closeDoors }: IElevatorPanelProps) => {
+const ElevatorPanel = ({ closeDoors, doorsCanBeToggled }: IElevatorPanelProps) => {
     const { t } = useTranslation("game", { keyPrefix: "actions" });
 
     const { stage, subscribeToAction, unsubscribeFromAction, checkCurrentStage, incrementVisitCount, nextStage, setVictory, setDefeat } = useGame();
@@ -68,8 +69,8 @@ const ElevatorPanel = ({ closeDoors }: IElevatorPanelProps) => {
     });
 
     const validateInteractionStayHere = useCallback(() => {
-        return hoveredButtonRef.current === "stayHere" && isNearElevatorRef.current;
-    }, []);
+        return hoveredButtonRef.current === "stayHere" && isNearElevatorRef.current && doorsCanBeToggled;
+    }, [ doorsCanBeToggled ]);
 
     const handleInteractionStayHere = useCallback(() => {
         const { hasAnomalies } = checkCurrentStage();
@@ -84,8 +85,8 @@ const ElevatorPanel = ({ closeDoors }: IElevatorPanelProps) => {
     }, [ closeDoors, checkCurrentStage, incrementVisitCount, setDefeat ]);
 
     const validateInteractionNextStage = useCallback(() => {
-        return hoveredButtonRef.current === "nextStage" && isNearElevatorRef.current;
-    }, []);
+        return hoveredButtonRef.current === "nextStage" && isNearElevatorRef.current && doorsCanBeToggled;
+    }, [ doorsCanBeToggled ]);
 
     const handleInteractionNextStage = useCallback(() => {
         const { hasAnomalies } = checkCurrentStage();
@@ -120,7 +121,7 @@ const ElevatorPanel = ({ closeDoors }: IElevatorPanelProps) => {
 
     return (
         <>
-            {isNearElevator ? (
+            {isNearElevator && doorsCanBeToggled ? (
                 <group position={ [ 0, 0.05, 0 ] } rotation={ [ -Math.PI / 2, 0, Math.PI / 2 ] } scale={ 0.1 }>
                     <mesh ref={ buttonRefs.stayHere } name="stayHere" position={ [ 0, 1, 0 ] }>
                         <boxGeometry args={ [ 3.6, 1, 0.005 ] } />

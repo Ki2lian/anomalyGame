@@ -6,9 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { useSettingsActions } from "@/hooks/useSettingsActions";
+import useGame from "@/store/useGame";
 
 const SettingsActions = () => {
     const { t } = useTranslation("settingsMenu");
+
+    const { isTransitioning } = useGame();
 
     const { handleImportSettings, handleExportSettings, handleResetSettings } = useSettingsActions();
 
@@ -30,7 +33,11 @@ const SettingsActions = () => {
         <div className="mb-2 flex flex-col gap-2 md:flex-row md:items-center">
             <Dialog open={ isDialogOpen } onOpenChange={ setIsDialogOpen }>
                 <DialogTrigger asChild>
-                    <Button className="uppercase" variant="default">
+                    <Button
+                        className="uppercase"
+                        variant="default"
+                        disabled={ isTransitioning }
+                    >
                         {t("import")}
                     </Button>
                 </DialogTrigger>
@@ -45,10 +52,10 @@ const SettingsActions = () => {
                     </Button>
                 </DialogContent>
             </Dialog>
-            <Button className="uppercase" onClick={ handleExportSettings }>
+            <Button className="uppercase" onClick={ handleExportSettings } disabled={ isTransitioning }>
                 {t("export")}
             </Button>
-            <Button className="uppercase" onClick={ handleResetSettings }>
+            <Button className="uppercase" onClick={ handleResetSettings } disabled={ isTransitioning }>
                 {t("reset")}
             </Button>
         </div>

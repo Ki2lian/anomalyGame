@@ -20,15 +20,16 @@ interface IGameSetupProps {
 }
 
 const GameSetup = ({ onCancel }: IGameSetupProps) => {
-    const { startGame } = useGame();
+    const { activeMenu, startGame } = useGame();
     const { t } = useTranslation("gameSetup");
 
     const [ difficulty, setDifficulty ] = useState<TDifficulty>("easy");
     const [ seed, setSeed ] = useState("");
 
     const handleStartGame = () => {
+        if (activeMenu !== "gameSetup") return;
         if (seed && !isValidSeed(seed)) {
-            toast.error("La seed n'est pas valide !");
+            toast.error(t("invalidSeed"));
             setSeed("");
             return;
         }
@@ -55,6 +56,7 @@ const GameSetup = ({ onCancel }: IGameSetupProps) => {
                                     component={ <BlueRectangleBorder size={ 0.6 } /> }
                                     hoverComponent={ <BlueRectangleDepthBorder size={ 0.6 } /> }
                                     text={ t("easy") }
+                                    menuName="gameSetup"
                                 />
                                 <HoverableComponent
                                     onClick={ () => setDifficulty("medium") }
@@ -62,6 +64,7 @@ const GameSetup = ({ onCancel }: IGameSetupProps) => {
                                     component={ <BlueRectangleBorder size={ 0.6 } /> }
                                     hoverComponent={ <BlueRectangleDepthBorder size={ 0.6 } /> }
                                     text={ t("medium") }
+                                    menuName="gameSetup"
                                 />
                                 <HoverableComponent
                                     onClick={ () => setDifficulty("hard") }
@@ -69,6 +72,7 @@ const GameSetup = ({ onCancel }: IGameSetupProps) => {
                                     component={ <BlueRectangleBorder size={ 0.6 } /> }
                                     hoverComponent={ <BlueRectangleDepthBorder size={ 0.6 } /> }
                                     text={ t("hard") }
+                                    menuName="gameSetup"
                                 />
                             </div>
                         </div>
@@ -84,6 +88,7 @@ const GameSetup = ({ onCancel }: IGameSetupProps) => {
                                 component={ <GreenRectangleFlat size={ 1 } /> }
                                 hoverComponent={ <GreenRectangleDepthFlat size={ 1 } /> }
                                 text={ t("start") }
+                                menuName="gameSetup"
                             />
                         </div>
                     </CardContent>

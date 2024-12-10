@@ -1,4 +1,5 @@
 import { ISettings } from "@/components/app/settings/defaultsSettings";
+import { validateAudio } from "@/components/app/settings/import/validators/audio";
 import { validateControls } from "@/components/app/settings/import/validators/controls";
 import { validateGeneral } from "@/components/app/settings/import/validators/general";
 import { validateGraphics } from "@/components/app/settings/import/validators/graphics";
@@ -8,6 +9,7 @@ export const validateSettings = (importedData: Partial<ISettings>) => {
         general?: Partial<ISettings["general"]>;
         controls?: Partial<ISettings["controls"]>;
         graphics?: Partial<ISettings["graphics"]>;
+        audio?: Partial<ISettings["audio"]>;
     } = {};
 
     if (importedData.general) {
@@ -28,6 +30,13 @@ export const validateSettings = (importedData: Partial<ISettings>) => {
         const graphics = validateGraphics(importedData.graphics);
         if (Object.keys(graphics).length > 0) {
             validatedData.graphics = graphics;
+        }
+    }
+
+    if (importedData.audio) {
+        const audio = validateAudio(importedData.audio);
+        if (Object.keys(audio).length > 0) {
+            validatedData.audio = audio;
         }
     }
 

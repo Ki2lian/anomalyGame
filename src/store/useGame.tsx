@@ -20,12 +20,13 @@ interface IStage {
 
 export type TDifficulty = "easy" | "medium" | "hard";
 
+export type TActiveMenu = "" | "main" | "settings" | "gameSetup" | "endGame";
+
 interface IGameState {
     keybindings: () => IKeybindings;
     isPlaying: boolean;
     difficulty: TDifficulty;
-    isMainMenu: boolean;
-    isSettingMenu: boolean;
+    activeMenu: TActiveMenu;
     isRebinding: boolean;
     gameIsReady: boolean;
     seed: string;
@@ -34,6 +35,8 @@ interface IGameState {
     isDefeat: boolean;
     isGamepadActive: boolean;
     actionSubscribers: { [action: string]: Array<IActionSubscriber> };
+
+    isTransitioning: boolean;
 
     subscribeToAction: (action: keyof IKeybindings, callback: () => void, validate: TValidationFunction) => void;
     unsubscribeFromAction: (action: keyof IKeybindings, callback: () => void) => void;
@@ -47,8 +50,7 @@ interface IGameState {
     setVictory: () => void;
     setDefeat: () => void;
 
-    toggleSettingMenu: () => void;
-    toggleMainMenu: () => void;
+    setActiveMenu: (menu: TActiveMenu) => void;
     toggleRebinding: () => void;
     setGameIsReady: (isReady: boolean) => void;
 
@@ -107,8 +109,7 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
             return settings?.controls?.keybindings || defaultSettings.controls.keybindings;
         },
         isPlaying: false,
-        isMainMenu: false,
-        isSettingMenu: false,
+        activeMenu: "main",
         isRebinding: false,
         gameIsReady: false,
         difficulty: "easy",
@@ -118,6 +119,8 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
         isDefeat: false,
         isGamepadActive: false,
         actionSubscribers: {},
+
+        isTransitioning: false,
 
         startGame: (difficulty, providedSeed) => {
             const seed = providedSeed || generateRandomSeed();
@@ -135,8 +138,7 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
         resetGame: () =>
             set({
                 isPlaying: false,
-                isMainMenu: false,
-                isSettingMenu: false,
+                activeMenu: "main",
                 isRebinding: false,
                 difficulty: "easy",
                 seed: "",
@@ -186,15 +188,22 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
             if (subscribers) {
                 for (const subscriber of subscribers) {
                     const { callback, validate } = subscriber;
-                    if (validate() && !get().isRebinding && !get().isVictory && !get().isDefeat && (!get().isMainMenu || action === "menu")) {
+                    if (validate() && !get().isRebinding && !get().isVictory && !get().isDefeat && (get().activeMenu !== "main" || action === "menu")) {
                         callback();
                     }
                 }
             }
         },
 
-        toggleMainMenu: () => set(state => ({ isMainMenu: !state.isMainMenu })),
-        toggleSettingMenu: () => set(state => ({ isSettingMenu: !state.isSettingMenu })),
+        setActiveMenu: (menu) => {
+            const { isTransitioning } = get();
+
+            if (isTransitioning) return;
+
+            set({ isTransitioning: true, activeMenu: menu });
+
+            setTimeout(() => set({ isTransitioning: false }), 500);
+        },
         toggleRebinding: () => set(state => ({ isRebinding: !state.isRebinding })),
 
         setGameIsReady: isReady => set({ gameIsReady: isReady }),

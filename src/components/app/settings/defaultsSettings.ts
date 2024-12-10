@@ -51,6 +51,12 @@ export interface ISettings {
         controllerType: "xbox" | "playstation";
         keybindings: IKeybindings;
     };
+    audio: {
+        masterVolume: number;
+        ambientVolume: number;
+        actionVolume: number;
+        uiVolume: number;
+    }
 }
 
 export const defaultGeneralSettings: ISettings["general"] = {
@@ -122,8 +128,16 @@ export const defaultControlsSettings: ISettings["controls"] = {
     },
 };
 
+export const defaultAudioSettings: ISettings["audio"] = {
+    masterVolume: 1,
+    ambientVolume: 1,
+    actionVolume: 1,
+    uiVolume: 1,
+};
+
 export const defaultSettings: ISettings = {
     general: defaultGeneralSettings,
     graphics: defaultGraphicsSettings,
     controls: defaultControlsSettings,
+    audio: defaultAudioSettings,
 };

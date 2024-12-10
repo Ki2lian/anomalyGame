@@ -20,7 +20,7 @@ interface IActionPromptProps {
 const ActionPrompt = ({ actionKey, description, validateInteraction, onAction }: IActionPromptProps) => {
     const [ settings ] = useLocalStorage<ISettings>("settings", defaultSettings);
 
-    const { isGamepadActive, isMainMenu, subscribeToAction, unsubscribeFromAction } = useGame();
+    const { isGamepadActive, activeMenu, subscribeToAction, unsubscribeFromAction } = useGame();
 
     const { t } = useTranslation("settingsMenu", { keyPrefix: "controls" });
 
@@ -65,7 +65,7 @@ const ActionPrompt = ({ actionKey, description, validateInteraction, onAction }:
         return () => unsubscribeFromAction(actionKey, onAction);
     }, [ actionKey, onAction, validateInteraction, subscribeToAction, unsubscribeFromAction ]);
 
-    if (!isVisible || isMainMenu) return null;
+    if (!isVisible || activeMenu === "main") return null;
 
     return (
         <Html position={ [ 0, 1.5, 0 ] } className="pointer-events-none select-none">

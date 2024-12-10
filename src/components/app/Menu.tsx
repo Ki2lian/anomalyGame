@@ -1,15 +1,12 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
 
 import GameSetup from "@/components/app/GameSetup";
+import MainMenu from "@/components/app/MainMenu";
 import SettingsMenu from "@/components/app/SettingsMenu";
 import useGame from "@/store/useGame";
 
-import MainMenu from "./MainMenu";
-
 const Menu = () => {
-    const { isSettingMenu } = useGame();
-    const [ showGameSetup, setShowGameSetup ] = useState<boolean>(false);
+    const { activeMenu, setActiveMenu } = useGame();
 
     return (
         <>
@@ -19,7 +16,7 @@ const Menu = () => {
                     style={{ backgroundImage: "url('images/home_background.jpg')" }}
                 ></div>
                 <AnimatePresence mode="wait">
-                    {isSettingMenu ? (
+                    {activeMenu === "settings" ? (
                         <motion.div
                             key="settings"
                             initial={{ opacity: 0 }}
@@ -29,7 +26,7 @@ const Menu = () => {
                         >
                             <SettingsMenu />
                         </motion.div>
-                    ) : showGameSetup ? (
+                    ) : activeMenu === "gameSetup" ? (
                         <motion.div
                             key="gameSetup"
                             initial={{ opacity: 0 }}
@@ -37,9 +34,9 @@ const Menu = () => {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <GameSetup onCancel={ () => setShowGameSetup(false) } />
+                            <GameSetup onCancel={ () => setActiveMenu("main") } />
                         </motion.div>
-                    ) : (
+                    ) : activeMenu === "main" ? (
                         <motion.div
                             key="mainMenu"
                             initial={{ opacity: 0 }}
@@ -48,9 +45,9 @@ const Menu = () => {
                             transition={{ duration: 0.2 }}
                             className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center"
                         >
-                            <MainMenu onPlayOrResume={ () => setShowGameSetup(true) } onQuit={ () => window.close() } />
+                            <MainMenu onPlayOrResume={ () => setActiveMenu("gameSetup") } onQuit={ () => window.close() } />
                         </motion.div>
-                    )}
+                    ) : null}
                 </AnimatePresence>
             </div>
         </>

@@ -105,6 +105,17 @@
             "rebindKeyboardSuccessMessage": "Touche reconfigurée avec succès",
             "rebindMouseSuccessMessage": "Bouton souris reconfigurée avec succès",
             "notAssigned": "Non assigné"
+        },
+        "audio": {
+            "title": "Audio",
+            "masterVolume": "Volume général",
+            "masterVolumeDescription": "Ajuster tous les sons",
+            "ambientVolume": "Volume ambiant",
+            "ambientVolumeDescription": "Volume du son en fond",
+            "actionVolume": "Volume d'action",
+            "actionVolumeDescription": "Volume du son lors d'une action",
+            "uiVolume": "Volume de l'interface",
+            "uiVolumeDescription": "Volume de l'interface des menus"
         }
     },
     "game" : {
