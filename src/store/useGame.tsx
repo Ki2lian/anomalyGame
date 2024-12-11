@@ -82,7 +82,7 @@ interface IGameState {
  *
  * @returns {number}
  */
-const generateMaxAnomalies = (stageNumber: number, seed: string, difficulty: TDifficulty) => {
+const generateMaxAnomalies = (stageNumber: number, seed: string, difficulty: TDifficulty): number => {
     const rng = new Rand(`${ seed }-${ stageNumber }`);
     const roll = rng.next();
 
@@ -114,7 +114,7 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
         gameIsReady: false,
         difficulty: "easy",
         seed: "",
-        stage: { currentStage: 8, visitCount: 0, maxAnomalies: 0 },
+        stage: { currentStage: 6, visitCount: 0, maxAnomalies: 0 },
         isVictory: false,
         isDefeat: false,
         isGamepadActive: false,
@@ -129,9 +129,9 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
                 difficulty,
                 seed,
                 stage: {
-                    currentStage: 8,
+                    currentStage: 6,
                     visitCount: 0,
-                    maxAnomalies: generateMaxAnomalies(8, seed, difficulty),
+                    maxAnomalies: generateMaxAnomalies(6, seed, difficulty),
                 },
             });
         },
@@ -143,7 +143,7 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
                 difficulty: "easy",
                 seed: "",
                 gameIsReady: false,
-                stage: { currentStage: 8, visitCount: 0, maxAnomalies: 0 },
+                stage: { currentStage: 6, visitCount: 0, maxAnomalies: 0 },
                 isVictory: false,
                 isDefeat: false,
             }),
