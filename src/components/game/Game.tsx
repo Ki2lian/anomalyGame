@@ -12,6 +12,7 @@ import CrossHair from "@/components/game/CrossHair";
 import EcctrlJoystickControls from "@/components/game/EcctrlJoystickControls";
 import ElementsLoader from "@/components/game/ElementsLoader";
 import Experience from "@/components/game/Experience";
+import EyeBlink from "@/components/game/EyeBlink";
 import GameEndMessage from "@/components/game/GameEndMessage";
 import { getAspectRatio } from "@/lib/utils";
 import useGame from "@/store/useGame";
@@ -51,7 +52,7 @@ const Game = () => {
         const handlePointerLockChange = () => {
             if (!document.pointerLockElement && !isVictory && !isDefeat) {
                 if (activeMenu !== "settings") {
-                    setActiveMenu("");
+                    setActiveMenu("main");
                 }
             }
         };
@@ -99,6 +100,8 @@ const Game = () => {
             <ElementsLoader />
 
             <EcctrlJoystickControls />
+
+            <EyeBlink />
 
             <AnimatePresence mode="sync">
                 {activeMenu === "settings" ? (

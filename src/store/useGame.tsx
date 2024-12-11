@@ -37,6 +37,7 @@ interface IGameState {
     actionSubscribers: { [action: string]: Array<IActionSubscriber> };
 
     isTransitioning: boolean;
+    isTransitioningEyeBlinkEffect: boolean;
 
     subscribeToAction: (action: keyof IKeybindings, callback: () => void, validate: TValidationFunction) => void;
     unsubscribeFromAction: (action: keyof IKeybindings, callback: () => void) => void;
@@ -53,6 +54,8 @@ interface IGameState {
     setActiveMenu: (menu: TActiveMenu) => void;
     toggleRebinding: () => void;
     setGameIsReady: (isReady: boolean) => void;
+
+    setIsTransitioningEyeBlinkEffect: (isTransitioning: boolean) => void;
 
     listenToGlobalEvents: () => () => void;
 }
@@ -121,6 +124,7 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
         actionSubscribers: {},
 
         isTransitioning: false,
+        isTransitioningEyeBlinkEffect: false,
 
         startGame: (difficulty, providedSeed) => {
             const seed = providedSeed || generateRandomSeed();
@@ -164,8 +168,8 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
                 },
             }));
         },
-        setVictory: () => set({ isVictory: true }),
-        setDefeat: () => set({ isDefeat: true }),
+        setVictory: () => set({ isVictory: true, activeMenu: "endGame" }),
+        setDefeat: () => set({ isDefeat: true, activeMenu: "endGame" }),
 
         subscribeToAction: (action, callback, validate) => {
             set(state => ({
@@ -207,6 +211,8 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
         toggleRebinding: () => set(state => ({ isRebinding: !state.isRebinding })),
 
         setGameIsReady: isReady => set({ gameIsReady: isReady }),
+
+        setIsTransitioningEyeBlinkEffect: isTransitioning => set({ isTransitioningEyeBlinkEffect: isTransitioning }),
 
         listenToGlobalEvents: () => {
             const { notifyActionSubscribers } = get();

@@ -14,7 +14,17 @@ interface IElevatorPanelProps {
 const ElevatorPanel = ({ closeDoors, doorsCanBeToggled }: IElevatorPanelProps) => {
     const { t } = useTranslation("game", { keyPrefix: "actions" });
 
-    const { stage, subscribeToAction, unsubscribeFromAction, checkCurrentStage, incrementVisitCount, nextStage, setVictory, setDefeat } = useGame();
+    const {
+        stage,
+        subscribeToAction,
+        unsubscribeFromAction,
+        checkCurrentStage,
+        incrementVisitCount,
+        nextStage,
+        setVictory,
+        setDefeat,
+        setIsTransitioningEyeBlinkEffect,
+    } = useGame();
 
     const { camera } = useThree();
 
@@ -77,12 +87,15 @@ const ElevatorPanel = ({ closeDoors, doorsCanBeToggled }: IElevatorPanelProps) =
 
         closeDoors();
 
-        if (hasAnomalies) {
-            incrementVisitCount();
-        } else {
-            setDefeat();
-        }
-    }, [ closeDoors, checkCurrentStage, incrementVisitCount, setDefeat ]);
+        setIsTransitioningEyeBlinkEffect(true);
+        setTimeout(() => {
+            if (hasAnomalies) {
+                incrementVisitCount();
+            } else {
+                setDefeat();
+            }
+        }, 250);
+    }, [ closeDoors, checkCurrentStage, incrementVisitCount, setDefeat, setIsTransitioningEyeBlinkEffect ]);
 
     const validateInteractionNextStage = useCallback(() => {
         return hoveredButtonRef.current === "nextStage" && isNearElevatorRef.current && doorsCanBeToggled;
@@ -93,14 +106,17 @@ const ElevatorPanel = ({ closeDoors, doorsCanBeToggled }: IElevatorPanelProps) =
 
         closeDoors();
 
-        if (hasAnomalies) {
-            setDefeat();
-        } else if (stage.currentStage === 1) {
-            setVictory();
-        } else {
-            nextStage();
-        }
-    }, [ closeDoors, checkCurrentStage, nextStage, stage.currentStage, setVictory, setDefeat ]);
+        setIsTransitioningEyeBlinkEffect(true);
+        setTimeout(() => {
+            if (hasAnomalies) {
+                setDefeat();
+            } else if (stage.currentStage === 1) {
+                setVictory();
+            } else {
+                nextStage();
+            }
+        }, 250);
+    }, [ closeDoors, checkCurrentStage, nextStage, stage.currentStage, setVictory, setDefeat, setIsTransitioningEyeBlinkEffect ]);
 
     useEffect(() => {
         subscribeToAction("interact", handleInteractionStayHere, validateInteractionStayHere);
