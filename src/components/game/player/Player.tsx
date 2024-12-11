@@ -22,12 +22,17 @@ const Player = ({ width, height }: IPlayer) => {
     const keyboardMouseMap = generateKeyboardMouseMap(settings.controls.keybindings);
 
     const fallThreshold = -5;
+    const maxFallsAllowed = 2;
+    const fallResetTime = 2;
 
     const ecctrlRef = useRef<CustomEcctrlRigidBody>(null);
 
     const SPAWN_POSITION = useMemo(() => new Vector3(-22.5, 2, -8), []);
 
-    const vector = useMemo(() => new Vector3(), []);
+    const vector3 = useMemo(() => new Vector3(), []);
+
+    const fallCountRef = useRef(0);
+    const lastFallTimeRef = useRef(0);
 
     let lastCheck = 0;
 
@@ -42,7 +47,25 @@ const Player = ({ width, height }: IPlayer) => {
             const position = player.translation();
 
             if (position.y < fallThreshold) {
-                player.setTranslation(vector.set(position.x, 2, position.z), true);
+
+                const currentTime = Date.now();
+                if (currentTime - lastFallTimeRef.current < fallResetTime * 1000) {
+                    fallCountRef.current += 1;
+                } else {
+                    fallCountRef.current = 1;
+                }
+
+                lastFallTimeRef.current = currentTime;
+
+                if (fallCountRef.current >= maxFallsAllowed) {
+                    fallCountRef.current = 0;
+                    lastFallTimeRef.current = 0;
+                    setTimeout(() => {
+                        player.setTranslation(SPAWN_POSITION, true);
+                    }, 0);
+                } else {
+                    player.setTranslation(vector3.set(position.x, 2, position.z), true);
+                }
             }
         }
     });
