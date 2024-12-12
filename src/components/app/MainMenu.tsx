@@ -1,6 +1,4 @@
-import { useCopyToClipboard } from "@uidotdev/usehooks";
 import { useTranslation } from "react-i18next";
-import { toast } from "sonner";
 
 import HoverableComponent from "@/components/app/HoverableComponent";
 import { BlueRectangleBorder } from "@/components/assets/sprites/blue/RectangleBorder";
@@ -17,14 +15,7 @@ interface IMainMenuProps {
 const MainMenu = ({ onPlayOrResume, onQuit }: IMainMenuProps) => {
     const { t } = useTranslation("mainMenu");
 
-    const { isPlaying, seed, setActiveMenu } = useGame();
-
-    const [ _, copyToClipboard ] = useCopyToClipboard();
-
-    const handleCopySeed = () => {
-        copyToClipboard(seed);
-        toast.success(t("seedCopied"));
-    };
+    const { isPlaying, setActiveMenu } = useGame();
 
     return (
         <>
@@ -54,15 +45,6 @@ const MainMenu = ({ onPlayOrResume, onQuit }: IMainMenuProps) => {
                         text={ t("exit") }
                         menuName="main"
                     />
-                    {seed ? (
-                        <HoverableComponent
-                            onClick={ () => handleCopySeed() }
-                            component={ <BlueRectangleBorder size={ 1.5 } /> }
-                            hoverComponent={ <BlueRectangleDepthBorder size={ 1.5 } /> }
-                            text={ t("copySeed") }
-                            menuName="main"
-                        />
-                    ) : null}
                 </div>
             </div>
         </>

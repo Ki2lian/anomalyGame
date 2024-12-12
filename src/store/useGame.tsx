@@ -130,6 +130,7 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
             const seed = providedSeed || generateRandomSeed();
             set({
                 isPlaying: true,
+                activeMenu: "",
                 difficulty,
                 seed,
                 stage: {

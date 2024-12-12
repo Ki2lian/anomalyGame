@@ -9,6 +9,7 @@ import MainMenu from "@/components/app/MainMenu";
 import { defaultSettings, ISettings } from "@/components/app/settings/defaultsSettings";
 import SettingsMenu from "@/components/app/SettingsMenu";
 import Experience from "@/components/game/systems/Experience";
+import CopySeed from "@/components/game/ui/CopySeed";
 import CrossHair from "@/components/game/ui/CrossHair";
 import EcctrlJoystickControls from "@/components/game/ui/EcctrlJoystickControls";
 import ElementsLoader from "@/components/game/ui/ElementsLoader";
@@ -102,6 +103,8 @@ const Game = () => {
             <EcctrlJoystickControls />
 
             <EyeBlink />
+
+            <CopySeed />
 
             <AnimatePresence mode="sync">
                 {activeMenu === "settings" ? (
