@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import Menu from "@/components/app/Menu";
 import { defaultSettings } from "@/components/app/settings/defaultsSettings";
 import Theme from "@/components/app/Theme";
-import Game from "@/components/game/Game";
+import Game from "@/components/game/systems/Game";
 import { Toaster } from "@/components/ui/sonner";
 import { prepareSettings } from "@/lib/utils";
 import useGame from "@/store/useGame";

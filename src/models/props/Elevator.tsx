@@ -15,9 +15,9 @@ import { useTranslation } from "react-i18next";
 import { Group, Mesh, MeshPhysicalMaterial, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
 
-import ActionPrompt from "@/components/game/ActionPrompt";
-import { globalCamera } from "@/components/game/Camera";
-import ElevatorPanel from "@/components/game/ElevatorPanel";
+import { globalCamera } from "@/components/game/systems/Camera";
+import ActionPrompt from "@/components/game/ui/ActionPrompt";
+import ElevatorPanel from "@/components/game/ui/ElevatorPanel";
 import { isInInteractionRangeAndFacing, playSound } from "@/lib/utils";
 import useGame from "@/store/useGame";
 

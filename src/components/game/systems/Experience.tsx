@@ -5,10 +5,10 @@ import { useEffect, useRef, useState } from "react";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
 import AudioGroup from "@/components/game/audio/AudioGroup";
-import Camera from "@/components/game/Camera";
-import Level from "@/components/game/Level";
-import Lights from "@/components/game/Lights";
 import Player from "@/components/game/player/Player";
+import Camera from "@/components/game/systems/Camera";
+import Level from "@/components/game/systems/Level";
+import Lights from "@/components/game/systems/Lights";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 import useGame from "@/store/useGame";
 

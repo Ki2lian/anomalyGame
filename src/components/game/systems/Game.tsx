@@ -8,12 +8,12 @@ import { Suspense, useEffect } from "react";
 import MainMenu from "@/components/app/MainMenu";
 import { defaultSettings, ISettings } from "@/components/app/settings/defaultsSettings";
 import SettingsMenu from "@/components/app/SettingsMenu";
-import CrossHair from "@/components/game/CrossHair";
-import EcctrlJoystickControls from "@/components/game/EcctrlJoystickControls";
-import ElementsLoader from "@/components/game/ElementsLoader";
-import Experience from "@/components/game/Experience";
-import EyeBlink from "@/components/game/EyeBlink";
-import GameEndMessage from "@/components/game/GameEndMessage";
+import Experience from "@/components/game/systems/Experience";
+import CrossHair from "@/components/game/ui/CrossHair";
+import EcctrlJoystickControls from "@/components/game/ui/EcctrlJoystickControls";
+import ElementsLoader from "@/components/game/ui/ElementsLoader";
+import EyeBlink from "@/components/game/ui/EyeBlink";
+import GameEndMessage from "@/components/game/ui/GameEndMessage";
 import { getAspectRatio } from "@/lib/utils";
 import useGame from "@/store/useGame";
 
