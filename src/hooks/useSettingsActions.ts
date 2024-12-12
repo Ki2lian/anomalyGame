@@ -5,7 +5,7 @@ import { toast } from "sonner";
 
 import { defaultSettings, ISettings } from "@/components/app/settings/defaultsSettings";
 import { validateSettings } from "@/components/app/settings/import/validators/settingsValidator";
-import { changeLanguage } from "@/i18n";
+import { changeLanguage } from "@/lib/i18n";
 import { mergeSettings } from "@/lib/utils";
 
 export const useSettingsActions = () => {

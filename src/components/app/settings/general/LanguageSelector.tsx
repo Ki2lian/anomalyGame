@@ -5,7 +5,7 @@ import { defaultGeneralSettings } from "@/components/app/settings/defaultsSettin
 import { IUpdateSettingProps } from "@/components/app/settings/general/GeneralTab";
 import SettingRow from "@/components/app/settings/SettingRow";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { changeLanguage, languageAvailable } from "@/i18n";
+import { changeLanguage, languageAvailable } from "@/lib/i18n";
 
 const LanguageSelector = ({ updateGeneralSetting }: IUpdateSettingProps) => {
     const { t } = useTranslation("settingsMenu", { keyPrefix: "general" });

@@ -8,7 +8,7 @@ import ResetButton from "@/components/app/settings/ResetButton";
 import SettingRow from "@/components/app/settings/SettingRow";
 import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-import { changeLanguage } from "@/i18n";
+import { changeLanguage } from "@/lib/i18n";
 
 interface IUpdateGeneralSettingProps {
     key: string;

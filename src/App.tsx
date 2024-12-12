@@ -1,4 +1,4 @@
-import "@/i18n";
+import "@/lib/i18n";
 
 import { useLocalStorage } from "@uidotdev/usehooks";
 import eruda from "eruda";

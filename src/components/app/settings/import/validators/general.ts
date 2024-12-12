@@ -1,5 +1,5 @@
 import { ISettings } from "@/components/app/settings/defaultsSettings";
-import { languageAvailable } from "@/i18n";
+import { languageAvailable } from "@/lib/i18n";
 
 export const themeModeAvailable = [ "light", "dark", "system" ];
 
