@@ -45,6 +45,8 @@ interface IGameState {
 
     startGame: (difficulty: TDifficulty, seed?: string) => void;
     resetGame: () => void;
+    restartGame: () => void;
+    restartGameWithSeed: (seed: string) => void;
     checkCurrentStage: () => { hasAnomalies: boolean };
     incrementVisitCount: () => void;
     nextStage: () => void;
@@ -152,6 +154,22 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
                 isVictory: false,
                 isDefeat: false,
             }),
+
+        restartGame: () => {
+            get().resetGame();
+            set({
+                activeMenu: "gameSetup",
+            });
+        },
+
+        restartGameWithSeed: (seed: string) => {
+            get().resetGame();
+            set({
+                activeMenu: "gameSetup",
+                seed,
+            });
+        },
+
         checkCurrentStage: () => ({
             hasAnomalies: get().stage.visitCount < get().stage.maxAnomalies,
         }),

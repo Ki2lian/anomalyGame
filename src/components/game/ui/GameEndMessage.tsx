@@ -8,7 +8,7 @@ import useGame from "@/store/useGame";
 
 const GameEndMessage = () => {
     const { t } = useTranslation("game");
-    const { isVictory, isDefeat, resetGame } = useGame();
+    const { isVictory, isDefeat, seed, resetGame, restartGame, restartGameWithSeed } = useGame();
 
     if (!isVictory && !isDefeat) return null;
 
@@ -20,7 +20,21 @@ const GameEndMessage = () => {
             <GreyRectangleDepthFlat className="absolute left-1/2 top-1/2 z-[18568369] h-auto min-h-40 -translate-x-1/2 -translate-y-1/2 md:w-3/4 lg:w-1/2">
                 <div className="flex flex-col">
                     <h1 className="mb-10 select-none text-center text-4xl font-bold text-foreground">{message}</h1>
-                    <div className="flex items-center justify-center">
+                    <div className="flex flex-col items-center justify-center space-y-4">
+                        <HoverableComponent
+                            onClick={ restartGame }
+                            component={ <BlueRectangleBorder size={ 1.5 } /> }
+                            hoverComponent={ <BlueRectangleDepthBorder size={ 1.5 } /> }
+                            text={ t("restart") }
+                            menuName="endGame"
+                        />
+                        <HoverableComponent
+                            onClick={ () => restartGameWithSeed(seed) }
+                            component={ <BlueRectangleBorder size={ 1.5 } /> }
+                            hoverComponent={ <BlueRectangleDepthBorder size={ 1.5 } /> }
+                            text={ t("restartWithSeed") }
+                            menuName="endGame"
+                        />
                         <HoverableComponent
                             onClick={ resetGame }
                             component={ <BlueRectangleBorder size={ 1.5 } /> }

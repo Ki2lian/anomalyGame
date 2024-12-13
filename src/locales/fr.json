@@ -4,7 +4,6 @@
         "resume": "Reprendre",
         "settings": "Paramètres",
         "exit": "Quitter",
-        "copySeed": "Copier la seed",
         "seedCopied": "Seed copiée dans le presse-papier !"
     },
     "gameSetup": {
@@ -128,6 +127,8 @@
         },
         "victory" : "Vous avez gagné !",
         "defeat" : "Vous avez perdu !",
+        "restart" : "Rejouer",
+        "restartWithSeed" : "Rejouer avec la même seed",
         "returnToMainMenu" : "Retourner au menu principal"
     }
 }

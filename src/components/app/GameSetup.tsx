@@ -20,20 +20,20 @@ interface IGameSetupProps {
 }
 
 const GameSetup = ({ onCancel }: IGameSetupProps) => {
-    const { activeMenu, startGame } = useGame();
+    const { activeMenu, seed, startGame } = useGame();
     const { t } = useTranslation("gameSetup");
 
     const [ difficulty, setDifficulty ] = useState<TDifficulty>("easy");
-    const [ seed, setSeed ] = useState("");
+    const [ providedSeed, setSeed ] = useState(seed);
 
     const handleStartGame = () => {
         if (activeMenu !== "gameSetup") return;
-        if (seed && !isValidSeed(seed)) {
+        if (providedSeed && !isValidSeed(providedSeed)) {
             toast.error(t("invalidSeed"));
             setSeed("");
             return;
         }
-        startGame(difficulty, isValidSeed(seed) ? seed : undefined);
+        startGame(difficulty, isValidSeed(providedSeed) ? providedSeed : undefined);
     };
 
     return (
@@ -79,7 +79,7 @@ const GameSetup = ({ onCancel }: IGameSetupProps) => {
                         <div className="my-5 flex w-full cursor-pointer flex-col items-center justify-between p-2 hover:bg-secondary lg:flex-row">
                             <p className="mb-1 select-none uppercase md:mb-0">{t("seed")}</p>
                             <div className="flex w-full select-none items-center justify-center gap-2 lg:w-2/5">
-                                <Input value={ seed } onChange={ e => setSeed(e.target.value) } placeholder={ t("placeholderSeed") } />
+                                <Input value={ providedSeed } onChange={ e => setSeed(e.target.value) } placeholder={ t("placeholderSeed") } />
                             </div>
                         </div>
                         <div className="flex items-center justify-center">

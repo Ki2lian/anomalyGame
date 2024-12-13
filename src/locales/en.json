@@ -4,7 +4,6 @@
         "resume": "Resume",
         "settings": "Settings",
         "exit": "Exit",
-        "copySeed": "Copy Seed",
         "seedCopied": "Seed copied to clipboard!"
     },
     "gameSetup": {
@@ -128,6 +127,8 @@
         },
         "victory" : "You won!",
         "defeat" : "You lost!",
+        "restart" : "Restart",
+        "restartWithSeed" : "Restart with same seed",
         "returnToMainMenu" : "Return to main menu"
     }
 }
