@@ -37,9 +37,9 @@ const GameSetup = ({ onCancel }: IGameSetupProps) => {
     };
 
     return (
-        <GreyRectangleDepthFlat className="absolute left-1/2 top-1/2 z-10 h-auto min-h-40 w-5/6 -translate-x-1/2 -translate-y-1/2 md:w-3/4 lg:w-1/2">
+        <GreyRectangleDepthFlat className="relative mx-auto mt-[7%] md:w-3/4 lg:w-1/2">
             <div className="flex flex-col">
-                <div className="relative mb-5 flex items-center">
+                <div className="relative mb-3 flex items-center">
                     <Button className="absolute left-0" variant="secondary" onClick={ onCancel }>
                         <Undo2 />
                     </Button>

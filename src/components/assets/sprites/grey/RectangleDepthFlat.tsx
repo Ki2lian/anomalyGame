@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export const GreyRectangleDepthFlat = ({ className, children, ...props }: ComponentPropsWithoutRef<"div"> & IGreyRectangleDepthFlatProps) => {
     return (
-        <div { ...props }>
+        <div { ...props } className="absolute top-[12.5%] z-[18568369] w-full">
             <div className={ cn(className) }>
                 <div className="absolute inset-0 rounded-lg bg-[#666880] dark:bg-[#DADCE7]"></div>
                 <div className="absolute inset-[4px] rounded-lg border border-[#DADCE7] bg-white dark:bg-[#666880]"></div>

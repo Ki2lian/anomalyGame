@@ -40,9 +40,9 @@ const SettingsMenu = () => {
     return (
         <>
             <div className="absolute inset-0 z-10 bg-black/30 backdrop-blur-lg"></div>
-            <GreyRectangleDepthFlat className="absolute left-1/2 top-1/2 z-10 h-auto min-h-40 -translate-x-1/2 -translate-y-1/2 md:w-3/4 lg:w-1/2">
+            <GreyRectangleDepthFlat className="relative z-10 mx-auto mt-[2.5%] md:w-3/4 lg:w-1/2">
                 <div className="flex flex-col">
-                    <div className="relative mb-5 flex items-center">
+                    <div className="relative mb-3 flex items-center">
                         <Button className="absolute left-0" variant="secondary" onClick={ handleClick } disabled={ isTransitioning }>
                             <Undo2 />
                         </Button>
@@ -89,22 +89,22 @@ const SettingsMenu = () => {
                                     {t("audio.title")}
                                 </TabsTrigger>
                             </TabsList>
-                            <TabsContent value="general" key="general">
+                            <TabsContent value="general" key="general" className="max-h-[40vh] overflow-y-auto overflow-x-hidden md:max-h-[50vh]">
                                 <motion.div variants={ tabVariants } initial="hidden" animate="visible" exit="exit" transition={{ duration: 0.5 }}>
                                     <GeneralTab />
                                 </motion.div>
                             </TabsContent>
-                            <TabsContent value="graphics">
+                            <TabsContent value="graphics" className="max-h-[40vh] overflow-y-auto overflow-x-hidden md:max-h-[50vh]">
                                 <motion.div variants={ tabVariants } initial="hidden" animate="visible" exit="exit" transition={{ duration: 0.5 }}>
                                     <GraphicsTab />
                                 </motion.div>
                             </TabsContent>
-                            <TabsContent value="controls" key="controls">
+                            <TabsContent value="controls" key="controls" className="max-h-[40vh] overflow-y-auto overflow-x-hidden md:max-h-[50vh]">
                                 <motion.div variants={ tabVariants } initial="hidden" animate="visible" exit="exit" transition={{ duration: 0.5 }}>
                                     <ControlsTab />
                                 </motion.div>
                             </TabsContent>
-                            <TabsContent value="audio">
+                            <TabsContent value="audio" className="max-h-[40vh] overflow-y-auto overflow-x-hidden md:max-h-[50vh]">
                                 <motion.div variants={ tabVariants } initial="hidden" animate="visible" exit="exit" transition={{ duration: 0.5 }}>
                                     <AudioTab />
                                 </motion.div>
