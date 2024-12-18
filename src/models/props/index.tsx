@@ -10,7 +10,7 @@ import { PlasticRoundBin } from "@/models/props/bins/PlasticRound";
 import { SteelBin } from "@/models/props/bins/Steel";
 import { BlackBoard } from "@/models/props/BlackBoard";
 import { Burger } from "@/models/props/Burger";
-import { CellingLight } from "@/models/props/CellingLight";
+import { CeilingLight } from "@/models/props/CeilingLight";
 import { ChessSet } from "@/models/props/ChessSet";
 import { Clock } from "@/models/props/Clock";
 import { Globe } from "@/models/props/Globe";
@@ -45,7 +45,7 @@ const allProps: ComponentType[] = [
     Bench,
     BlackBoard,
     Burger,
-    CellingLight,
+    CeilingLight,
     ChessSet,
     Clock,
     FancyPictureFramePainting,
@@ -93,7 +93,7 @@ const mediumProps: IAnomalyConfig[] = [
     { component: FourColorsPainting, anomalyType: 1 },
     { component: Pencil, anomalyType: 1 },
     { component: PencilCaseBlue, anomalyType: 1 },
-    { component: CellingLight, anomalyType: 1 },
+    { component: CeilingLight, anomalyType: 1 },
     { component: ChessSet, anomalyType: 1 },
 ];
 

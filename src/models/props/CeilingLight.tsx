@@ -14,7 +14,7 @@ import { GLTF } from "three-stdlib";
 import { IAnomalyProps } from "@/models/props/props-interface";
 import useGame from "@/store/useGame";
 
-export const CellingLight = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
+export const CeilingLight = ({ isAnomaly, anomalyType }: IAnomalyProps) => {
     const { difficulty } = useGame();
 
     const model = useGLTF("/models/props/ceiling_light.glb") as GLTFResult;
