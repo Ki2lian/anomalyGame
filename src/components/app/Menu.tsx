@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 
+import Credits from "@/components/app/Credits";
 import GameSetup from "@/components/app/GameSetup";
 import MainMenu from "@/components/app/MainMenu";
 import SettingsMenu from "@/components/app/SettingsMenu";
@@ -25,6 +26,16 @@ const Menu = () => {
                             transition={{ duration: 0.2 }}
                         >
                             <SettingsMenu />
+                        </motion.div>
+                    ) : activeMenu === "credits" ? (
+                        <motion.div
+                            key="credits"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            <Credits />
                         </motion.div>
                     ) : activeMenu === "gameSetup" ? (
                         <motion.div

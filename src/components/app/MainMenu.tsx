@@ -38,6 +38,15 @@ const MainMenu = ({ onPlayOrResume, onQuit }: IMainMenuProps) => {
                         text={ t("settings") }
                         menuName="main"
                     />
+                    {!isPlaying ? (
+                        <HoverableComponent
+                            onClick={ () => setActiveMenu("credits") }
+                            component={ <BlueRectangleBorder size={ 1.5 } /> }
+                            hoverComponent={ <BlueRectangleDepthBorder size={ 1.5 } /> }
+                            text={ t("credits") }
+                            menuName="main"
+                        />
+                    ) : null}
                     <HoverableComponent
                         onClick={ onQuit }
                         component={ <RedRectangleFlat size={ 1.5 } /> }

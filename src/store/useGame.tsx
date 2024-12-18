@@ -20,7 +20,7 @@ interface IStage {
 
 export type TDifficulty = "easy" | "medium" | "hard";
 
-export type TActiveMenu = "" | "main" | "settings" | "gameSetup" | "endGame";
+export type TActiveMenu = "" | "main" | "settings" | "gameSetup" | "endGame" | "credits";
 
 interface IGameState {
     keybindings: () => IKeybindings;

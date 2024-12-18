@@ -3,6 +3,7 @@
         "play": "Play",
         "resume": "Resume",
         "settings": "Settings",
+        "credits": "Credits",
         "exit": "Exit",
         "seedCopied": "Seed copied to clipboard!"
     },
@@ -115,6 +116,97 @@
             "actionVolumeDescription": "Audio performed on action",
             "uiVolume": "UI Volume",
             "uiVolumeDescription": "Menu interface volume"
+        }
+    },
+    "credits": {
+        "title": "Credits",
+        "sections": {
+            "development": {
+                "title": "Development and Story",
+                "leadDeveloper": "Lead Developer",
+                "story": "Story",
+                "inspiration": "Inspiration",
+                "githubProject": "Github Project"
+            },
+            "resources": {
+                "title": "3D Resources",
+                "charactersAndAnimations": "Characters and Animations",
+                "charactersAndAnimationsAssembly": "Characters and Animations Assembly",
+                "props": {
+                    "schoolCorridor": "School Corridor",
+                    "schoolCorridorEdited": "School Corridor (edited)",
+                    "elevator": "Elevator",
+                    "brownBackpack": "Brown Backpack",
+                    "redBackpack": "Red Backpack",
+                    "yellowBackpack": "Yellow Backpack",
+                    "plasticRoundBin": "Plastic Round Bin",
+                    "steelBin": "Steel Bin",
+                    "pictureFrame": "Picture Frame",
+                    "paintingFourColors": "Painting Four Colors",
+                    "paintingShadesofBlue": "Painting Shades of Blue",
+                    "sunPainting": "Sun Painting",
+                    "bluePencilcase": "Blue Pencilcase",
+                    "dakinePencilcase": "Dakine Pencilcase",
+                    "bench": "Bench",
+                    "blackBoard": "Black Board",
+                    "burger": "Burger",
+                    "ceilingLight": "Ceiling Light",
+                    "chessSet": "Chess Set",
+                    "clock": "Clock",
+                    "antiqueGlobe": "Antique Globe",
+                    "paperTablet": "Paper Tablet",
+                    "pencil": "Pencil",
+                    "pigeon": "Pigeon",
+                    "plants": "Plants",
+                    "streetRat": "Street Rat",
+                    "schoolDesk": "School Desk",
+                    "schoolDiary": "School Diary",
+                    "schoolHat": "Student Cap",
+                    "securityCamera": "Security Camera",
+                    "sharpener": "Sharpener",
+                    "teacherDesk": "Teacher Desk",
+                    "woodHookRack": "Wooden Hook Rack"
+                }
+            },
+            "audio": {
+                "title": "Audio",
+                "bgm": "Background Music",
+                "bgmElevator": "Background Music for Elevator",
+                "sfxElevatorOpenClose": "Elevator Open/Close Sound",
+                "sfxTickingClock": "Ticking Clock Sound"
+            },
+            "fonts": {
+                "title": "Fonts"
+            },
+            "texturesAndEnvironment": {
+                "title": "Textures and Environment",
+                "hdrTexture": "HDR Texture"
+            },
+            "uiAndButtons": {
+                "title": "UI and Buttons",
+                "xboxButtons": "Xbox Buttons",
+                "playstationButtons": "Playstation Buttons"
+            },
+            "softwareResourcesAndLibraries": {
+                "title": "Software Resources and Libraries",
+                "3dRenderingEngine": "3D Rendering Engine",
+                "rapierPhysicsEngine": "Rapier Physics Engine",
+                "design": "Design",
+                "stateManagement": "State Management",
+                "animations": "Animations",
+                "internationalization": "Internationalization",
+                "conversionGLTF": "GLTF Conversion",
+                "characterController": "Character Controller",
+                "characterControllerForked": "Character Controller (forked)"
+            },
+            "specialMentions": {
+                "title": "Special Mentions",
+                "poimandresCommunity": "Poimandres Community",
+                "betaTester": "Beta Tester"
+            },
+            "contact": {
+                "title": "Contact"
+            }
         }
     },
     "game" : {

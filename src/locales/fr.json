@@ -3,6 +3,7 @@
         "play": "Jouer",
         "resume": "Reprendre",
         "settings": "Paramètres",
+        "credits": "Crédits",
         "exit": "Quitter",
         "seedCopied": "Seed copiée dans le presse-papier !"
     },
@@ -115,6 +116,97 @@
             "actionVolumeDescription": "Volume du son lors d'une action",
             "uiVolume": "Volume de l'interface",
             "uiVolumeDescription": "Volume de l'interface des menus"
+        }
+    },
+    "credits": {
+        "title": "Crédits",
+        "sections": {
+            "development": {
+                "title": "Développement et Scénario",
+                "leadDeveloper": "Développeur principal",
+                "story": "Scénario",
+                "inspiration": "Inspiration",
+                "githubProject": "Github du projet"
+            },
+            "resources": {
+                "title": "Ressources 3D",
+                "charactersAndAnimations": "Personnages et animations",
+                "charactersAndAnimationsAssembly": "Assemblage des personnages et animations",
+                "props": {
+                    "schoolCorridor": "Couloir d'école",
+                    "schoolCorridorEdited": "Couloir d'école (édité)",
+                    "elevator": "Ascenseur",
+                    "brownBackpack": "Sac à dos marron",
+                    "redBackpack": "Sac à dos rouge",
+                    "yellowBackpack": "Sac à dos jaune",
+                    "plasticRoundBin": "Poubelle en plastique",
+                    "steelBin": "Poubelle en acier",
+                    "pictureFrame": "Cadre photo",
+                    "paintingFourColors": "Peinture quatre couleurs",
+                    "paintingShadesofBlue": "Peinture de nuances de bleu",
+                    "sunPainting": "Peinture du soleil",
+                    "bluePencilcase": "Trousse bleue",
+                    "dakinePencilcase": "Trousse Dakine",
+                    "bench": "Banc",
+                    "blackBoard": "Tableau noir",
+                    "burger": "Burger",
+                    "ceilingLight": "Plafonnier",
+                    "chessSet": "Echiquier",
+                    "clock": "Horloge",
+                    "antiqueGlobe": "Globe antique",
+                    "paperTablet": "Tablette porte documents",
+                    "pencil": "Crayon",
+                    "pigeon": "Pigeon",
+                    "plants": "Plantes",
+                    "streetRat": "Rat de rue",
+                    "schoolDesk": "Table scolaire",
+                    "schoolDiary": "Agenda",
+                    "schoolHat": "Mortarboard",
+                    "securityCamera": "Caméra de surveillance",
+                    "sharpener": "Taille-crayon",
+                    "teacherDesk": "Bureau du professeur",
+                    "woodHookRack": "Porte manteau mural en bois"
+                }
+            },
+            "audio": {
+                "title": "Audio",
+                "bgm": "Musique de fond",
+                "bgmElevator": "Musique de fond pour l'ascenseur",
+                "sfxElevatorOpenClose": "Son d'ouverture/fermeture de l'ascenseur",
+                "sfxTickingClock": "Son d'horloge qui tourne"
+            },
+            "fonts": {
+                "title": "Polices d'écriture"
+            },
+            "texturesAndEnvironment": {
+                "title": "Textures et environnement",
+                "hdrTexture": "Texture HDR"
+            },
+            "uiAndButtons": {
+                "title": "Interface utilisateur et boutons",
+                "xboxButtons": "Boutons Xbox",
+                "playstationButtons": "Boutons Playstation"
+            },
+            "softwareResourcesAndLibraries": {
+                "title": "Ressources logicielles et bibliothèques",
+                "3dRenderingEngine": "Moteur de rendu 3D",
+                "rapierPhysicsEngine": "Moteur de physique Rapier",
+                "design": "Design",
+                "stateManagement": "Gestion d'état",
+                "animations": "Animations",
+                "internationalization": "Internationalisation",
+                "conversionGLTF": "Conversion GLTF",
+                "characterController": "Contrôleur de personnage",
+                "characterControllerForked": "Contrôleur de personnage (forké)"
+            },
+            "specialMentions": {
+                "title": "Mentions spéciales",
+                "poimandresCommunity": "Communauté Poimandres",
+                "betaTester": "Bêta testeur"
+            },
+            "contact": {
+                "title": "Contact"
+            }
         }
     },
     "game" : {
