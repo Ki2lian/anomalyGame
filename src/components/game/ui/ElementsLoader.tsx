@@ -1,5 +1,6 @@
 import { useProgress } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Download } from "@/components/assets/icons/Download";
 import useGame from "@/store/useGame";
@@ -7,9 +8,13 @@ import useGame from "@/store/useGame";
 const ElementsLoader = () => {
     const { progress, item, loaded, total } = useProgress();
 
+    const { t } = useTranslation("credits", { keyPrefix: "sections.tips" });
+    const tips = t("tips", { returnObjects: true }) as string[];
+
     const { gameIsReady } = useGame();
 
     const [ isVisible, setIsVisible ] = useState(true);
+    const randomTipRef = useRef<string>(tips[Math.floor(Math.random() * tips.length)]);
 
     useEffect(() => {
         if (progress === 100 && gameIsReady) {
@@ -35,15 +40,20 @@ const ElementsLoader = () => {
                         {Math.round(progress)}%
                     </div>
                 </div>
-                <div className="mt-2 flex w-3/4 justify-around text-sm text-white lg:w-1/4">
-                    <span>{item}</span>
-                    <span>
-                        {loaded}/{total}
-                    </span>
+                <div className="mt-2 flex w-3/4 flex-col space-y-4 text-white lg:w-1/4">
+                    <div className="flex items-center justify-around text-sm">
+                        <span>{item}</span>
+                        <span>
+                            {loaded}/{total}
+                        </span>
+                    </div>
+                    <div className="flex justify-center">
+                        {randomTipRef.current}
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
 
-export default ElementsLoader;
+export default memo(ElementsLoader);
