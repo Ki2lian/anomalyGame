@@ -45,7 +45,7 @@ const Menu = () => {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
                         >
-                            <GameSetup onCancel={ () => setActiveMenu("main") } />
+                            <GameSetup />
                         </motion.div>
                     ) : activeMenu === "main" ? (
                         <motion.div

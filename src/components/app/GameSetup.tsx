@@ -12,19 +12,20 @@ import { GreyRectangleDepthFlat } from "@/components/assets/sprites/grey/Rectang
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { isValidSeed } from "@/lib/utils";
+import { isValidSeed, playSound } from "@/lib/utils";
 import useGame, { TDifficulty } from "@/store/useGame";
 
-interface IGameSetupProps {
-    onCancel: () => void;
-}
-
-const GameSetup = ({ onCancel }: IGameSetupProps) => {
-    const { activeMenu, seed, startGame } = useGame();
+const GameSetup = () => {
+    const { activeMenu, seed, isTransitioning, startGame, setActiveMenu } = useGame();
     const { t } = useTranslation("gameSetup");
 
     const [ difficulty, setDifficulty ] = useState<TDifficulty>("easy");
     const [ providedSeed, setSeed ] = useState(seed);
+
+    const handleClick = () => {
+        setActiveMenu("main");
+        playSound("/audio/click.wav", "ui");
+    };
 
     const handleStartGame = () => {
         if (activeMenu !== "gameSetup") return;
@@ -40,7 +41,7 @@ const GameSetup = ({ onCancel }: IGameSetupProps) => {
         <GreyRectangleDepthFlat className="relative mx-auto mt-[7%] md:w-3/4 lg:w-1/2">
             <div className="flex flex-col">
                 <div className="relative mb-3 flex items-center">
-                    <Button className="absolute left-0" variant="secondary" onClick={ onCancel }>
+                    <Button className="absolute left-0" variant="secondary" onClick={ handleClick } disabled={ isTransitioning }>
                         <Undo2 />
                     </Button>
                     <h1 className="w-full select-none text-center text-xl font-bold text-foreground lg:text-3xl">{t("title")}</h1>
