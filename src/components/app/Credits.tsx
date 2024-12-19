@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import CreditItem from "@/components/app/credits/CreditItem";
 import CreditSection from "@/components/app/credits/CreditSection";
+import Tips from "@/components/app/credits/Tips";
 import { Button } from "@/components/ui/button";
 import { playSound } from "@/lib/utils";
 import useGame from "@/store/useGame";
@@ -305,6 +306,9 @@ const Credits = () => {
                     <CreditItem label="Email" link="mailto:killian@ki2lian.fr" text="killian@ki2lian.fr" target="" />
                     <CreditItem label="GitHub" link="https://github.com/ki2lian" text="Ki2lian" />
                     <CreditItem label="Discord" link="https://discord.com/invite/n6vjPEQW4F" text="Ki2lian" />
+                </CreditSection>
+                <CreditSection title={ t("sections.tips.title") }>
+                    <Tips />
                 </CreditSection>
             </div>
         </>

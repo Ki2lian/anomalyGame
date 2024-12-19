@@ -206,6 +206,15 @@
             },
             "contact": {
                 "title": "Contact"
+            },
+            "tips": {
+                "title": "Astuces",
+                "tips": [
+                    "Regarde chaque détail du couloir.",
+                    "Un mauvais bouton peut te condamner.",
+                    "Souviens-toi de ce que tu vois.",
+                    "Le sixième étage est toujours ordonné."
+                ]
             }
         }
     },
