@@ -138,7 +138,7 @@ const useGame = create<IGameState, [["zustand/subscribeWithSelector", never]]>(
                 stage: {
                     currentStage: 6,
                     visitCount: 0,
-                    maxAnomalies: generateMaxAnomalies(6, seed, difficulty),
+                    maxAnomalies: 0,
                 },
             });
         },
