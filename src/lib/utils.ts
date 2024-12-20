@@ -194,3 +194,5 @@ export const playSound = (path: string, type: "ui" | "action") => {
         console.error("Error playing sound:", error);
     });
 };
+
+export const delay = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms));

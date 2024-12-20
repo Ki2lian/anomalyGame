@@ -8,6 +8,7 @@ import { Vector3 } from "three";
 import { defaultSettings, ISettings } from "@/components/app/settings/defaultsSettings";
 import CharacterModel from "@/components/game/player/CharacterModel";
 import { generateKeyboardMouseMap } from "@/lib/controls";
+import { delay } from "@/lib/utils";
 import useGame from "@/store/useGame";
 
 interface IPlayer {
@@ -47,7 +48,6 @@ const Player = ({ width, height }: IPlayer) => {
             const position = player.translation();
 
             if (position.y < fallThreshold) {
-
                 const currentTime = Date.now();
                 if (currentTime - lastFallTimeRef.current < fallResetTime * 1000) {
                     fallCountRef.current += 1;
@@ -70,16 +70,33 @@ const Player = ({ width, height }: IPlayer) => {
         }
     });
 
+    const setCameraRotationSafe = (player: CustomEcctrlRigidBody, x: number, y: number) => player.setCameraRotation && player.setCameraRotation(x, y);
+
+    const preRotateCamera = async (player: CustomEcctrlRigidBody, rotations: number[], delayMs: number) => {
+        for (const rotation of rotations) {
+            setCameraRotationSafe(player, 0, rotation);
+            await delay(delayMs);
+        }
+    };
+
+    const initializePlayer = async (player: CustomEcctrlRigidBody) => {
+        player.setTranslation(SPAWN_POSITION, true);
+
+        setCameraRotationSafe(player, 0, 0);
+
+        if (!gameIsReady) {
+            const rotations = [ Math.PI / 2, Math.PI, -Math.PI / 2, 0 ];
+            await preRotateCamera(player, rotations, 250);
+            setGameIsReady(true);
+        }
+    };
+
     useEffect(() => {
         const player = ecctrlRef.current;
 
         if (player) {
             setTimeout(() => {
-                player.setTranslation(SPAWN_POSITION, true);
-                if (player.setCameraRotation) {
-                    player.setCameraRotation(0, 0);
-                }
-                if (!gameIsReady) setGameIsReady(true);
+                initializePlayer(player);
             }, 1);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
