@@ -6,11 +6,13 @@ import { defaultSettings, IAspectRatio, ISettings } from "@/components/app/setti
 import { aspectRatiosAvailable, environmentTextureAvailable } from "@/components/app/settings/import/validators/graphics";
 import ResetButton from "@/components/app/settings/ResetButton";
 import SettingRow from "@/components/app/settings/SettingRow";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
+import { useFullScreen } from "@/hooks/useFullScreen";
 
 interface IUpdateGraphicsSettingProps {
     key: string;
@@ -20,6 +22,8 @@ interface IUpdateGraphicsSettingProps {
 const GraphicsTab = () => {
     const { t } = useTranslation("settingsMenu", { keyPrefix: "graphics" });
     const [ settings, setSettings ] = useLocalStorage<ISettings>("settings", defaultSettings);
+
+    const [ isFullScreen, toggleFullScreen ] = useFullScreen();
 
     const [ tempValues, setTempValues ] = useState({
         renderDistance: settings.graphics.renderDistance,
@@ -51,10 +55,22 @@ const GraphicsTab = () => {
         updateGraphicsSetting({ key: "aspectRatio", value: { isNative, width: parseInt(width), height: parseInt(height) }});
     };
 
+    const handleToggleFullScreen = async () => {
+        await toggleFullScreen();
+    };
+
     return (
         <Card>
             <CardContent className="p-4">
                 <ResetButton section="graphics" confirmTextKey="confirmResetDefaultGraphics" successMessageKey="resetGraphicsSuccessMessage" />
+                <SettingRow label={ t("fullScreen") } description={ t("toggleFullScreenDescription") }>
+                    {!isFullScreen ? (
+                        <Button className="md:hidden" variant={ "success" } onClick={ handleToggleFullScreen }>{ t("enableFullScreen") }</Button>
+                    ) : (
+                        <Button className="md:hidden" variant={ "destructive" } onClick={ handleToggleFullScreen }>{ t("disableFullScreen") }</Button>
+                    )}
+                    <span className="hidden md:block">{ t("pressF11") }</span>
+                </SettingRow>
                 <SettingRow label={ t("fov") } description={ t("fovDescription") }>
                     <Slider
                         value={ [ tempValues.fov ] }

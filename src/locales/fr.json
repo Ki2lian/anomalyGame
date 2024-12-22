@@ -56,6 +56,11 @@
         },
         "graphics": {
             "title": "Graphismes",
+            "fullScreen": "Plein écran",
+            "enableFullScreen": "Activer",
+            "disableFullScreen": "Désactiver",
+            "toggleFullScreenDescription": "Activer/Désactiver le plein écran",
+            "pressF11": "Appuyez sur la touche F11",
             "fov": "Champ de vision",
             "fovDescription": "Ajuster le champ de vision de la camera",
             "renderDistance": "Distance de rendu",

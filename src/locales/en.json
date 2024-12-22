@@ -56,6 +56,11 @@
         },
         "graphics": {
             "title": "Graphics",
+            "fullScreen": "Fullscreen",
+            "enableFullScreen": "Enable",
+            "disableFullScreen": "Disable",
+            "toggleFullScreenDescription": "Enable/Disable fullscreen",
+            "pressF11": "Press F11 key",
             "fov": "Field of View (FOV)",
             "fovDescription": "Adjust the field of view (FOV) of the camera",
             "renderDistance": "Render Distance",
